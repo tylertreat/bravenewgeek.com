@@ -1,0 +1,268 @@
+[
+ {
+  "id": 123,
+  "parent": 0,
+  "author": "Confused",
+  "date": "2015-03-25T18:57:48",
+  "content": "<p>&#8220;I can send 10 letters and assume you’ll get at least one of them (at-least-once).&#8221;</p>\n<p>How is it you can assume 1 of 10 gets through?  Isn&#8217;t this really &#8220;at most 10&#8221;?</p>\n<p>If you can assume 1-of-N will get through, then why not just take N=1 and call it exactly-once?</p>\n",
+  "children": [
+   {
+    "id": 124,
+    "parent": 123,
+    "author": "Tyler Treat",
+    "date": "2015-03-25T19:27:46",
+    "content": "<p>Yes, you&#8217;re correct. It&#8217;s not really an example of at-least-once delivery which requires an acknowledgement. Unintentionally misleading :)</p>\n<p>Updated the wording to hopefully make it clear (and correct).</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 127,
+  "parent": 0,
+  "author": "Jason Dusek",
+  "date": "2015-03-26T02:32:35",
+  "content": "<p>The FLP result comes with a caveat &#8212; it applies to a &#8220;completely asynchronous&#8221; protocol.</p>\n<p>&gt; In this paper, we show the surprising result that no completely asynchronous consensus protocol can tolerate even a single unannounced process death.</p>\n<p>With tightly bounded clock drift (hard to bound in practice), it seems reasonable that we can guarantee once-and-only-once delivery, because we can perform consensus.</p>\n",
+  "children": [
+   {
+    "id": 142,
+    "parent": 127,
+    "author": "Joubin Houshyar",
+    "date": "2015-03-26T13:59:24",
+    "content": "<p>It seems the conceptual root cause is subscription to the illusion of continuums and a stubborn belief in the fairy dust of (meaningful) instantaneity. We need to accept the reality of a discreet view of the world&#8211; which naturally promotes to first-class design concerns the notions of &#8216;precision&#8217; &amp; (time) &#8216;granularities&#8217;. </p>\n<p>The fact of the matter is that all of our computational systems are operating on data from &#8216;the past&#8217;. </p>\n<p>(re. clock bounds: Google has done it with Spanner &#8212; someone needs to commoditize the necessary h/w.)</p>\n",
+    "children": [
+     {
+      "id": 14063,
+      "parent": 142,
+      "author": "Nicolas Correard",
+      "date": "2016-02-24T16:30:08",
+      "content": "<p>CockroachDB do the equivalent of spanner without the hardware. Look for the blog post containing &#8220;CockroachDB was designed to work without atomic clocks or GPS clocks. It’s an open source database intended to be run on arbitrary collections of nodes: from physical servers in a corp development cluster to public cloud infrastructure using the flavor-of-the-month virtualization layer. It’d be a showstopper to require an external dependency on specialized hardware for clock synchronization.&#8221;</p>\n",
+      "children": []
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": 128,
+  "parent": 0,
+  "author": "lmm",
+  "date": "2015-03-26T03:43:29",
+  "content": "<p>Doesn&#8217;t the existence of three-phase commit contradict this? If I make a change and commit it with 3PC, retrying until it does, how is that not exactly-once delivery?</p>\n",
+  "children": [
+   {
+    "id": 42809,
+    "parent": 128,
+    "author": "J W",
+    "date": "2021-11-05T23:32:14",
+    "content": "<p>FLP literally does not apply to message passing lol.  It important for writers to actually understand the proof of the theorem they&#8217;re talking about before they make wild claims like those in this article.  In fact, FLP assumes reliable links!  You read that right&#8211;*it literally assumes the existence of exactly-once delivery between correct nodes*, but proceeds to show that this doesn&#8217;t affect its main result.  If you are claiming that one of the core system assumptions of FLP (the existence of reliable links) is disproved by FLP, you *might* just not understand distributed systems as well as you think you do.</p>\n<p>But what about in practice?  Well, in practice it&#8217;s really easy to get exactly-once delivery between nodes, as long as you&#8217;re in a system strong enough to eventually solve consensus.  In most contexts in which people want exactly-once delivery (such as between managed nodes in datacenters) this is a completely reasonable assumption.  So this is a dumb post in practice, too.</p>\n",
+    "children": [
+     {
+      "id": 58976,
+      "parent": 42809,
+      "author": "haha",
+      "date": "2024-11-06T23:10:14",
+      "content": "<p>So true&#8230; I was shocked to see so many blogs claiming exactly-once is impossible, citing the two-general problem and the FLP paper. </p>\n<p>Those impossibility resutls only say that algorithms guaranteeing liveness (i.e., terminate within bounded number of steps) do not exist; there can still be algorithms that guarantee safety (i.e., produce correct consensus outcomes once terminated). Paxos and 2PC are such algorithms and they work just fine in practice.</p>\n",
+      "children": []
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": 129,
+  "parent": 0,
+  "author": "Webhiker",
+  "date": "2015-03-26T04:01:34",
+  "content": "<p>All your objections to Exactly-once also apply to AtLeastOnce.<br />\nAnd ExactlyOnce is possible&#8230;all your objections are based on the current design flay of messaing systems which decouple delivery into a message queue.</p>\n<p>If  you don&#8217;t decouple, the act of the recipient &#8220;reading&#8221; the message  can be easily detected, including it&#8217;s failure. But then all the investment in expensive message queues looks stupid, so no-one will be able sell their superior knowledge of straw man arguments on why message delivery cannot be guaranteed.  :)</p>\n",
+  "children": [
+   {
+    "id": 47957,
+    "parent": 129,
+    "author": "MC",
+    "date": "2022-04-18T22:37:29",
+    "content": "<p>You have absolutely no clue what you&#8217;re babbling about.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 136,
+  "parent": 0,
+  "author": "Michael Chermside",
+  "date": "2015-03-26T08:58:06",
+  "content": "<p>Although it is impossible to create a system that guarantees &#8220;exactly once&#8221; delivery, it *is* possible to create a system that guarantees that EITHER (1) it will deliver exactly once, OR (2) it will report an error to a human being. This is also the technique best used for attempts at &#8220;at least once&#8221; delivery which fail over an extended period of time.</p>\n<p>None of this invalidates anything you said about the usefulness of idempotency, but I like to point it out because it emphasizes two things: the impossibility of perfect message delivery (like &#8220;exactly once&#8221; being impossible) and the need to have someone monitor the error queues of your messaging system.</p>\n",
+  "children": [
+   {
+    "id": 147,
+    "parent": 136,
+    "author": "sumit",
+    "date": "2015-03-27T02:43:57",
+    "content": "<p>Hey Michael,</p>\n<p>It would be really helpful if you could point out some simple and relevant article(s) that supports the guarantee you mentioned.</p>\n",
+    "children": []
+   },
+   {
+    "id": 777,
+    "parent": 136,
+    "author": "Michael Ho",
+    "date": "2015-06-05T11:05:46",
+    "content": "<p>Fancy meeting you here, MCherm!</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 137,
+  "parent": 0,
+  "author": "Stu",
+  "date": "2015-03-26T09:16:58",
+  "content": "<p>You&#8217;re right, but I&#8217;m not sure about the melodrama. Accusing folks like IBM or BEA/Oracle of lying for 20 years is a reach, it&#8217;s more like you weren&#8217;t there when they coined the term.</p>\n<p> &#8220;Exactly once&#8221; has *always* meant &#8220;at least once but dupe-detected&#8221;.  Mainly because we couldn&#8217;t convince customers to send idempotent and communitative state changes.</p>\n",
+  "children": [
+   {
+    "id": 260,
+    "parent": 137,
+    "author": "Sebastien Lorber",
+    "date": "2015-04-05T19:10:07",
+    "content": "<p>+1</p>\n<p>With event-sourcing/stream processing for example you would version every event/message so that it&#8217;s easy to dedup. If your friend receive 2 messages with id=456 telling him to turn left them it is easy for him to ignore one of them.</p>\n<p>Another problem is about message ordering. If you have multiple datacenters and want to keep allow local writes during a network partition it seems impossible to guarantee global event ordering.<br />\nKafka does only guarantee ordering across a single Kafka partition for example.<br />\nSee how Eventuate is trying to solve this with causal consistency: <a href=\"https://github.com/RBMHTechnology/eventuate\" rel=\"nofollow ugc\">https://github.com/RBMHTechnology/eventuate</a></p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 796,
+  "parent": 0,
+  "author": "Mike Spooner",
+  "date": "2015-06-08T03:11:01",
+  "content": "<p>Well said, nice article. But this has been well-understood since at least 1986&#8230; sigh</p>\n",
+  "children": [
+   {
+    "id": 2562,
+    "parent": 796,
+    "author": "John B",
+    "date": "2015-09-09T09:06:24",
+    "content": "<p>yes, it has been well understood by certain people for a long time, but there&#8217;s been an entire new generation of software developers since 1986.   </p>\n<p>While it may be tedious for those of us who have been around for a long time, re-introducing key concepts to young developers is incredibly valuable work.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 2474,
+  "parent": 0,
+  "author": "Abhinav Singh",
+  "date": "2015-09-06T02:05:36",
+  "content": "<p>Great post as always.  Wanted to leave my 2 cents here.</p>\n<p>Let&#8217;s forget engineering and take a real world example like you did.  Assume a distributed system of 2 nodes, me and my wife sitting in next room.  If I want to communicate with her, I shout out her name and wait for response.  Well, if I don&#8217;t hear back from her, we can assume:</p>\n<p>&#8211; probably she didn&#8217;t hear me (partitioned by walls)<br />\n&#8211; simply ignored my message coz she is busy<br />\n&#8211; received my message but it wasn&#8217;t clear to her what to do with it<br />\n&#8211; received and she did shout back, but I just couldn&#8217;t hear her due to partition caused by walls and due to her soft voice<br />\n&#8211; may be I did likely heard her, but I am not sure<br />\n&#8211; may be I was too busy when she called out to me<br />\n&#8211; &#8230;.. We can go on here </p>\n<p>Now, if I seriously want her attention and mean business, I will have to move past this &#8220;exactly-once&#8221; melodrama and shout out to her again.</p>\n",
+  "children": []
+ },
+ {
+  "id": 17089,
+  "parent": 0,
+  "author": "Kunal",
+  "date": "2016-12-12T13:22:48",
+  "content": "<p>You can achieve the intent of &#8220;exactly-once&#8221; i.e. no duplicates and no data-loss on failures by making the receiver (client) state aware (i.e. offset, IDs); the client de-dupes.</p>\n<p>There is business intent to building technology always. Religiously speaking, it is correct that exactly-once is not possible on the network protocol level in a distributed system; I don&#8217;t think anyone will argue that. When people say we need exactly once, they really are speaking from a business or application intent.</p>\n",
+  "children": [
+   {
+    "id": 17106,
+    "parent": 17089,
+    "author": "Mike Spooner",
+    "date": "2016-12-12T18:12:01",
+    "content": "<p>Although sequence-numbers/IDs does mean that, like the 787 Dreamliner, you have to poweroff or restart the entire system-universe every so often, at least until we get systems that really can count to infinity (at least &#8220;A0&#8221;, not necessarily as far as Cantors number).</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 21329,
+  "parent": 0,
+  "author": "Homesh Rawat",
+  "date": "2018-02-17T04:12:54",
+  "content": "<p>Great read!</p>\n",
+  "children": []
+ },
+ {
+  "id": 22129,
+  "parent": 0,
+  "author": "mark",
+  "date": "2018-06-18T05:45:33",
+  "content": "<p>I thinks these works like deduplication and&#8230;  must execute on consumer side</p>\n",
+  "children": []
+ },
+ {
+  "id": 25107,
+  "parent": 0,
+  "author": "Nicholas",
+  "date": "2019-02-11T12:11:04",
+  "content": "<p>&#8220;The way we achieve exactly-once delivery in practice is by faking it. Either the messages themselves should be idempotent, meaning they can be applied more than once without adverse effects, or we remove the need for idempotency through deduplication.&#8221;</p>\n<p>If the message only writes exactly once then that&#8217;s successful exactly-once semantics. Back when this article was written it was a hard problem a lot of people struggled with, but today Kafka has a system for exactly-once, and I work at a different company that does it in a different way. You can call it &#8220;fake&#8221; but in that case we have stable, well-functioning &#8220;fake&#8221; exactly-once semantics, and a lot of customers use that &#8220;fake&#8221; system successfully to solve real problems.</p>\n",
+  "children": []
+ },
+ {
+  "id": 31313,
+  "parent": 0,
+  "author": "Mehedi",
+  "date": "2020-05-22T19:14:18",
+  "content": "<p>How Gmail ensure only one email?</p>\n",
+  "children": []
+ },
+ {
+  "id": 45732,
+  "parent": 0,
+  "author": "temporal user",
+  "date": "2022-01-13T21:05:59",
+  "content": "<p>temporal does exactly once delivery</p>\n",
+  "children": []
+ },
+ {
+  "id": 51403,
+  "parent": 0,
+  "author": "Alexey Stogny",
+  "date": "2023-02-23T10:15:21",
+  "content": "<p>Nice post! Thanks! Wouldn&#8217;t post useless comment, but there&#8217;s no other way to subscribe to new posts ;)</p>\n",
+  "children": []
+ },
+ {
+  "id": 51460,
+  "parent": 0,
+  "author": "Simon Boddy",
+  "date": "2023-03-02T02:07:04",
+  "content": "<p>Absolutely. Of course. And there&#8217;s a simple pattern for dealing with this&#8230; use a request/response protocol rather than messages, then make sure all unsafe requests have an application-level id. The receiving process, the server application, should store all responses. If it sees a request for the first time it does the work, then sends and stores the response. If it sees a request for which it has a stored response, it just replays the response. Reliability is an application level responsibility, and uniquely identified requests can be linked to uniqueness in the application context (1 shopping cart can have 1 payment request that the shopping cart app can repeat endlessly until it gets a response)</p>\n",
+  "children": []
+ },
+ {
+  "id": 51813,
+  "parent": 0,
+  "author": "Rody",
+  "date": "2023-04-18T21:10:42",
+  "content": "<p>What about modern day chat applications, they use sockets and messages are delivered once and they come under distributed systems right?<br />\nisnt exactly once not achieved, or is it with the sender and receiver being the same services giving an edge?</p>\n",
+  "children": []
+ },
+ {
+  "id": 52785,
+  "parent": 0,
+  "author": "abc123",
+  "date": "2023-09-18T09:48:57",
+  "content": "",
+  "children": []
+ },
+ {
+  "id": 60669,
+  "parent": 0,
+  "author": "Gyula Csom",
+  "date": "2025-02-07T18:38:41",
+  "content": "<p>I think the reasoning here is not totally precise. From FLP it follows that &#8220;Exactly once&#8221; is impossible in network (where partitions can occur). However it does not seem to be impossible at the application level (if we assume the machine reliable where partition cannot occur). How? Through idempotency:</p>\n<p>&#8212; Draft protocol</p>\n<p>Here is a simple protocol using shared message log. Lets say the message broker is Kafka, which BTW also states it can do &#8220;Exactly once&#8221;:</p>\n<p>Step 1. Kafka server-&gt;client: Server sends, client Receives new message<br />\nStep 2. Kafka client: Logs message as being processed<br />\nStep 3. Kafka client-&gt;Application: Client sends, Application receives new message<br />\nStep 4. Application: Process message<br />\nStep 5. Application: Logs message as processed</p>\n<p>&#8212; Case of network failure: </p>\n<p>Step 2. Check log before forwarding and only forward message to application iff it is not yet processed.</p>\n<p>&#8212; Case of process failure of Kafka client (after the message is already processed):</p>\n<p>Restart Kafka client: Consult log and only forward messages which are not marked as processed</p>\n<p>Case of process failure of Application:</p>\n<p>Restart Application: Consult log and process messages which are not marked as processed</p>\n<p>&#8212; Case of process failure of Kafka client (while message is being processed by the application): </p>\n<p>No need nothing (single threaded Application) or some intra-app coordination (multi threaded)</p>\n<p>&#8212; Case of process failure of both Kafka client and Application: </p>\n<p>No need nothing.</p>\n<p>A thing which seems to be interesting here, in case of business applications (DB): what happens with the transaction? Then idempotency should be solved at that side as well, such as recording a version (such as e.g. optimistic lock) both at the local log and the DB. </p>\n<p>Then the only problem remains when Application crashes during transaction, after transaction started but but before commited. To my understanding client-crash-survival DB sessions might be theoretically possible, but I am not aware of any RDBMS implementing it. Someone else? :-)</p>\n<p>As always I can be wrong &#8211; these are just rough thoughts. Any feedback is more then welcome. :-)</p>\n",
+  "children": []
+ },
+ {
+  "id": 60691,
+  "parent": 0,
+  "author": "Gyula Csom",
+  "date": "2025-02-09T05:40:07",
+  "content": "<p>So to clarify&#8230; the above protocol is still not &#8220;Exactly once&#8221; at the network level. That is impossible due to FLP. However a smart protocol may hide this from the Application and present itself as &#8220;Exactly once&#8221;.</p>\n<p>Bottom line: If network partitions (resending lost messages) is an issue than &#8220;Exactly once&#8221; can be missleading, someone shall not forget about the physical level. However if partitions are not a big issue (network is robust enough, fast, etc.) then someone may forget about the physical level (network) and just think that at the Application level (i.e. logically) it is &#8220;Exactly once&#8221;. Question here:  what is the added value here in comparison with &#8220;Idempotency&#8221; which sometimes can still be an issue at the Application level as well, such as when an impatient user resends the message that cannot be (easily) handled by infrastructure. What are your experiences in this regard?</p>\n",
+  "children": []
+ },
+ {
+  "id": 66177,
+  "parent": 0,
+  "author": "Heth Gala",
+  "date": "2026-01-14T19:47:51",
+  "content": "<p>This article was just a rant. Nothing useful came out of it. I was expecting how to achieve at-least once in notification systems here but its total rant.</p>\n",
+  "children": []
+ }
+]

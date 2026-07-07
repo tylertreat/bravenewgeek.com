@@ -1,0 +1,24 @@
+---
+title: "CAP and the Illusion of Choice"
+date: 2015-04-18T11:58:27-05:00
+lastmod: 2015-04-18T12:08:04-05:00
+slug: "cap-and-the-illusion-of-choice"
+categories: ["Distributed Systems"]
+tags: ["cap theorem", "databases", "distributed systems", "linearizability"]
+---
+
+The CAP theorem is widely discussed and often misunderstood within the world of distributed systems. It states that any networked, shared-data system can, at most, guarantee two of three properties: consistency, availability, and partition tolerance. I won’t go into detail on CAP since the literature is abundant, but the notion of “two of three”—while conceptually accessible—is utterly misleading. [Brewer has indicated this](http://www.infoq.com/articles/cap-twelve-years-later-how-the-rules-have-changed), echoed by many more, but there still seems to be a lot of confusion when the topic is brought up. The bottom line is [you can’t sacrifice partition tolerance](http://codahale.com/you-cant-sacrifice-partition-tolerance/), but it seems CAP is a bit more nuanced than that.
+
+On the surface, CAP presents three categories of systems. CA implies one which maintains consistency and availability given a perfectly reliable network. CP provides consistency and partition tolerance at the expense of availability, and AP gives us availability and partition tolerance without linearizability. Clearly, CA suggests that the system guarantees consistency and availability only when there are no network partitions. However, to say that there will never be network partitions is blatantly dishonest. This is where the source of much confusion lies.
+
+Partitions happen. They happen for countless reasons. Switches fail, NICs fail, link layers fail, servers fail, processes fail. Partitions happen even when systems _don’t_ fail due to GC pauses or prolonged I/O latency for example. Let’s accept this as fact and _move on_. What this means is that a “CA” system is CA _only until it’s not_. Once that partition happens, all your assumptions and all your guarantees hit the fan in spectacular fashion. Where does this leave us?
+
+At its core, CAP is about trade-offs, but it’s an _exclusion_ principle. It tells us what our systems _cannot_ do given the nature of reality. The distinction here is that not all systems fit nicely into these archetypes. If [Jepsen](https://aphyr.com/tags/jepsen) has taught us anything, it’s that the majority of systems don’t fit into _any_ of these categories, even when the designers state otherwise. CAP isn’t as black and white as people paint it.
+
+There’s a really nice [series on CAP](http://blog.thislongrun.com/2015/03/the-cap-theorem-series.html) written recently by Nicolas Liochon. It does an excellent job of explaining the terminology (far better than I could), which is often overloaded and misused, and it makes some interesting points. Nicolas suggests that CA should really be thought of as a specification for an operating range, while CP and AP are descriptions of behavior. I would tend to agree, but my concern is that this eschews the trade-off that must be made.
+
+> We know that we cannot avoid network partition. What if we specify our application like this: “this application does not handle network partition. If it happens, the application will be partly unavailable, the data may be corrupted, and you may have to fix the data manually.” In other words, we’re really asking to be CA here, but if a partition occurs we may be CP, or, if we are unlucky, both not available and not consistent.
+
+As an operating range, CA basically means when a partition occurs, the system throws up its hands and says, _“welp, see ya later!”_ If we specify that the system does not work well under network partitions, we’re saying partitions are _outside_ its operating range. What good is a specification for a spaceship designed to fly the upper atmosphere of planet Terah when we’re down here on Earth? We live in a world where partitions are the norm, so surely we need to include them in our operating range. CA _does_ specify an operating range, but it’s not one you can put in an SLA and hand to a customer. Colloquially, it’s just a mode of “undefined behavior”—the system is consistent and available—_until it’s not_.
+
+CAP isn’t a perfect metaphor, but in my mind, it does a decent job of highlighting the fundamental trade-offs involved in building distributed systems. Either we have linearizable writes or we don’t. If we do, we can’t guarantee availability. It’s true that CAP seems to imply a binary choice between consistency and availability in the face of partitions. In fact, it’s not a binary choice. You have AP, CP, or None of the Above. The problem with None of the Above is that it’s difficult to reason about and even more difficult to define. Ultimately, it ends up being more an _illusion of choice_ since we cannot sacrifice partition tolerance.

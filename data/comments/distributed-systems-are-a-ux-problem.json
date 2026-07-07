@@ -1,0 +1,61 @@
+[
+ {
+  "id": 755,
+  "parent": 0,
+  "author": "An Engineer",
+  "date": "2015-06-03T23:12:19",
+  "content": "<p>There are so many flaws with your position I simply cannot address them all.</p>\n<p>First, the title of this page is &#8220;Distributed Systems Are a UX Problem&#8221;.  Aside from an obvious bias to &#8220;the UX&#8221;, you provide no cogent argument for why a distributed system is &#8220;a UX Problem.&#8221;  Strangely, you make <em>some</em> arguments for a server to be resilient.  Yet I have to believe this is an incidental consequence.  Is it your stance that expected problems are simply &#8220;chucked to teh Userz&#8221;?  Or is your position that the only way to coordinate workflow is in a client?</p>\n<p>You use banking and ATM&#8217;s to support your premise, yet I can tell you with absolute <em>certainty</em> that the idea of &#8220;systems don&#8217;t make decisions, they make guesses&#8221; is both a trivialization of what transpires in a financial transaction system and a disingenuous way to present said trivialization.</p>\n<p>I tell ya what, why don&#8217;t you go ahead tell a bank they should say to their customers &#8220;you wanted to withdraw monies you think you had?  sorry&#8230;&#8221;  Be sure to blog how that works out for you.</p>\n",
+  "children": [
+   {
+    "id": 756,
+    "parent": 755,
+    "author": "Tyler Treat",
+    "date": "2015-06-03T23:41:37",
+    "content": "<p>The point is there are certain realities inherent in distributed systems which can&#8217;t be papered over, and those realities often manifest themselves at all levels in the stack. Sure, we can try to build abstractions which hide those problems, but they often leak or simply eschew the problems in dangerously subtle ways.</p>\n<p>Frontend and UX folks need to understand what they are building on. They need to understand the potential pitfalls of these abstractions and why they are as such. Sometimes there is a good business case for apologizing, sometimes there&#8217;s not. These things are never black and white, but if everyone can understand how systems work, we can build better ones and make better choices.</p>\n",
+    "children": [
+     {
+      "id": 759,
+      "parent": 756,
+      "author": "An Engineer",
+      "date": "2015-06-04T00:15:39",
+      "content": "<p>I agree that there are complexities (as you state, &#8220;certain realities&#8221;) inherent in distributed systems.  If there is one thing I believe we could both agree upon is that distributed systems increase the surface area of complexity exponentially when compared to the relatively simpler stack of clients communicating with one system.</p>\n<p>Failures in a distributed environment <em>must</em> be expected.  Embraced even, since treating them as &#8220;an exception&#8221; is tantamount to the proverbial ostrich poking its head into the sand.</p>\n<p>However, failure in a distributed system does not necessitate &#8220;Frontend and UX folks&#8221; having to address failures which are not directly a result of client communication with the next tier.  For example, should the UX be prepared to handle when the primary provider of a service is down and fail over to a secondary system?  If the service is the one which the client is <em>directly</em> interacting with, then likely that makes sense.</p>\n<p>But what of the case when the primary system has issues interacting with <em>its</em> collaborators?  Such as its persistent store.  Or a strategic partner providing required functionality for the workflow.  Is it your position that this type of failure be handled by the UX?</p>\n<p>Why wouldn&#8217;t a server maintain separation of concerns and only communicate to a client when <em>its options</em> have been exhausted?  IOW, why assume what &#8220;the other side of the connection&#8221; is going to do in order to satisfy a request placed on it?</p>\n<p>In summary, my position is that when the collaborators in a distributed system have a well defined software contracts (protocol, expectations, etc.) and all parties adhere to them (without assumptions in implementation), then this allows the system(s) involved to provide resilience in depth.  However, the fashionable trend of replicating a <a href=\"https://en.wikipedia.org/wiki/PowerBuilder\" rel=\"nofollow\">PowerBuilder</a> environment does not lend itself to these separation of concerns.</p>\n<p>Foisting complexity to <em>either end</em> of the spectrum is where truly nasty problems are bred.</p>\n",
+      "children": [
+       {
+        "id": 769,
+        "parent": 759,
+        "author": "Cody",
+        "date": "2015-06-04T16:53:29",
+        "content": "<p>Back up that train of thought. You have completely misinterpreted what Tyler is saying.</p>\n<p>He is NOT saying the UI layer is the best place to solve concurrency problems.</p>\n<p>All he is saying you should design the system to require as little consistency as users will tolerate. The user experience is one requirement, and requirements dictate your design.</p>\n",
+        "children": []
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": 757,
+  "parent": 0,
+  "author": "Gani Mendoza",
+  "date": "2015-06-03T23:53:17",
+  "content": "<p>Your mention of 2PC reminds me of Gregor Hohpe&#8217;s article &#8220;Starbucks does not use two-phase commit&#8221; <a href=\"http://www.enterpriseintegrationpatterns.com/ramblings/18_starbucks.html\" rel=\"nofollow ugc\">http://www.enterpriseintegrationpatterns.com/ramblings/18_starbucks.html</a></p>\n",
+  "children": []
+ },
+ {
+  "id": 762,
+  "parent": 0,
+  "author": "Mat",
+  "date": "2015-06-04T08:42:26",
+  "content": "<p>I somewhat agree with the idea of your post but I think where it falls down is the use of UX as a analogy for saying that distributed systems are just that &#8211; systems. Each part of the system much have at least some knowledge of the fact that things can fail around it. </p>\n<p>To say that distributed systems are a UX problem is a vast and mainly invalid simplification. The user experience of a system has no bearing on how the system functions &#8211; the other way around is somewhat true &#8211; the function of a system has a bearing on the user experience &#8211; but these systems rely on being decoupled and tolerant of failure &#8211; linking UX to the database just isn&#8217;t acceptable.</p>\n",
+  "children": []
+ },
+ {
+  "id": 830,
+  "parent": 0,
+  "author": "Karen",
+  "date": "2015-06-11T06:03:44",
+  "content": "<p>There is a parallel scenario in designing DR solutions.  The extra &#8216;0&#8217;s on the cost of &#8216;near absolute&#8217; DR are hard to justify for most clients it is much more cost effective usually to manage failure well and can have the fringe benefit of returning customers.</p>\n<p>One of my own favourite examples of this was the retailer who did the sums and realized that the extra &#8216;0&#8217;s on the cost of cross site synchronous DR were more than a proactive customer management approach.  They accepted a 15 minute potential loss of data in an online shop and gained a significantly simplified infrastructure and operational set up (so major saving in both CAPEX and OPEX). Instead they put in place a process whereby in the event of failure each customer impacted would get a personal visit from a branch manager with a free grocery order, flowers, a generous voucher and a personal apology.  This was an extension of their existing approach to failed orders, scaled up a bit in anticipation of bad press after a large outage.  Their retention of customers in this scenario was impressive &#8211; things go wrong, what brings customers back is confidence that the supplier will acknowledge and resolve to your satisfaction.</p>\n",
+  "children": []
+ }
+]

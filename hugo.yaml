@@ -1,0 +1,77 @@
+baseURL: https://bravenewgeek.com/
+title: Brave New Geek
+theme: PaperMod
+timeZone: America/Denver
+locale: en-us
+
+enableRobotsTXT: true
+
+pagination:
+  pagerSize: 10
+
+# Match the WordPress URL structure exactly so no inbound link breaks.
+permalinks:
+  page:
+    posts: /:slug/
+  term:
+    categories: /category/:slug/
+    tags: /tag/:slug/
+
+taxonomies:
+  category: categories
+  tag: tags
+
+outputs:
+  home: [HTML, RSS]
+
+services:
+  rss:
+    limit: 20
+
+markup:
+  goldmark:
+    renderer:
+      # Required for the gist <script> embeds and iframes kept as raw HTML.
+      unsafe: true
+  highlight:
+    codeFences: true
+    guessSyntax: true
+    noClasses: false
+
+params:
+  env: production
+  description: "Introspections of a software engineer"
+  defaultTheme: auto
+  comments: true # frozen WordPress comments, rendered read-only
+  ShowReadingTime: true
+  ShowPostNavLinks: true
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: true
+  ShowShareButtons: false
+  ShowToc: false
+  hideFooter: false
+  homeInfoParams:
+    Title: Brave New Geek
+    Content: Introspections of a software engineer.
+  socialIcons:
+    - name: github
+      url: https://github.com/tylertreat
+    - name: rss
+      url: /index.xml
+  assets:
+    disableHLJS: true
+
+menu:
+  main:
+    - identifier: archive
+      name: Archive
+      url: /archive/
+      weight: 10
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 20
+    - identifier: about
+      name: About
+      url: /about-me/
+      weight: 30

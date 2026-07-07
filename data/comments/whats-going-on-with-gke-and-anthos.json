@@ -1,0 +1,18 @@
+[
+ {
+  "id": 27928,
+  "parent": 0,
+  "author": "Kevin",
+  "date": "2019-09-18T12:17:03",
+  "content": "<p>Interesting article, though I&#8217;m a little surprised there was no mention of Red Hat&#8217;s Openshift which afaik is the biggest hybrid cloud container platform offering?</p>\n",
+  "children": []
+ },
+ {
+  "id": 28234,
+  "parent": 0,
+  "author": "Nicolas Steinmetz",
+  "date": "2019-10-13T08:19:07",
+  "content": "<p>If you link this with the fact that for knative Google chose to keep the leadership of the project instead of giving the project to a foundation like cncf, it may look as a change. Lower foundation were given to the CNCF &amp; co to allow a wide adoption and &#8220;kill&#8221; Docker Inc but seems like more upper layer may be strategical enough by letting them being opensource but without losing the leadership on it&#8230;</p>\n<p>I think they&#8217;ll keep a GKE as we know today maybe with &#8220;basic&#8221; features as they need it so that people move from AWS/Azure to GCP. They sold us the universal workload with  kubernetes, it may be too early yet to close the trap.  There may be an advanced model with Anthos GKE aside as you mention. So the question is indeed which features will be in the &#8220;GKE as we know it&#8221; vs the Anthos GKE one.</p>\n",
+  "children": []
+ }
+]

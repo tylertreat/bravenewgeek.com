@@ -1,0 +1,10 @@
+[
+ {
+  "id": 808,
+  "parent": 0,
+  "author": "Mike Spooner",
+  "date": "2015-06-08T14:58:37",
+  "content": "<p>In terms of on-the-hoof interview answers, variations on the Newton-Raphson method (convergent scaled binary-chop &#8211; square of double versus square of half) are occasionally given. As integer squaring is often very much faster than extracting a root, it&#8217;s quite cute&#8230; although not as quick as AKS on truly huge numbers.</p>\n",
+  "children": []
+ }
+]

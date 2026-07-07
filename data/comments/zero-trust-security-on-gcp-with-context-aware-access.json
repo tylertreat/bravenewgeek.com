@@ -1,0 +1,10 @@
+[
+ {
+  "id": 31929,
+  "parent": 0,
+  "author": "Browny",
+  "date": "2020-07-10T05:07:43",
+  "content": "<p>There is one beta feature called serverless NEGs [1]</p>\n<p>[1] <a href=\"https://cloud.google.com//load-balancing/docs/negs/setting-up-serverless-negs\" rel=\"nofollow ugc\">https://cloud.google.com//load-balancing/docs/negs/setting-up-serverless-negs</a></p>\n",
+  "children": []
+ }
+]

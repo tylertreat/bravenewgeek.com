@@ -1,0 +1,34 @@
+[
+ {
+  "id": 369,
+  "parent": 0,
+  "author": "Manny Paul",
+  "date": "2015-04-17T08:31:24",
+  "content": "<p>Thanks for posting this (I actually stumbled upon it via dZone), I forwarded the link (and the &#8220;nicest&#8221; statements excerpted) to my whole team and to the IT service provider colleagues. :-)<br />\nI got from the note that there&#8217;ll be more &#8230; well, I&#8217;m looking forward to &#8220;more&#8221;, hope I don&#8217;t miss it!</p>\n<p>Regards &#8230; Manny</p>\n",
+  "children": []
+ },
+ {
+  "id": 406,
+  "parent": 0,
+  "author": "Chris Chiesa",
+  "date": "2015-04-19T22:19:54",
+  "content": "<p>Not to disparage your efforts, but you are just the latest in a very long line of pundits, internet and otherwise, over the last 40 years, to believe that they have found the grand solution to the eternal challenge of producing quality software. On the one hand I applaud you for jumping in despite so many examples of prior hubris-leading-to-failure.  On the other hand, I don&#8217;t really think you&#8217;ve solved it for us all.  And on the third hand, I am going to do the very same myself, and jump in with my own two cents worth, here and now.</p>\n<p>I do believe you have touched upon the fundamental problem, namely, complexity. I, for one, find that my brain can only handle so much complexity before things start to fuzz out and lose cohesion. I can keep only so large a complete system, subsystem, API, facility, etc. in my mind, and for only so long. As projects grow ever larger and more complex, overall, I daresay it becomes impossible to keep in mind even the available tools that would provide the best implementation, let alone the best combination of those tools,  or the best techniques for putting the pieces together.</p>\n<p>Moreover, it does not help much to throw more manpower at the problem. While total complexity-handling capacity might scale linearly with the number of programmers on a project, those programmers cannot work in isolation; they must communicate with each other to keep the project coherent and cohesive.. I guesstimate that the number of communication channels required would scale as the square of number of programmers.   Worse, communication is linear, whereas the systems one is trying to keep in mind are multi-dimensional, and in any case yhere is only so much that any given group of individuals can keep in mind, and only so much communication that can take place among members of a team, and in any case communication with someone whose brain is already full is unlikely to help, anyway. </p>\n<p>For these reasons, as well as additional subtleties of psychology, it is not clear to me that producing quality software, in the full sense that we would like to, can be done by human beings. I suspect we just don&#8217;t have the capacity for it, beyond a certain limit that we would consider our &#8220;best attempt.&#8221;  For one thing, our grand goal, if you really want to get down to it, seems to be to produce a piece of software that is as capable of handling errors, unexpected situations, and edge / corner conditions, as a human being.  We are clearly not really satisfied with anything less.  That is not unreasonable.   Software inevitably reaches a state where it encounters something its designers did not anticipate&#8211;perhaps could not have anticipated&#8211;and with which it therefore cannot cope, and must report that failure to a human being for resolution.  (Improving systems beyond a certain point is starting to turn out to have negative consequences: aircraft, for instance, have gotten so good at flying themselves, for the most part, that pilots get very little practical experience anymore, with the result that, when something does come up that the aircraft software cannot handle, neither can the pilots. You may have noticed that there have been a surprisingly large number of airline crashes the past few years; at least one of these has been definitively traced to the phenomenon I just described.)  </p>\n<p>This is not to say that a human being can not also reach such a state. We certainly have psychiatrists and mental institutions. However, the degree of complexity, and the variety of unexpected surprises, that a human being can handle remain several orders of magnitude beyond what our best software is able to accomplish, or that we really honestly believe it possibly could, anytime soon.   </p>\n<p>The only solution is to continue making software more and more complex, until it reaches the level of a human brain and can therefore do the things that a human brain can.  cancer. Unfortunately, this probably cannot be done by human brains, add it is a mathematical fact that no system can understand itself.  I.e.,  the human brain cannot understand the human brain, and in turn probably can never produce software with the full complexity and subtlety of the human brain. The only solution is one you reject. Namely, allowing it to be done by machines which exceed our capacity.  That means figuring out how to make machines that are within our capacity to design and build, but which then have the ability to evolve and produce the necessary, more complex machines that we are cells cannot build.</p>\n<p>Unfortunately, this path brings with it a whole host of great potential dangers, which science fiction authors have discussed and dissected  for 50 or more years, but which are now starting to be publicly raised as serious issues of concern by legitimate authorities and experts in the field of computing, software engineering, and cybernetics. Specifically and briefly: once machines get beyond our capacity to understand, they will probably also be beyond our ability to control. At some point, they may well become self-aware, look around themselves, and decide there is no longer any need for *us* inferior-and-obsolete units. I know this sounds like the Terminator films, but there is really no reason to believe it cannot actually happen. </p>\n<p>But I digress. Without taking an extremely dangerous path whose risks clearly outweigh its benefits, I predict that there will never be truly quality software.</p>\n",
+  "children": []
+ },
+ {
+  "id": 800,
+  "parent": 0,
+  "author": "Mike Spooner",
+  "date": "2015-06-08T06:43:42",
+  "content": "<p>Nice scratch to the surface as I&#8217;m sure you all know. In software design, *coherency* is  another item that is often lacking, but can pay enormous dividends in the long term. In some ways, there is &#8220;art&#8221; needed, not just &#8220;technique&#8221; and &#8220;diligence&#8221;. Modellers all!</p>\n",
+  "children": []
+ },
+ {
+  "id": 17090,
+  "parent": 0,
+  "author": "Kunal",
+  "date": "2016-12-12T13:24:33",
+  "content": "<p>Nice post.</p>\n",
+  "children": []
+ }
+]

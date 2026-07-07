@@ -1,0 +1,14 @@
+<article class="wp-comment">
+  <header>
+    <span class="wp-comment-author">{{ .author }}</span>
+    <time class="wp-comment-date">{{ (time.AsTime .date).Format "January 2, 2006" }}</time>
+  </header>
+  <div class="wp-comment-body">{{ .content | safeHTML }}</div>
+  {{- with .children }}
+  <div class="wp-comment-replies">
+    {{- range . }}
+      {{- partial "comment-item.html" . }}
+    {{- end }}
+  </div>
+  {{- end }}
+</article>

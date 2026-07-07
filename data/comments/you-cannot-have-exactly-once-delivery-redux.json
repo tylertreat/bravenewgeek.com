@@ -1,0 +1,19 @@
+[
+ {
+  "id": 21567,
+  "parent": 0,
+  "author": "Rohan",
+  "date": "2018-03-30T10:00:38",
+  "content": "<p>Hi Tyler,<br />\n&#8220;we must have a closed system with end-to-end support for modeling input, output, and processor state as a single, atomic operation&#8221;<br />\nWhat exactly does a closed system mean here?</p>\n",
+  "children": [
+   {
+    "id": 21568,
+    "parent": 21567,
+    "author": "Tyler Treat",
+    "date": "2018-03-30T10:06:35",
+    "content": "<p>It means every component involved in the system must cooperate with the transaction to guarantee exactly-once.</p>\n",
+    "children": []
+   }
+  ]
+ }
+]

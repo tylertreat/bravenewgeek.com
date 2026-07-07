@@ -1,0 +1,68 @@
+[
+ {
+  "id": 17187,
+  "parent": 0,
+  "author": "Timothy Pote",
+  "date": "2016-12-22T09:14:49",
+  "content": "<p>Spot on!</p>\n<p>I have a tiny correction for you: SQS has no limits on queue depth. The numbers you mention are limits on the in-flight messages you&#8217;re permitted, but you can have queues of arbitrary length.</p>\n<p>While that might seem to violate the principles in this post, I would assume that this guarantee is a result of the host of other restrictions they put on the system (message size, in-flight limit, limited retention, etc).</p>\n<p>Source: <a href=\"https://aws.amazon.com/sqs/faqs/\" rel=\"nofollow ugc\">https://aws.amazon.com/sqs/faqs/</a> (search for &#8220;How large can Amazon SQS message queues be?&#8221;)</p>\n",
+  "children": [
+   {
+    "id": 17189,
+    "parent": 17187,
+    "author": "Tyler Treat",
+    "date": "2016-12-22T09:45:18",
+    "content": "<p>You&#8217;re right, thanks for pointing that out, Timothy.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 17192,
+  "parent": 0,
+  "author": "Daniel J",
+  "date": "2016-12-22T16:33:48",
+  "content": "<p>Thanks for a great post, I think it really drives the point home.</p>\n<p>A minor point, I don&#8217;t know if I misunderstand your meaning when talking about SQS, but the limits they speak of are in-flight messages, messages that have been read but not yet deleted. The queues are theoretically unbounded.</p>\n",
+  "children": [
+   {
+    "id": 17193,
+    "parent": 17192,
+    "author": "Daniel J",
+    "date": "2016-12-22T16:36:36",
+    "content": "<p>Hmm reading the post on a plane (in-flight!) apparently meant I didn&#8217;t see the comments. The point was already made :D</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 17250,
+  "parent": 0,
+  "author": "valentin",
+  "date": "2016-12-26T15:16:17",
+  "content": "<p>Wait, doesn&#8217;t embrace aka LetItCrush principle mean that we do not enforce the graceful shutdown cases and limits? We just let it crush when it goes wrong naturally instead of complicating our code with graceful termination?</p>\n",
+  "children": []
+ },
+ {
+  "id": 17254,
+  "parent": 0,
+  "author": "David Leonhartsberger",
+  "date": "2016-12-27T02:32:59",
+  "content": "<p>Agree very much</p>\n",
+  "children": []
+ },
+ {
+  "id": 17865,
+  "parent": 0,
+  "author": "Jeroen Pluimers",
+  "date": "2017-02-18T03:25:16",
+  "content": "<p>I think a lot of systems don&#8217;t have these limits defined as people have a hard time coming up with them. So it would be very helpful to have some guidance on finding and designing for these limits.</p>\n",
+  "children": []
+ },
+ {
+  "id": 25435,
+  "parent": 0,
+  "author": "Mr. Opa Opa",
+  "date": "2019-03-08T17:12:36",
+  "content": "<p>Please, could you explain the following numbers? How is 99.995% and 84% related to all reliability of three services mentioned?</p>\n<p>&#8220;This is a core tenet behind resilience engineering. If a function depends on three services, each with a reliability of 90%, 95%, and 99%, respectively, partial availability could be the difference between 99.995% reliability and 84% reliability (assuming failures are independent).&#8221;</p>\n",
+  "children": []
+ }
+]

@@ -1,0 +1,27 @@
+[
+ {
+  "id": 9,
+  "parent": 0,
+  "author": "Erwin Mouthaan",
+  "date": "2013-12-11T02:27:59",
+  "content": "<p>Excellent article. Really helpful. Thank you!</p>\n",
+  "children": [
+   {
+    "id": 10,
+    "parent": 9,
+    "author": "Yongrui Zhang",
+    "date": "2013-12-24T03:39:37",
+    "content": "<p>I am devolop an app with Bluetooth on Android platform,I want to ask you about how to dismiss the pairing code confirmation dialog,thanks a lot.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 14516,
+  "parent": 0,
+  "author": "Abhogu",
+  "date": "2016-03-22T06:29:47",
+  "content": "<p>Wonderful explanation. Thank you so much!</p>\n",
+  "children": []
+ }
+]

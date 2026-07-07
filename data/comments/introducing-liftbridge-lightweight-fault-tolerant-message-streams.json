@@ -1,0 +1,19 @@
+[
+ {
+  "id": 26080,
+  "parent": 0,
+  "author": "Can Gencer",
+  "date": "2019-04-26T09:03:06",
+  "content": "<p>After reading through Liftbridge docs and the replication protocol, I&#8217;m curious what was the reason you used Kafka&#8217;s in-sync replica protocol rather than the &#8220;raft log as message log&#8221; approach from NATS Streams?</p>\n",
+  "children": [
+   {
+    "id": 26082,
+    "parent": 26080,
+    "author": "Tyler Treat",
+    "date": "2019-04-26T09:23:03",
+    "content": "<p>NATS Streaming doesn&#8217;t actually use the Raft log as the message log, it uses it as a secondary replication/recovery log meaning it stores messages redundantly. The Kafka-based protocol means we can use the message log itself for replication so no redundancy and it&#8217;s faster. It also means we can &#8220;tune&#8221; the replication based on durability needs (replicate to all or subset of replicas, etc.). Lastly, the ISR approach allows balancing availability with durability. If brokers fail, the ISR can shrink and the cluster can maintain availability. With Raft, you cannot make this trade-off and must retain a quorum.</p>\n",
+    "children": []
+   }
+  ]
+ }
+]

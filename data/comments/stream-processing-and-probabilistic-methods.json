@@ -1,0 +1,76 @@
+[
+ {
+  "id": 74,
+  "parent": 0,
+  "author": "Fazal Majid",
+  "date": "2015-02-13T12:05:47",
+  "content": "<p>I&#8217;d add to this list the Chlamtac-Jain P-squared algorithm for estimating percentiles in constant space, which is great for telemetry applications where we care about the median or 95th percentile performance:<br />\n<a href=\"http://www.cse.wustl.edu/~jain/papers/psqr.htm\" rel=\"nofollow ugc\">http://www.cse.wustl.edu/~jain/papers/psqr.htm</a></p>\n<p>There are also streaming algorithms to determine the Top N values like Misra-Gries and others.</p>\n",
+  "children": []
+ },
+ {
+  "id": 75,
+  "parent": 0,
+  "author": "chetan conikee",
+  "date": "2015-02-13T22:43:35",
+  "content": "<p>Excellent post Tyler. Very well articulated. I enjoyed reading it. Thanks for taking time to put this together</p>\n",
+  "children": []
+ },
+ {
+  "id": 76,
+  "parent": 0,
+  "author": "Tobin Baker",
+  "date": "2015-02-14T00:28:00",
+  "content": "<p>No, a Bloom filter uses linear space. The constant factor is just very good (1.44*log(1/p), where p is false positive probability).</p>\n",
+  "children": []
+ },
+ {
+  "id": 77,
+  "parent": 0,
+  "author": "Tobin Baker",
+  "date": "2015-02-14T00:45:51",
+  "content": "<p>Also, your &#8220;inverse Bloom filter&#8221; has nothing whatever to do with Bloom filters. It&#8217;s nothing more than a bounded cache with random eviction (determined by the hash function). Why would you want a cache with random eviction when LRU is so easy/cheap to approximate (e.g. with a single bit of overhead using the Clock algorithm)?</p>\n",
+  "children": [
+   {
+    "id": 78,
+    "parent": 77,
+    "author": "Tyler Treat",
+    "date": "2015-02-14T01:56:04",
+    "content": "<p>Please read Jeff Hodges&#8217; post on this, it&#8217;s his design: <a href=\"http://www.somethingsimilar.com/2012/05/21/the-opposite-of-a-bloom-filter/\" rel=\"nofollow ugc\">http://www.somethingsimilar.com/2012/05/21/the-opposite-of-a-bloom-filter/</a></p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 79,
+  "parent": 0,
+  "author": "me",
+  "date": "2015-02-21T08:11:40",
+  "content": "<p>SigniTrend (KDD2014) uses a variant of bloom filters / Count-min to track averages and variances of word occurrences on Twitter.<br />\nYou could add this as a real use case, to make things less theretical.</p>\n",
+  "children": []
+ },
+ {
+  "id": 80,
+  "parent": 0,
+  "author": "Michael Ryabtsev",
+  "date": "2015-02-24T12:13:33",
+  "content": "<p>&#8220;Bloom filters have false positives, but false negatives are impossible—a non-member will never be reported incorrectly as a member. &#8221;</p>\n<p>Isn&#8217;t it the opposite? Shouldn&#8217;t it be &#8220;the member will never be reported incorrectly as a non-member&#8221; ?</p>\n",
+  "children": [
+   {
+    "id": 81,
+    "parent": 80,
+    "author": "Tyler Treat",
+    "date": "2015-02-24T12:20:11",
+    "content": "<p>Yes, not sure how I got that backwards. Thanks!</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 17494,
+  "parent": 0,
+  "author": "Carley",
+  "date": "2017-01-18T05:41:45",
+  "content": "<p>It can be so hard trying to find a quality online marketing freelancer nowadays, have been considering trying it myself<br />\nDo you participate in any social sites</p>\n",
+  "children": []
+ }
+]

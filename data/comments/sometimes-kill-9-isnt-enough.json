@@ -1,0 +1,26 @@
+[
+ {
+  "id": 64,
+  "parent": 0,
+  "author": "darkfader",
+  "date": "2014-11-13T00:52:29",
+  "content": "<p>I like the IPTables approach and used that or simpler ifconfig down&#8217;s a lot.</p>\n<p>Pulling the power plug when you just need to pull the network cable (for the error scenario you&#8217;re testing) is not really great.</p>\n<p>Being able to simulate corruption can go a long way, just need to make sure this is tested well before things go to production (it can _then_ be later tested continually) -&gt; like in your sentence &#8220;Simulating failure is a necessary element for building reliable distributed systems, but system behavior isn&#8217;t black and white, it&#8217;s a continuum. &#8221;</p>\n<p>Also, the worst scenario isn&#8217;t the outage or the partition, but the coming-back-of-still-running services afterwards.<br />\nI.e. in a &#8220;sunny days only&#8221; cluster like hearbeat you could provoke a lot of fun just by bringing back a node in mid-forced-takeover.</p>\n<p>Finally, hug your state machines after each test :)</p>\n",
+  "children": []
+ },
+ {
+  "id": 65,
+  "parent": 0,
+  "author": "Stephen Agneta",
+  "date": "2014-11-13T05:52:29",
+  "content": "<p>Bravo! Outstanding article.</p>\n",
+  "children": []
+ },
+ {
+  "id": 66,
+  "parent": 0,
+  "author": "Richard Bullington-McGuire",
+  "date": "2014-11-16T15:17:35",
+  "content": "<p>Please see also <a href=\"http://github.com/ModusCreateOrg/slow/\" rel=\"nofollow\">slow</a>, a shell-script based tool that uses tc on Linux to do much the same thing as your Comcast program.</p>\n",
+  "children": []
+ }
+]

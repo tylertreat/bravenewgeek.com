@@ -1,0 +1,34 @@
+[
+ {
+  "id": 2073,
+  "parent": 0,
+  "author": "night",
+  "date": "2015-08-24T03:26:05",
+  "content": "<p>what about storm&#8217;s Ordering and Guarantees, it&#8217;s useless?</p>\n",
+  "children": []
+ },
+ {
+  "id": 2074,
+  "parent": 0,
+  "author": "night",
+  "date": "2015-08-24T03:27:39",
+  "content": "<p>so, what about storm&#8217;s ordering and generates,  it&#8217;s useless?</p>\n",
+  "children": []
+ },
+ {
+  "id": 2079,
+  "parent": 0,
+  "author": "Paul Banks",
+  "date": "2015-08-24T08:15:33",
+  "content": "<p>@night Storm&#8217;s ordering guarantees are a feature. Other alternatives like Apache Flink have even stronger ones.</p>\n<p>The point being made here is that those guarantees are not unconditional, and even when they hold do not come for free. </p>\n<p>There are trade-offs at every level and if you can recognise patterns that allow you to operate correctly with fewer guarantees you will in general perform better.</p>\n<p>Derek Collison&#8217;s quote is a good one &#8211; the less you rely on other system&#8217;s guarantees the better since they will break down somewhere.</p>\n<p>The engineering tradeoff is in balancing this truth with the fact that re-inventing the desirable properties of exactly-once delivery or strong data consistency (or an approximation of them) yourself on top of limited-guarantee components is often likely to be unnecessarily expensive in development cost too. Assuming of course that you _really_ do need them.</p>\n<p>Some more thoughts on this: <a href=\"https://banksco.de/p/distributed-system-guarantees.html\" rel=\"nofollow ugc\">https://banksco.de/p/distributed-system-guarantees.html</a>.</p>\n<p>Thanks Tyler, great read.</p>\n",
+  "children": []
+ },
+ {
+  "id": 3245,
+  "parent": 0,
+  "author": "Shashank",
+  "date": "2015-10-09T02:59:12",
+  "content": "<p>Great article Tyler. Fun to read all your literature. Also happened to go through your golang project on Probablistic Data Structures</p>\n",
+  "children": []
+ }
+]

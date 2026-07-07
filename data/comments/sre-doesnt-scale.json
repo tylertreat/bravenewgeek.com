@@ -1,0 +1,78 @@
+[
+ {
+  "id": 41589,
+  "parent": 0,
+  "author": "Matthew Thompson",
+  "date": "2021-10-06T23:51:19",
+  "content": "<p>&#8220;My advice is to stop thinking about SRE as an implementation specifically and instead think about the problems it’s solving a bit more abstractly.&#8221;</p>\n<p>I think this is great advice. one of the overriding themes for me in Google&#8217;s SRE documentation is that this is to manage infrastructure.<br />\nAssuming most organisations are moving to a cloud based model the problem Google are solving with SRE becomes different to the readers.<br />\nThe intersection with Service Management becomes really important. I think that the first question should be What Service are you looking to make more reliable and what are the problems with it?<br />\nMakes me think the S should stand for Service not Site :-)</p>\n<p>Quick note on my view on helping to solve the scaling problem. </p>\n<p>Supporting and managing Production toil is the main part of Service Reliability Engineering (gotta try ;-)) and you rotate team members through that (e.g. week on call, week doing morning checks). Those not on production toil rotate through supporting product/development groups and teams,taking responsibility for support of other environments and release engineering as well as the Production backlog. Align to sprints of other teams for best shot at harmony and consistent planning of work.</p>\n",
+  "children": [
+   {
+    "id": 41612,
+    "parent": 41589,
+    "author": "Shashi Prashanth",
+    "date": "2021-10-07T14:38:10",
+    "content": "<p>This is the model that i am following and it works great</p>\n",
+    "children": [
+     {
+      "id": 41860,
+      "parent": 41612,
+      "author": "Matthew Thompson",
+      "date": "2021-10-14T03:12:11",
+      "content": "<p>That&#8217;s great to read Shashi &#8211; when you say it works great do you find it&#8217;s good practice and provides a good steady state or that it&#8217;s scaling? (or both!! ;-))</p>\n<p>My experience was going from a team being assigned work as it came in to aligning team members to other teams and they manage the work requests directly.</p>\n",
+      "children": []
+     }
+    ]
+   },
+   {
+    "id": 41755,
+    "parent": 41589,
+    "author": "Ash P.",
+    "date": "2021-10-11T07:11:09",
+    "content": "<p>I totally echo Matthew&#8217;s sentiments. That it&#8217;s important to consider the problems rather than merely running the solution e.g. decrease pager fatigue rather than run a pager service. Or maybe I&#8217;m reading this too simple-like :)</p>\n",
+    "children": [
+     {
+      "id": 41859,
+      "parent": 41755,
+      "author": "Matthew Thompson",
+      "date": "2021-10-14T03:01:00",
+      "content": "<p>I don&#8217;t think you are Ash :)</p>\n<p>In line with that, if you look at the problems, SRE will scale.</p>\n",
+      "children": []
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": 41602,
+  "parent": 0,
+  "author": "Prasanna kumar",
+  "date": "2021-10-07T06:50:36",
+  "content": "<p>Great insights, have witnessed the scenarios described literally to each word. The assumption that a SRE can run all the tools to fix all the problems while in reality he or she is a Ops, QE or Infra person labeled as SRE and has no clue is a slap in the face.<br />\nWhile the pattern of micro services is common and SREs can help drive the time to market at a faster rate with automation, maintaining that level of skills might not be possible with every organization.  Until a proper balance of skills totally agree that SRE Doesn’t scale</p>\n",
+  "children": []
+ },
+ {
+  "id": 41613,
+  "parent": 0,
+  "author": "Shashi Prashanth",
+  "date": "2021-10-07T14:47:31",
+  "content": "<p>I do agree and am experiencing and seeing this in reality. Various score cards, cost factors, reusability, standardization, checklists, picking and choosing services to support will be helpful to avoid the need for more folks.</p>\n",
+  "children": []
+ },
+ {
+  "id": 41614,
+  "parent": 0,
+  "author": "SNiazi",
+  "date": "2021-10-07T16:02:07",
+  "content": "<p>You are right on the mark.  SRE , DevOps, Obseraability have become a buzz these days &amp; everyone is latching on to these words, specially software vendors</p>\n<p>I manage an internet facing systems running in cloud/microservices env which has millions of users using the sytems and its literally becoming a maze of complexities to manage the growing number of microservice stacks running in diff env. </p>\n<p>Hiring a team of SRE without having a process &amp; structure in place , to effectively manage bugs, incidents &amp; issues and be able to push them into the dev sprints , getting it throughly tested/vetted with testers, really requires a set of skills &amp; tempermant &amp; culture. </p>\n<p>Without this process/structure/curltue &amp; budget to support this backend (regardless you are a startup or big enterprise)  merely standing up a team of SRE is like putting a cart before the horse. Hammering a squre peg in a round hole, hoping things will flawlessly work.</p>\n",
+  "children": [
+   {
+    "id": 41861,
+    "parent": 41614,
+    "author": "Matthew Thompson",
+    "date": "2021-10-14T03:27:04",
+    "content": "<p>I think that&#8217;s insightful comments SNiazi. </p>\n<p>I think the challenge you are highlighting is the skills and capability, particularly the leadership\\management of SRE teams. As a side note, this role could be very difficult if the SRE is just a rebranded job title of an Ops Analyst or Engineer. You have to have a clear view on the benefits of SRE thoughtout the team.</p>\n<p>For the leadership there&#8217;s a reporting structure that&#8217;s needed to facilitate good management of Service Reliability Engineering. Tracking trending on SLIs and Incidents come to mind. It aligns to more traditional ITIL functions. </p>\n<p>It has a real impact across a technology function, for example if SLIs are decreasing find out why? Is the technical debt\\engineers on toil ratio wrong? Similar to tracking incident root causes &#8211; problem management &#8211; how does this information flow up to the senior management so they can be aware that some products are not reliable?  </p>\n",
+    "children": []
+   }
+  ]
+ }
+]

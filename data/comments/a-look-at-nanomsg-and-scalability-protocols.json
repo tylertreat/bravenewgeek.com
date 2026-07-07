@@ -1,0 +1,109 @@
+[
+ {
+  "id": 19,
+  "parent": 0,
+  "author": "Garrett D'Amore",
+  "date": "2014-07-17T13:32:31",
+  "content": "<p>Btw, there is a &#8220;pure Go&#8221; implementation of the Scalability Protocols that I wrote called mangos &#8212; <a href=\"https://bitbucket.org/gdamore/mangos\" rel=\"nofollow ugc\">https://bitbucket.org/gdamore/mangos</a>  &#8212; in my tests I found it offer performance competitive to nanomsg while offering a more idiomatic Go implementation and interface.</p>\n",
+  "children": [
+   {
+    "id": 21312,
+    "parent": 19,
+    "author": "Kozodoev",
+    "date": "2018-02-14T14:14:49",
+    "content": "<p>There&#8217;s one thing I noticed about mangos.<br />\nIt doesn&#8217;t actually implement PUB/SUB using any sort of a prefix tree, but instead opts for filtering messages on the SUB side.<br />\nWhich is, frankly, a disaster. Imagine 10k subscribers each listening to only a small subset of messages. Sending everything to every one of them, effectively multiplying every message by 10000 will saturate your network in no time.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 20,
+  "parent": 0,
+  "author": "Victor",
+  "date": "2014-07-18T09:38:56",
+  "content": "<p>@Garrett do you consider your implementation to be production ready? are you using it in production yourself?</p>\n",
+  "children": [
+   {
+    "id": 351,
+    "parent": 20,
+    "author": "Garrett D'Amore",
+    "date": "2015-04-15T08:26:50",
+    "content": "<p>Btw, we are using mangos in production these days.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 21,
+  "parent": 0,
+  "author": "Thomasi",
+  "date": "2014-11-03T08:04:05",
+  "content": "<p>I really like nanomsg, but it is not as stable as zeromq yet. We have had huge problems with pubsub scalability that&#8217;s very hard to diagnose. So for now, I think the maturity of zeromq makes it a better choice than nanomsg, but this may change of course.</p>\n",
+  "children": []
+ },
+ {
+  "id": 22,
+  "parent": 0,
+  "author": "rich_d",
+  "date": "2014-12-03T11:26:41",
+  "content": "<p>@Thomasi were you able to fix the issues or get support? I am thinking about the possibility of using nano in a production setting. Is it still too beta for that in your view?</p>\n",
+  "children": []
+ },
+ {
+  "id": 23,
+  "parent": 0,
+  "author": "Mark",
+  "date": "2015-01-01T17:40:36",
+  "content": "<p>Beautifully written post. Thank you.</p>\n",
+  "children": []
+ },
+ {
+  "id": 18050,
+  "parent": 0,
+  "author": "Nicholas Nezis",
+  "date": "2017-03-08T09:36:23",
+  "content": "<p>Seems like the images are now getting 404 errors which is a shame because they were a great addition to the post.</p>\n",
+  "children": [
+   {
+    "id": 18051,
+    "parent": 18050,
+    "author": "Tyler Treat",
+    "date": "2017-03-08T18:15:36",
+    "content": "<p>The images should be fixed now.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 18644,
+  "parent": 0,
+  "author": "Bryan Wilcutt",
+  "date": "2017-04-26T12:16:51",
+  "content": "<p>There is another message pattern that is still highly used but is not mentioned in this article.  It is the IND-RESP:</p>\n<p>Indications are sent to indicate an event or condition.<br />\nResponses are replied to an indication that the event or condition was received and whether it was understood.</p>\n<p>What makes IND-RESP stand apart is that responses are a) not required to be sent and b) should not be expected to arrive to the sender of the indication.  Basically, they are &#8220;nice to have&#8221;.  Where a response is required, a REQ-REP pattern should be used.</p>\n<p>You will find this pattern throughout the telephony (DSS7, ISDN, etc.) and within other protocols such as BACnet, WAP and others.</p>\n",
+  "children": []
+ },
+ {
+  "id": 20677,
+  "parent": 0,
+  "author": "praveen",
+  "date": "2017-11-15T03:21:23",
+  "content": "<p>Dear Experts,<br />\nCan I have pure multicasting in pub/sub protocol of the nanomsg.<br />\nAs there can be N  subscribers interested in a particular data for a single publisher, the subscribed data is flowing in N different streams.If my bandwidth for a single stream is 10MB then the total bandwidth required for N streams is 10*N,thus there is a increase in the bandwith .Can we reduce this bandwith?? Can anyone please help me regarding this issue??</p>\n",
+  "children": []
+ },
+ {
+  "id": 26584,
+  "parent": 0,
+  "author": "Raj",
+  "date": "2019-05-15T15:10:48",
+  "content": "<p>Well written article , Pub/Sub most of the times assumes fewer publishers and more subscribers, reverse this with a large number of publishers and may be two or three subscribers which could be a typical case in an IOT deployment where in n number of devices/sensors are sending data to server at regular intervals . wondering what would be poteintial issues i would face when using zero mq in this situation. Any thoughts?</p>\n",
+  "children": []
+ },
+ {
+  "id": 27146,
+  "parent": 0,
+  "author": "micro",
+  "date": "2019-06-06T10:23:58",
+  "content": "<p>hi all,<br />\nIn pub/sub pattern , does zeromq reaches to 10.000 subscriber ?<br />\nnanomsg reaches to 100 000 000 subsciber ?</p>\n",
+  "children": []
+ }
+]

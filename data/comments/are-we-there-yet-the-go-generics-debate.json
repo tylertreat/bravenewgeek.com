@@ -1,0 +1,126 @@
+[
+ {
+  "id": 19358,
+  "parent": 0,
+  "author": "David Collier-Brown",
+  "date": "2017-07-25T07:31:59",
+  "content": "<p>I&#8217;d like to suggest that the community do an &#8220;IETF&#8221;, and invite an RFC and a reference implementation, for the go team to consider for 3.0 (or maybe 2.1)</p>\n<p>&#8211;Dave (davecb@spamcop.net) Collier-Brown</p>\n",
+  "children": []
+ },
+ {
+  "id": 19359,
+  "parent": 0,
+  "author": "Dustin Hiatt",
+  "date": "2017-07-25T09:25:05",
+  "content": "<p>Ultimately, I think it&#8217;s a good thing to have the compiler&#8217;s help when ensuring the safety of my code.  Sans that, I end up writing more tests to confirm the code works as expected.  Or worse, those paths end up getting tested in production.</p>\n<p>I would greatly prefer leveraging the compiler to catch errors in my code, saving me the time of writing tests or debugging these problems when deployed.</p>\n",
+  "children": []
+ },
+ {
+  "id": 19360,
+  "parent": 0,
+  "author": "Zellyn Hunter",
+  "date": "2017-07-25T10:33:21",
+  "content": "<p>Complaining of hero worship (surely you can find a stronger example?), and arguing that both the Go team and the Go community don&#8217;t understand more complex programming paradigms is silly. You&#8217;re effectively saying everyone is too dumb to know better.</p>\n<p>While there are definitely some people in the community whose position could be summarized with your, ”I’ve never experienced a need for generics, so anyone who has must be wrong,” that is not the (repeatedly) articulated position of the Go team, nor is it representative of the community in general.  (Personally, rsc perfectly articulated my desire for generics in Go in <a href=\"https://research.swtch.com/go2017#generics\" rel=\"nofollow ugc\">https://research.swtch.com/go2017#generics</a>)</p>\n<p>I&#8217;m sorry your impression of the Go Community is so negative. Undoubtedly there are just causes, which is unfortunate. However, I&#8217;ve always found the articulate, thoughtful, and smart people to outweigh the factions you denigrate.</p>\n",
+  "children": [
+   {
+    "id": 19362,
+    "parent": 19360,
+    "author": "Tyler Treat",
+    "date": "2017-07-25T11:19:23",
+    "content": "<p>I think you&#8217;re mischaracterizing the crux of my argument, which is not about hero worship or anecdotal evidence—this is purely community noise. Similarly, this isn&#8217;t about the Go team or community being &#8220;too dumb&#8221; to understand generics. I am not saying that.</p>\n<p>As I said in the post, this is not a technical problem, it’s a philosophical one, which is why it causes such heated debate among developers. My argument is that the lack of generics in Go causes more complexity than it saves. Lots of the complexity in Java, C#, and similar languages with generics comes from covariance and contravariance. Go doesn&#8217;t have inheritance, which I think can greatly reduce the cognitive load of implementing generics.</p>\n",
+    "children": [
+     {
+      "id": 19364,
+      "parent": 19362,
+      "author": "Zellyn Hunter",
+      "date": "2017-07-25T12:04:36",
+      "content": "<p>In that case, I  agree with the technical crux of your argument.</p>\n<p>Nice point about inheritance: as one developer I worked with put it, it&#8217;s fine to use templates _or_ inheritance in C++, but if you use both extensively together, you&#8217;re going to have a bad time :-)</p>\n<p>I think my biggest fear is the type of “do I use null or optional?” shenanigans that plague Java… everything&#8217;s a mix of two or more different paradigms, with 3 times n-squared conversion helpers…</p>\n",
+      "children": []
+     },
+     {
+      "id": 19365,
+      "parent": 19362,
+      "author": "msgd",
+      "date": "2017-07-25T12:20:29",
+      "content": "<p>Go does not have inheritance, but interfaces do form a type hierarchy. So Go generics would have to deal with all the co- and contra-variance problems.</p>\n",
+      "children": [
+       {
+        "id": 19385,
+        "parent": 19365,
+        "author": "Stuart",
+        "date": "2017-07-26T22:44:36",
+        "content": "<p>Not true, co/contravariance was not introduced until C# version 4 per <a href=\"https://en.m.wikipedia.org/wiki/C_Sharp_4.0#Covariant_and_contravariant_generic_type_parameters\" rel=\"nofollow ugc\">https://en.m.wikipedia.org/wiki/C_Sharp_4.0#Covariant_and_contravariant_generic_type_parameters</a>. Parameterized types solve a number of problems without that feature.</p>\n",
+        "children": []
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": 19361,
+  "parent": 0,
+  "author": "Axel Wagner",
+  "date": "2017-07-25T10:52:35",
+  "content": "<p>&gt; Ian Lance Taylor’s recent post shows there is a divide within the Go team regarding generics.</p>\n<p>Not really, though. He gives an example, of where generics would have been useful. But pretty much no one ever doubted the usefulness of generics.</p>\n<p>&gt; My biggest complaint on the matter at this point in the language’s life is the doublethink. That is, the mere existence of channels, maps, and slices seems like a contradiction to the argument against generics. </p>\n<p>That is, though, as if I would be saying &#8220;the mere existence of the IO Monad seems like a contradiction to the argument against imperative programing&#8221;. No, it doesn&#8217;t, not at all. Just like Haskell decided that a purely functional programming language isn&#8217;t useful and a certain, strictly contained notion of side-effects is necessary, so it is possible to argue that a purely concrete language isn&#8217;t useful and a certain, strictly contained set of generic data types and functions is necessary. So, the argument goes &#8220;we already have, as a compromise, these generic datatypes; why aren&#8217;t they enough?&#8221;.</p>\n<p>&gt; The argument here is what is the greater cognitive load? More generally, it’s where should the responsibility lie? Considering Go’s lineage and its aim at the “ordinary” programmer, I’d argue safety—in this case—should be the language’s responsibility.</p>\n<p>Go has always made tradeoffs. For example, while it has a GC, it is not completely memory safe (in the presence of races, all bets are off). It was decided, that statically preventing data races would put too much of a cognitive burden on the programmer. It was deemed sufficient, to have 95% of usecases be memory safe and assist the rest with tooling.</p>\n<p>It also always allowed programmers to circumvent type- and memory-safety by the usage of the reflect and unsafe packages, because it was considered too restrictive to have a purely safe language and that it is preferrable, to have 95% of the code type-safe and compiler checked and only needing to vet the rest.</p>\n<p>Just in the same vein, it seems fine to me, to have ~98% of the code use specific static types and use interface{} for the rest. So what, if sync.Map or container/heap use interface{}? Show me a bug that is caused by that and I might agree that it&#8217;s a problem. </p>\n<p>&gt; Generics are not the source of complexity in API design, poorly designed APIs are. For every bad generic API in Java, I’ll show you a good one.</p>\n<p>But, the argument goes, even simple generic APIs lead to significant cognitive overhead and unreadability. Exactly the things that people *want* generics for, are what I *don&#8217;t* want them for. People want to use Map instead of map[Foo]Bar, so that they can then use a HashMap, TreeMap, RBTreeMap, HashMap&lt;Foo : Comparable, Bar, HashFunc&gt; and whatnot. But I neither want to look at those, nor ask myself the question &#8220;what map should I use here&#8221;, whenever I need to pass one. map[Foo]Bar is the map and it&#8217;s the only map and it has well-defined APIs and syntax; everyone knows it and there is no question how or when to use it correctly.</p>\n<p>I&#8217;d probably be fine, if generics could somehow be restricted to the three most important domain types in a package. You want to have a FlumeJava like package for go, with types like MapFunc func(In) Out ?A graph package with type Graph? Sure. As long as that&#8217;s where we end up. But that doesn&#8217;t seem to be, what people want. People want fifteen thousand different implementations of Maps and python generators and generic min/max functions and…</p>\n<p>*That&#8217;s* the issue with &#8220;generic APIs strewn around&#8221;. Not a couple of bad generic APIs, but having generic APIs *everywhere*, even if they&#8217;re good ones.</p>\n<p>&gt; Another frustration I have with the argument against generics is the anecdotal evidence—”I’ve never experienced a need for generics, so anyone who has must be wrong.”</p>\n<p>Which is totally not what anyone is saying. If anything, what&#8217;s being said is &#8220;no one was able to adequately demonstrate a need for generics&#8221;. Personally, I often felt the need for generics. Then I did something else, that turned out good enough. But if you think they are *needed*, the onus should be on you to demonstrate that need.</p>\n<p>This is what I find so frustrating about the whole discussion. If you ask people why they need generics, they will say &#8220;I want to write a generic RB-tree&#8221; (or something in that matter).  But that&#8217;s not a business-problem. That&#8217;s an abstract use-case, not a concrete one. If asked what the problem of interface{} is, people will say &#8220;it&#8217;s not compile time type-safe&#8221;. Well, but that&#8217;s again an abstract problem, not a concrete one.  I agree, that you want static type-safety *in general*, but why is a lack of static type-safety in certain, limited circumstances such a problem? What concrete issues does it cause?</p>\n<p>Russ was pretty specific, about what makes a good experience report. Describe a) what was the problem, b) what did you end up doing, c) why isn&#8217;t that good enough/what where the problems with that solution. The more concrete you can get, the better; point to specific outages or bugs caused by the lack of type-safety. Point to specific instances of where the use of the builtin maps or slices as data structures lead to performance problems and how your RB-tree solved them. Show that you still have higher end-user latency, than if you&#8217;d replace the interface{} with a concrete type.</p>\n<p>But what you get instead is a) &#8220;I want to write a generic lock-free datastructure&#8221;, b) &#8220;I didn&#8217;t do it, cause go doesn&#8217;t have generics&#8221; and c) &#8220;lol all of you are idiots&#8221;. Well, if you didn&#8217;t do it, there obviously wasn&#8217;t an actual need. Just a &#8220;want&#8221; and a &#8220;did not want to think more about the problem&#8221;.</p>\n",
+  "children": []
+ },
+ {
+  "id": 19363,
+  "parent": 0,
+  "author": "David Collier-Brown",
+  "date": "2017-07-25T11:40:17",
+  "content": "<p>Hey folks, turn the anger factor down  bit, please: this is a philosophical question atht, IMHO, needs to be treated like similar question are in the IETF.  &#8220;Rough consensu and running code&#8221;.</p>\n",
+  "children": []
+ },
+ {
+  "id": 19381,
+  "parent": 0,
+  "author": "Will Rubin",
+  "date": "2017-07-26T06:07:09",
+  "content": "<p>Great discussion. Let&#8217;s take two items from Alex Wagner&#8217;s excellent response. Keeping to just the philosophical side &#8230; I&#8217;m not saying this is in any way a proof or justification for generics in Go.</p>\n<p>1. Describe a) what was the problem, b) what did you end up doing, c) why isn’t that good enough/what where the problems with that solution.</p>\n<p>Why can&#8217;t a valid responsive be:</p>\n<p>&#8212; Because it takes more time and code to work around the problem without generics than it would have if I had generics.</p>\n<p>&#8212; Because if I&#8217;d had generics in my toolbox I wouldn&#8217;t have even had to think about how to work around this problem.</p>\n<p>or simply</p>\n<p>&#8212; I don&#8217;t like the complexity of the solution I ended up with because of all the type assertions or all the code duplication or whatever.</p>\n<p>And for the following:</p>\n<p>2. a) &#8220;I want to write a generic lock-free datastructure&#8221;, b) &#8220;I didn’t do it, cause go doesn’t have generics.&#8221; (Item c removed.)</p>\n<p>Why is this not a valid response in itself? &#8220;I didn&#8217;t do it because trying to make it work without generics was too too much trouble.&#8221; Certainly not having generics adds complexity to the language when trying to solve well known problems generics were created to solve.</p>\n<p>So, why is developer preference and productivity on the pro generics side not justification enough? Especially if (not necessarily true) that there are a majority of developers who do want it for their own personal coding productivity. Note, I&#8217;m not stating that it should be. Just that if not having generics was born of personal preference manifest by perceived simplicity, why is that not sufficient for the other? Even if they don&#8217;t see it as the same form of simplicity.</p>\n<p>Finally, let&#8217;s go to absurdity. Say complete generics was already in Go and we were having a discussion on weather to remove generics. Now someone asked you to come up with concrete situations where generics caused you problems. Could you come up with cases other than the increased cognitive complexity making the code inscrutable? That wouldn&#8217;t be a concrete example of what was asked, but would it be a valid response? In fact, isn&#8217;t this line of thinking part of the discussion that kept generics out of the language in the first place?</p>\n",
+  "children": [
+   {
+    "id": 19388,
+    "parent": 19381,
+    "author": "Larry Clapp",
+    "date": "2017-07-27T12:51:18",
+    "content": "<p>&gt;  Why can’t a valid responsive be:<br />\n&gt;<br />\n&gt; — Because it takes more time and code to work around the problem without generics than it would have if I had generics.<br />\n&gt;<br />\n&gt; — Because if I’d had generics in my toolbox I wouldn’t have even had to think about how to work around this problem.</p>\n<p>I am not Alex, but my thoughts are:</p>\n<p>Because those are not quantifiable objections.  How much more code?  How much more time?  Is it worth the trade-off?</p>\n<p>It&#8217;s as if someone said &#8220;my code is too slow&#8221;.  Okay, too slow for what?  What&#8217;ve you tried?  How are you doing it now?  How fast does it need to be?</p>\n<p>Lots of people, myself included, like the idea of generics.  But understanding them is not zero cost, and they increase the size of the language.</p>\n<p>When someone goes to the Go team and says &#8220;here&#8217;s 10,000 lines of code I could&#8217;ve replaced with 10 lines of generics, and here&#8217;s why code generation sucked, and here&#8217;s why using interfaces sucked, and here&#8217;s why just hand-coding it sucked, and just for the icing on the cake, here&#8217;s the Akamai-scale bug that it caused that took down half the Internet last week, that the compiler would&#8217;ve caught, if I&#8217;d had generics&#8221;, then they&#8217;ll start to listen.  Cf the discussion of monotonic time and its lack in the `time` package and the problem it caused Cloudflare, and (most importantly) what they wrote about it.</p>\n<p>&gt; 2. a) “I want to write a generic lock-free datastructure”, b) “I didn’t do it, cause go doesn’t have generics.” (Item c removed.)<br />\n&gt;<br />\n&gt; Why is this not a valid response in itself? “I didn’t do it because trying to make it work without generics was too too much trouble.” Certainly not having generics adds complexity to the language when trying to solve well known problems generics were created to solve.<br />\n&gt;<br />\n&gt; So, why is developer preference and productivity on the pro generics side not justification enough?</p>\n<p>But having generics also adds complexity.  And that&#8217;s been the question from day one: are they worth it?  And so far the answer&#8217;s been: Nobody&#8217;s proved it to our (or rather, their &#8212; the Go team&#8217;s) satisfaction yet.</p>\n<p>I don&#8217;t think anybody disputes that generics are handy sometimes.  F16 jets are also handy sometimes, but not everybody needs one to get to work in the morning.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 19382,
+  "parent": 0,
+  "author": "Will Rubin",
+  "date": "2017-07-26T06:08:42",
+  "content": "<p>(Crap. Sorry for the bad weather.)</p>\n",
+  "children": []
+ },
+ {
+  "id": 19389,
+  "parent": 0,
+  "author": "Axel Wagner",
+  "date": "2017-07-27T14:27:09",
+  "content": "<p>&gt; Why can’t a valid responsive be:</p>\n<p>Because *neither of these* helps in any way with the engineering decision of whether generics are a solution to your problems and if so, *which kind*. Literally every single implementation of generic code (including manually generated code *and* interface{}) will solve these &#8220;problems&#8221; for you. Really. Have a look. And I *hope* we can agree that there are at least *some* kind of generics that are bad? Like C preprocessing for example (or, as most people who want generics probably think, using interface{} and reflection)?</p>\n<p>&gt;  I don’t like the complexity of the solution I ended up with because of all the type assertions or all the code duplication or whatever.</p>\n<p>How are we supposed to asses the complexity of a solution *we can&#8217;t see*? How can we know what *specific* flavor of generics would reduce the complexity of your solution the most?</p>\n<p>Your answers are completely valid answers, but *only* if you make them specific. Explain the problem, point at the current solution, explain what you dislike.</p>\n<p>&gt; Why is this not a valid response in itself?</p>\n<p>Because if you define your problem explicitly to be unsolvable with current tools, arriving at the solution that the current tools can&#8217;t solve it both trivial and meaningless.</p>\n<p>It is a valid statement to say &#8220;I want to write generic code&#8221;, it just isn&#8217;t an argument for writing generic code, much less a convincing or helpful one.</p>\n<p>To clarify: When you wanted to write a lock-free data structure, that wasn&#8217;t your problem, that was your solution to your problem. Your problem likely was of the sort &#8220;when benchmarking $service, we saw that lock contention was a serious source of problem. The contended locks where there to protect a map of $data. We ended up writing sync.Map, which solved the contention issue. But now that part of the code is not type-safe anymore&#8221;. That would be an experience report. It explains what the problem was, it explained how you solved it and it explains why you are dissatisfied with the solution. It already gives a bunch of good data of the kinds of problems that generics could solve and it would put people into the position of trading off the disadvantage of the status quo (lack of type-safety when accessing your sync.Map) against the disadvantages of having different generics in the language (added complexity, potentially reduced readability, potentially longer compile times…).</p>\n<p>(now, my personal reply to that would be &#8220;why is lack of type safety in that reduced circumstance that much of an issue?&#8221; but that&#8217;s just the follow up to get more data and make a better tradeoff)</p>\n<p>Of these experience reports, the go team wants a bunch, of as wide a variety of problem domains and cases as possible, with as much detail as possible, to then look at the aggregated data and use it in design considerations.</p>\n<p>&gt; Certainly not having generics adds complexity to the language when trying to solve well known problems generics were created to solve.</p>\n<p>Honestly? I do not believe that. I believe it *might*. I am willing to be convinced. But I won&#8217;t be just by a &#8220;certainly&#8221;. I am usually only swayed by arguments.</p>\n<p>&gt; So, why is developer preference and productivity on the pro generics side not justification enough?</p>\n<p>Let&#8217;s say, after inspecting all the current problemsets people have, we figure out, that all we need was one single post on blog.golang.org, or a single extra step in the tour, so that all those people find a way to be *just as productive* without any changes at all. Unlikely, but not impossible. Which is enough, to illustrate why it&#8217;s not &#8220;justification enough&#8221;. There is a wide spectrum of possible solutions to the problem of reduced productivity; your favorite flavor of generics might be one, but there probably also others.</p>\n<p>The only way to know is, actually looking at the problems. And figure out what is needed.</p>\n<p>&gt; Just that if not having generics was born of personal preference manifest by perceived simplicity, why is that not sufficient for the other?</p>\n<p>That, though, isn&#8217;t an argument to build it in either. Every time, you need to make a decision, it will make (at best) some people happy and some people unhappy. That may be a fact, but it&#8217;s not a good argument for making either of the possible decisions.</p>\n<p>&gt; Could you come up with cases other than the increased cognitive complexity making the code inscrutable?</p>\n<p>No, but that is exactly the issue with generics. And I *could* come up with *specific* examples of where that is the case (sadly, they are closed source, as the only circumstance where I accept having to read generic code is work). And that&#8217;s literally all that&#8217;s asked.</p>\n<p>&gt; That wouldn’t be a concrete example of what was asked</p>\n<p>How? I could point to specific instances of where generics caused me problems in the form of mental overhead when reading code. How is that not an example of what was asked?</p>\n<p>Again, if you have specific examples of where the lack of generics caused you mental overhead *write an experience report*. That way, we can figure out whether the problem was the lack of generics, the lack of clear guidance on how to solve the problem without generics, PEBCAK or any of a myriad of other conclusions.</p>\n",
+  "children": []
+ },
+ {
+  "id": 19396,
+  "parent": 0,
+  "author": "Will Rubin",
+  "date": "2017-07-28T12:38:59",
+  "content": "<p>&gt; Because *neither of these* helps in any way &#8230;</p>\n<p>No, it does not. ;-( That&#8217;s why this is strictly a philosophical discussion.</p>\n<p>&gt; How are we supposed to assess the complexity of a solution *we can’t see*?<br />\nExactly! </p>\n<p>&gt; Let’s say, after inspecting all the current problem sets people have, we figure out, that all we need was one single post on blog.golang.org, or a single extra step in the tour, so that all those people find a way to be *just as productive* without any changes at all. </p>\n<p>Exactly! Why, after literally years since Go 1 was released have we not seen this?</p>\n<p>&gt; Every time, you need to make a decision, it will make (at best) some people happy and some people unhappy. That may be a fact, but it’s not a good argument for making either of the possible decisions.</p>\n<p>Exactly again! Why has it been good enough up to this point?</p>\n<p>&gt; No, but that is exactly the issue with generics. And I *could* come up with *specific* examples of where that is the case. And that’s literally all that’s asked.</p>\n<p>Still Exactly! This has been done many times. In fact, the reddit thread associated with this blog has a valid example. But &#8220;syntax examples&#8221; don&#8217;t seem to cut it going from no generics -&gt; generics.</p>\n<p>&gt; I could point to specific instances of where generics caused me problems in the form of mental overhead when reading code. How is that not an example of what was asked?</p>\n<p>Again, exactly! And many people DO point to specific examples of &#8220;no generics&#8221; causing mental overhead problems when reading code. But again, syntax is not enough in that direction.</p>\n<p>My point isn&#8217;t to argue generics, just to point out that that the argument against generics was &#8220;gut feelings&#8221; but the route to add them seems to require so much more. The go team makes the rules and you&#8217;ve got to start somewhere so, I guess it&#8217;s perfectly valid. Just &#8220;feels&#8221; wrong ;-)</p>\n<p>Off topic, but one thing I&#8217;d have loved to see from the Go team (and/or others) from day one is a list of the top patterns from the generics side and a &#8220;here&#8217;s how you should implement this in idiomatic Go to get around the desire for generics.&#8221; (Like was done with sort.)</p>\n",
+  "children": []
+ },
+ {
+  "id": 21267,
+  "parent": 0,
+  "author": "Julio",
+  "date": "2018-02-12T13:51:41",
+  "content": "<p>Totally agree. If someone ever reads From Mathematics to Generic Programming book from the incredible Stepanov then they will understand why is go such a step backward in language design and implementation. Please, make go &#8220;future proof&#8221;!</p>\n",
+  "children": []
+ }
+]

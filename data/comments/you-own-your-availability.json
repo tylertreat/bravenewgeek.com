@@ -1,0 +1,10 @@
+[
+ {
+  "id": 2917,
+  "parent": 0,
+  "author": "Martin Kleppmann",
+  "date": "2015-09-22T12:13:09",
+  "content": "<p>Great post, and I totally agree with the conclusion, namely that everyone needs to take responsibility for their own engineering decisions. Of course something may seem like a good idea at the time, and then turn out to be a bad idea in retrospect. However, it&#8217;s good to focus on continually improving, with the tools available, rather than trying to shift around blame.</p>\n<p>One nit-picky point: arguably, consistency is also a quality that is determined by the user, just like availability. In general, the reason that algorithms enforce consistency guarantees is that we want to avoid showing inconsistent (and hence confusing) data to users. Session guarantees such as read-your-writes (<a href=\"http://csis.pace.edu/~marchese/CS865/Papers/SessionGuaranteesPDIS.pdf\" rel=\"nofollow ugc\">http://csis.pace.edu/~marchese/CS865/Papers/SessionGuaranteesPDIS.pdf</a>) explicitly phrase consistency in terms of a user session, and don&#8217;t provide any guarantee across two different user sessions.</p>\n",
+  "children": []
+ }
+]

@@ -1,0 +1,10 @@
+[
+ {
+  "id": 19761,
+  "parent": 0,
+  "author": "Joseph Benden",
+  "date": "2017-08-14T11:54:01",
+  "content": "<p>Hello,</p>\n<p>I&#8217;ve described a possible solution for concurrent processing and would like feedback, if you don&#8217;t mind. The article is here: <a href=\"http://benden.us/journal/2017/fifo-exactly-once-and-other-costs/\" rel=\"nofollow ugc\">http://benden.us/journal/2017/fifo-exactly-once-and-other-costs/</a></p>\n<p>Thank you!</p>\n",
+  "children": []
+ }
+]

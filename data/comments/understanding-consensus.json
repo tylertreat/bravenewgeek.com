@@ -1,0 +1,35 @@
+[
+ {
+  "id": 14373,
+  "parent": 0,
+  "author": "valentin",
+  "date": "2016-03-09T07:27:58",
+  "content": "<p>Sorry, but I did not get how do you start from &#8220;concensus is not possible (and even more impossible in of &gt; 2 parties)&#8221; and you cure it with multiple replicas.</p>\n",
+  "children": [
+   {
+    "id": 14374,
+    "parent": 14373,
+    "author": "valentin",
+    "date": "2016-03-09T07:44:00",
+    "content": "<p>Same applies to you pingback. You claim that there is no such thing as exacly-once semantics but &#8220;you can emulate it using idempotency&#8221;. Your conclusions contradict to your thesis.</p>\n",
+    "children": []
+   },
+   {
+    "id": 21679,
+    "parent": 14373,
+    "author": "Hasyimi Bahrudin",
+    "date": "2018-04-18T04:46:39",
+    "content": "<p>What the author means is that distributed consensus — consensus involving an asynchronous system of processes — is impossible, which has been mathematically proven (google &#8220;FLP theorem&#8221;, or read the paper here: <a href=\"https://groups.csail.mit.edu/tds/papers/Lynch/jacm85.pdf\" rel=\"nofollow ugc\">https://groups.csail.mit.edu/tds/papers/Lynch/jacm85.pdf</a>).</p>\n<p>However, that does not mean that it is impossible in practice. It&#8217;s even stated at the end of the paper:</p>\n<p>&#8220;We have shown that a natural and important problem of fault-tolerant cooperative computing cannot be solved in a totally asynchronous model of computation. These results do not show that such problems cannot be “solved” in practice; rather, they point up the need for more refined models of distributed computing that better reflect realistic assumptions about processor and communication timings, and for less stringent requirements on the solution to such problems. (For example, termination might be required only with probability 1.) Subsequent to the original announcement of these results [12], progress has been made along both of these lines [1-4, 9, 10, 20, 25].&#8221;</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 41222,
+  "parent": 0,
+  "author": "Apurv Parekh",
+  "date": "2021-09-23T21:03:19",
+  "content": "<p>&#8220;The original Google App Engine datastore relied on a master/slave architecture where a single data center held the primary copy of data which was replicated to backup sites asynchronously. This offered applications strong consistency and low latency with the implied trade-off of availability. &#8221;</p>\n<p>I am kind of confused by this. If the replication to backup sites is asynchronous and those sites are used as read replicas, how does it provide strong consistency? I am considering strong consistency here means atomic consistency (linearizability).  Even in google i/o talk on distributed transaction mentions master-slave as eventual consistent system.</p>\n",
+  "children": []
+ }
+]

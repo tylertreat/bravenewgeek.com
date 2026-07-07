@@ -1,0 +1,27 @@
+[
+ {
+  "id": 21518,
+  "parent": 0,
+  "author": "Kyle",
+  "date": "2018-03-21T17:28:56",
+  "content": "<p>for &#8220;Guaranteeing strong consistency requires a quorum when replicating data, which hinders availability and performance.&#8221; here. As I understand, strong consistency means all copy are consistent, not only quorum. Quorum consistency is a trade of between C and A. Strong consistency  lives in traditional DB system, not catch up current tendency.</p>\n",
+  "children": [
+   {
+    "id": 21519,
+    "parent": 21518,
+    "author": "Tyler Treat",
+    "date": "2018-03-21T17:39:17",
+    "content": "<p>Quorum is sufficient as long as reads are served by the leader.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 21544,
+  "parent": 0,
+  "author": "Kyle",
+  "date": "2018-03-27T16:52:14",
+  "content": "<p>To make clear, as in CAP theorem, there are two Quorum protocol, one is partial quorum protocol that is popular used (partition tolerant), which is strong consistency, should not have any divergent; another is full strict quorum protocol, such as 2PC (used in MySQL cluster, not partition tolerant), which is week consistency, can have different copies.</p>\n",
+  "children": []
+ }
+]

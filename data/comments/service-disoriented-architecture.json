@@ -1,0 +1,43 @@
+[
+ {
+  "id": 809,
+  "parent": 0,
+  "author": "Henrik E",
+  "date": "2015-06-08T15:32:22",
+  "content": "<p>Nice write up. As a note on Netflix, I&#8217;m not entirely sure about their setup, as quite frequently (as in annoying) their servers stop serving requests and beahaves irregular (as in restarting the show you are watching or throwing you out). This is regardless of their clients used. I think the technology they are using is bound to randomly fail a connection, and that&#8217;s by seems to be by design, according to their sourcecode. It&#8217;s just that the &#8220;randomness&#8221; happens all too often.</p>\n",
+  "children": []
+ },
+ {
+  "id": 812,
+  "parent": 0,
+  "author": "Tetsuro Taniguchi",
+  "date": "2015-06-09T02:57:05",
+  "content": "<p>&#8220;complex, distributed monolith&#8221; &#8211; the core of this whole argument.<br />\nI really like this phrase. Thank you!</p>\n",
+  "children": []
+ },
+ {
+  "id": 818,
+  "parent": 0,
+  "author": "Fernando",
+  "date": "2015-06-10T08:23:56",
+  "content": "<p>Can you please elaborate on what a &#8220;monolith&#8221; means? Does it mean to eliminate layers of service that are not needed? Include business rules within application code?</p>\n<p>Thank you.</p>\n",
+  "children": []
+ },
+ {
+  "id": 903,
+  "parent": 0,
+  "author": "Freek Paans",
+  "date": "2015-06-18T01:51:37",
+  "content": "<p>IMO the most difficult part is getting the service boundaries right. If you&#8217;re splitting off the services based on technical function, you&#8217;re getting a lot of coupling between services. This removes most of the alleged benefits of microservices/SOA, while getting all the drawbacks (such as operational complexity). Partitioning across functional dimensions doesn&#8217;t have this problem (as much).</p>\n",
+  "children": [
+   {
+    "id": 928,
+    "parent": 903,
+    "author": "Eelco Hillenius",
+    "date": "2015-06-20T01:46:46",
+    "content": "<p>But how often do you have the case that domain objects and the functions that work on them are truly independent? In my experience, functional partitioning is often just as hard&#8230;</p>\n",
+    "children": []
+   }
+  ]
+ }
+]

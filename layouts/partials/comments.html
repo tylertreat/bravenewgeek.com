@@ -1,0 +1,12 @@
+{{- /* Frozen comments migrated from WordPress, rendered read-only. */ -}}
+{{- $slug := .Params.slug | default .File.ContentBaseName -}}
+{{- $comments := index site.Data.comments $slug -}}
+{{- if $comments }}
+<section class="wp-comments">
+  <h2>Comments</h2>
+  <p class="wp-comments-notice">Comments are from this blog's WordPress era and are preserved read-only.</p>
+  {{- range $comments }}
+    {{- partial "comment-item.html" . }}
+  {{- end }}
+</section>
+{{- end }}

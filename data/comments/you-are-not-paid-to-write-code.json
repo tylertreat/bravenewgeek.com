@@ -1,0 +1,204 @@
+[
+ {
+  "id": 16584,
+  "parent": 0,
+  "author": "Max",
+  "date": "2016-11-17T03:50:18",
+  "content": "<p>Nice. </p>\n<p>Since I quit my first job, started my own company and became the sole person responsible for tech I&#8217;m continuously trying to change my thinking towards this. It is easy to get caught up in your own grand design &#8211; with patterns, code principles etc etc. &#8211; without thinking much of what it actually adds to the business.</p>\n<p>As to measuring&#8230; It is not easy to measure the value that an engineer adds &#8211; definitely not as easy as measuring the value of a sales person. Lines written or merged pull requests is not a good indication &#8211; but IT IS something that we can measure.</p>\n",
+  "children": [
+   {
+    "id": 16586,
+    "parent": 16584,
+    "author": "Robert Munro",
+    "date": "2016-11-17T06:01:49",
+    "content": "<p>&#8220;not a good indication&#8221; is an understatement for both your metrics. Lines written is *negatively* correlated with work quality. Solving the same problem with more lines is worse. Removing lines is an improvement.</p>\n<p>Counting merged pull requests is counting of whether someone has lots of small tasks or a small number of big tasks. While the former is sometimes slightly preferable, it depends on the kind of work being done.</p>\n",
+    "children": [
+     {
+      "id": 16622,
+      "parent": 16586,
+      "author": "Mike",
+      "date": "2016-11-18T13:29:30",
+      "content": "<p>&#8220;Solving the same problem with more lines is worse. Removing lines is an improvement.&#8221; &#8211; untrue.  You can&#8217;t say this categorically.  Code should be written as simply as possible, sometimes more lines for clarity and sometimes less.  While I agree that it&#8217;s generally a good approach to provide solutions with fewer lines, I think the dev needs to be agnostic to the idea of more = bad, less = good.</p>\n",
+      "children": [
+       {
+        "id": 16690,
+        "parent": 16622,
+        "author": "frikkievb",
+        "date": "2016-11-22T04:25:24",
+        "content": "<p>Less = Flexible, More = Not so Flexible.  The more lines of code you introduce, the bigger the chance for potential bugs.  My philosophy is to reduce lines of code, write lots more smaller units &#8211; in this sense, more does not imply bad, but good.    Remeber, there were no bugs until one starts to write code. ;)</p>\n",
+        "children": [
+         {
+          "id": 16729,
+          "parent": 16690,
+          "author": "trstenjak",
+          "date": "2016-11-24T04:55:09",
+          "content": "<p>It is not about number of lines of code, what is important is readability and maintainability of code.</p>\n",
+          "children": []
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": 16599,
+    "parent": 16584,
+    "author": "Scott Middleton",
+    "date": "2016-11-17T12:27:12",
+    "content": "<p>The measurement of engineering value and quality is a tough one. It is going to require the combination of code written, test results, project/product release success as well as many other factors.</p>\n<p>It&#8217;s a problem we&#8217;re trying to tackle with our smart assistant for teams &#8211; stratejos.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 16585,
+  "parent": 0,
+  "author": "Soumyadeep",
+  "date": "2016-11-17T05:40:23",
+  "content": "<p>I&#8217;ve worked in many production support projects in the last 4 years. Every project would have a Batch job infrastructure to load data from external sources into the core system or to export/FTP data to downstream systems.<br />\nExcept one project, every one of the Batch systems would  involve countless stored procedures, SSIS packages, .Net executables performing the validation and loading activities.<br />\nAs a prod support engineer I would spend most of time fixing issues in the batch system rather than the actual core system.<br />\nNow a single project had a batch system entirely written in KSH (AIX system) and awk scripts by a single person. The scripts would employ simple unix functions in numerous ways to modify data and validate them and load them. As the heavy lifting was done by the unix standard functions, the actual code for the batch system was extremely small and as a result had minimal bugs. Also the scripts were blazing fast. Where other projects would be able to load 60mb of data in 5 hours ( involves countless validations of course) the Unix system will load 2 gb in 1 hour.<br />\nI wonder, nowadays if a new project is being designed, would a manager approve just Unix scripts to design the entire system or flashy Business Intelligence tools?</p>\n",
+  "children": [
+   {
+    "id": 16595,
+    "parent": 16585,
+    "author": "Kris B",
+    "date": "2016-11-17T10:00:09",
+    "content": "<p>The Unix script was faster and less KSH code than the other .NET code, but it also introduced an entirely new ecosystem with many new tools. Does the team now need to be experts in both? Are you going to rewrite all the old .NET code into KSH? This solution was short-sighted, it did improve on the immediate issue, but is going to cause a lot of long term support-ability issues.</p>\n",
+    "children": [
+     {
+      "id": 16668,
+      "parent": 16595,
+      "author": "xtofl",
+      "date": "2016-11-21T07:30:30",
+      "content": "<p>From a historical perspective, it is the windows and .net toolchain that&#8217;s the new kid on the block.</p>\n<p>These *nix platforms are designed to develop systems with from the very start.  And even though I started developing on windows, today I and many others are pleased ny what this old platform  offers, right out of the box.  Think package management, networking tools, system services, performance monitoring, logging&#8230; It&#8217;s all been there from the start, well understood, stable, secure,&#8230;</p>\n",
+      "children": []
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": 16589,
+  "parent": 0,
+  "author": "Dmitriy Krasnikov",
+  "date": "2016-11-17T07:48:22",
+  "content": "<p>Well there is a reason why Taco Bell while profitable for them is not a place to eat. There is one thing you are not taking into account and that is competition. Yes you can slap something workable together from lego blocks, be that unix subsystem or npm libraries. In fact thousands do. But in the end what will differentiate them? Only the talented programmer willing to hack the system for the best will stand out and survive.<br />\nThat&#8217;s why we have a fads of no-programming programming coming out of wood works every 3-5 years, promising wonders and then disappearing into obscurity. They do what they promise, but they don&#8217;t allow 100% control and that&#8217;s why some IT department will be fine with them, but software company won&#8217;t &#8212; it&#8217;s not competitive.</p>\n",
+  "children": [
+   {
+    "id": 16601,
+    "parent": 16589,
+    "author": "Brandon B",
+    "date": "2016-11-17T16:06:47",
+    "content": "<p>&#8220;Well there is a reason why Taco Bell while profitable for them is not a place to eat.'&#8221;</p>\n<p>This is contradictory, no?</p>\n<p>I believe that high-level product/solution differentiation is more important here;  Differentiation for the sake of differentiation at the software level is not an important factor. In fact if you can do things faster using already written and debugged  libraries/utilities you are more efficient and may make it to market faster, overcoming your &#8220;100% control&#8221; (YAGNI) solution and the extra bugs that come along with it. Great example of &#8216;not invented here&#8217; syndrome.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 16592,
+  "parent": 0,
+  "author": "Rafael",
+  "date": "2016-11-17T09:14:40",
+  "content": "<p>is this post related to this one? I found it very similar</p>\n<p><a href=\"http://widgetsandshit.com/teddziuba/2010/10/taco-bell-programming.html\" rel=\"nofollow ugc\">http://widgetsandshit.com/teddziuba/2010/10/taco-bell-programming.html</a></p>\n",
+  "children": []
+ },
+ {
+  "id": 16593,
+  "parent": 0,
+  "author": "Phil",
+  "date": "2016-11-17T09:40:15",
+  "content": "<p>The responsibility here falls somewhat on the stakeholders of the project in addition to the development team.   Specifically when designing or introducing &#8220;enhancements&#8221; to Lob systems,  stakeholders can get carried away with the specifics on various implementations for which it is &#8220;imperative&#8221; they must be customized to fit with a specific business expectation.  An open mind here from project leadership can remove any need to code in the first place. </p>\n<p>I cringe at how often my team or I have to write code to bolt onto a system simply because the stakeholders refuse to consider training users on how to actually use the system as delivered by the vendor</p>\n",
+  "children": [
+   {
+    "id": 16628,
+    "parent": 16593,
+    "author": "Jeff",
+    "date": "2016-11-18T18:51:10",
+    "content": "<p>@Phil &#8211; SPOT ON.</p>\n<p>I&#8217;m on the stakeholder/PO side of a medium-sized product set, and it is unbelievable how obstinate certain stakeholders can be about the simplest of features. &#8220;Why can&#8217;t we automate?&#8221; is something I hear all the time, but as soon as we automate, the question becomes &#8220;Why can&#8217;t we customize?&#8221;</p>\n<p>Its really difficult to explain these sorts of pitfalls to people who really, REALLY don&#8217;t want to hear it. I&#8217;ve been the perpetrator of your cringe-worthy moments because I can&#8217;t get non-technologists to understand the depth of what they&#8217;re really asking for (and how little they actually need it).</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 16597,
+  "parent": 0,
+  "author": "Joe",
+  "date": "2016-11-17T11:27:13",
+  "content": "<p>@Rafael, The &#8220;Taco Bell Programming&#8221; link at the first of the article references that article.</p>\n",
+  "children": []
+ },
+ {
+  "id": 16602,
+  "parent": 0,
+  "author": "jkh",
+  "date": "2016-11-17T17:39:48",
+  "content": "<p>none of this made sense, this post is silly</p>\n",
+  "children": [
+   {
+    "id": 16683,
+    "parent": 16602,
+    "author": "Harrison Pratt",
+    "date": "2016-11-21T16:06:07",
+    "content": "<p>You are paid to add value, code is how you do it.  No one but you cares how much code it takes &#8230; except perhaps some manager who doesn&#8217;t understand value.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 16605,
+  "parent": 0,
+  "author": "Jason Davis",
+  "date": "2016-11-17T22:40:06",
+  "content": "<p>This article discusses some real issues.  There are two extremes in tech, never change the system or always use the latest and greatest. I think both extremes can lead us to issues. If we never found flaws with the older systems, maybe all smartphones would still be the old Windows mobile devices and not iPhones. If we always use the latest version there might be a security issues that costs a corporation millions.  </p>\n<p>I think it is easy for us to think our ideas are better than what was done before without having all the info available.  It is probably easy to see the flaws in a system that has been worked with for years, and generally if our work and position is in place to replace the system already in place we have financial motivation to do so.  </p>\n<p>On new projects I have little knowledge of team size, work conditions, budget, time, etc that was put into the legacy system (by calling it legacy I reinforce my point as well, not always fair to say about a usable working system).  New development and new ways of thinking can inspire transformations and create amazing new products, and if people didn&#8217;t try new systems we would have never had computers in the first place. Sometimes we stumble on old ideas that we think of as &#8220;new&#8221; because we hadn&#8217;t heard about them or read about them. The reinvention of old ideas can inspire new generations. I think that is why there seems to always be a new language being created over the years. A new set of languages might inspire a new set of programmers, or might give them opportunities. For instance if someone hasn&#8217;t worked with Java or .NET for years it might be difficult for them to find work with those languages yet might be able to find work with some of the newer languages.  Not to say the new languages don&#8217;t try to tackle some real issues with other languages, just saying different flavors can sometimes provide value outside of a pure technical choice of which is better.</p>\n<p>This doesn&#8217;t necessarily mean all change is good or done for the right reasons. Sometimes I wish technology and science wasn&#8217;t ever adulterated by money and politics,  the best most efficient choice is always what wins.  Sadly we don&#8217;t live in that ideal world, so I have to look for the good in the choices that are made, and try to make the best choices given all the variables (some of which might not be just what will make the best product). What I think is the best choice might not be what others think is the best choice, the bigger the system the more politics and more money that is involved. </p>\n<p>Working on a system ourselves we get to make all the choices, where we are too strict and where we are too lenient will be part of the end product.  Group settings we give up control for help and ideas from others which can also lead to confrontation and compromise. At its worse we could have people on the same team actively working against each other.  I think of the part from HBO Silicon Valley when they break up over tabs or spaces. At best we could have the best ideas from a diverse set of people that creates an amazing system.</p>\n",
+  "children": []
+ },
+ {
+  "id": 16608,
+  "parent": 0,
+  "author": "Martin",
+  "date": "2016-11-18T02:14:17",
+  "content": "<p>The point about being paid to create solutions, not code, is an excellent one. And, in the same vein, we&#8217;re not paid to haul in heavy Java EE stacks and queue systems and whatever, throwing man years at mundane integration tasks which could be just as easily solved with a few hundred lines of Python or Ruby or Javascript.</p>\n<p>Except sometimes we are. The example above is not hypothetical; it describes a real project that I have had the pleasure of working on. I think what goes wrong in this particular case can be summarized as &#8220;enterprise&#8221;. The customer of enterprise software has deep pockets because enterprise software is expensive by nature. You have decision makers  at the customer end with little motivation for thrift and you have salespeople on our end who will push that fact to the max. So money flows in and the software development organization bloats. There is a bunch of management, the paycheck of each one being justified by the headcount of their little fiefdom. You have architects running rampant, each one throwing their favourite 3rd party platform or subsystem into the soup. You have an abundance of developers churning out code, and let&#8217;s face it, not all developers are the brightest bulbs either, but management doesn&#8217;t know the difference.</p>\n<p>Once you have a setup like this, with enough layers between the code monkey and the customer, the code monkey is essentially paid to write code (or, more precisely, to burn hours that can ultimately be billed to the clueless customer). There is no reward for just solving the problem and making the customer happy. Imagine the collective scream of terror from all of the people who would turn out to be expendible :)</p>\n",
+  "children": [
+   {
+    "id": 16621,
+    "parent": 16608,
+    "author": "Alvaro Cruz",
+    "date": "2016-11-18T12:58:14",
+    "content": "<p>Excellent comment Martin.  Those of us that do work for larger companies know that story all too well.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 16624,
+  "parent": 0,
+  "author": "Werner Schmidt",
+  "date": "2016-11-18T15:55:39",
+  "content": "<p>I am paid to write code in &#8211; for some of you &#8211; low level language. Yes, if you ask your gpl aunt, there&#8217;s a solution for everything in theory, but in practice one often finds that they won&#8217;t cover this perfectly reasonable use case in compatibility or performance-to-scale.</p>\n<p>I am unfortunately witnessing a trend where &#8216;if this functions does 95% of what it&#8217;s supposed to do, and it&#8217;s callee does 95%, that&#8217;s okay&#8217; is acceptable. It&#8217;s not an entirely new trend. It&#8217;s where all of those IIS &#8216;error serving /&#8217; with full stack trace came from.</p>\n<p>I weep for this future of mediocrity.</p>\n",
+  "children": []
+ },
+ {
+  "id": 16665,
+  "parent": 0,
+  "author": "George M",
+  "date": "2016-11-21T04:35:49",
+  "content": "<p>Whether you&#8217;re paid to &#8216;just&#8217; write code or do more depends on the company and its culture you&#8217;re working for.<br />\nI&#8217;ve encountered both. &#8211; companies where they had a role for every step of the process, where some (non-technical) analyst wrote down what you were supposed to make, sometimes crossing the boundaries into technical domain. And even if there were huge tremendous mistakes in the analysis, you were only allowed to implement it like that. When the shit hit the fan, it was still the developers fault, but they wouldn&#8217;t even approve it for release if you wouldn&#8217;t implement it exactly as specified by them, and arguing was of no use. Sometimes there is no time/money for elaborate testing or even documentation. This might and probably even will explode in your own face some time in the future, but if your manager does not want to give you sufficient time for this and piles you with other new and urgent tasks, you don&#8217;t always have a choice.<br />\n&#8211; On the other end you also have pure technical companies where there is much less structure, and here you, as a developer, are more than just a developer: you deliver working, tested solutions, and perhaps also train some people or do some pre-sales activities.<br />\nThe only danger in technology-driven companies is to get lost in technical details and spending lots of money on design and code quality, but losing sight of functionality and user-friendliness.<br />\nBut a developer should always do &#8216;the smart thing&#8217;. Like using an existing library if you want to convert say a docx file to a PDF, and do not try to write this code yourself, which could take years to do right(!!), if this is not a core functionality of your application!<br />\nAnd believe me, some try to do these kind of stuff!<br />\nThis also means : don&#8217;t be too lazy and take a third party library for everything, also the easy stuff, since one day in future, you might be regretting this. I.e. if the open-source team stops supporting the library, or your requirements change slightly to what the library has to offer,&#8230;</p>\n<p>But &#8220;developer&#8221; is also a term that&#8217;s too broad. That&#8217;s like saying that someone is a doctor. Is the person a doctor in Physics, Chemistry, Medicine? Is the person a surgeon or a house doctor? Specialised in lungs or heart?<br />\nDevelopers too can be just coders and a bit more, like the house doctor having a general knowledge. But they also can be &#8216;technical specialists&#8217;, like heart surgeons. They can also be &#8216;product or domain specialists&#8217;, like doctors in medicine working for a research lab, they know the illnesses, they know some techniques, and they try to find a working solution to cure the disease, and they might need to write papers, convince colleagues and do presales for selling it to some pharmaceutical company.</p>\n",
+  "children": []
+ },
+ {
+  "id": 16693,
+  "parent": 0,
+  "author": "Richard Polichetti",
+  "date": "2016-11-22T12:08:05",
+  "content": "<p>No programmer should care why they are being paid. They should not care what the smart thing is. Tool choice is irrelevant to management. CFO&#8217;s control the world now. Leave ROI to them. Leave keeping the job interesting to yourself. If the job is not interesting, leave. EOS.</p>\n",
+  "children": []
+ },
+ {
+  "id": 17115,
+  "parent": 0,
+  "author": "Guilherme Garnier",
+  "date": "2016-12-13T08:46:39",
+  "content": "<p>Great post! I just wrote something on the same subject: <a href=\"https://blog.guilhermegarnier.com/2016/12/software-developers-and-digital-artists/\" rel=\"nofollow ugc\">https://blog.guilhermegarnier.com/2016/12/software-developers-and-digital-artists/</a></p>\n",
+  "children": []
+ }
+]

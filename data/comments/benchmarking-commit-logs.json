@@ -1,0 +1,26 @@
+[
+ {
+  "id": 16857,
+  "parent": 0,
+  "author": "kant",
+  "date": "2016-12-01T13:16:48",
+  "content": "<p>ok this doesn&#8217;t look consistent with your previous benchmarks moreover it is different from what I have experienced.  I don&#8217;t know if I am misinterpreting and if so please correct me.</p>\n<p>For the data size of 1KB you seem to show the Kafka receive throughput is about 1500 msg/sec ? is that correct? the last but one graph shows that in green. From my experience with Kafka I was able to get 75-100K/sec and I am more than happy to show this live whenever you want.</p>\n",
+  "children": []
+ },
+ {
+  "id": 16922,
+  "parent": 0,
+  "author": "Ivan Kozlovic",
+  "date": "2016-12-06T11:31:46",
+  "content": "<p>Regarding your comment:</p>\n<p>&#8220;For a reason I have yet to figure out, the latency for 1MB messages is roughly an order of magnitude faster when fsync is enabled after the 95th percentile, which seems counterintuitive&#8221;</p>\n<p>My suspicion is that fsync will prevent the kernel buffer to grow too large, so you get more constant latency numbers. Without fsync, the kernel buffer could grow large and when the kernel does flush it on disk, that can cause these spikes. Running strace tool may be able to prove that.</p>\n<p>Ivan Kozlovic.</p>\n",
+  "children": []
+ },
+ {
+  "id": 16928,
+  "parent": 0,
+  "author": "Ivan Kozlovic",
+  "date": "2016-12-06T19:45:34",
+  "content": "<p>Posted some test results on twitter: <a href=\"https://twitter.com/ivankozlovic/status/806190513472802816\" rel=\"nofollow ugc\">https://twitter.com/ivankozlovic/status/806190513472802816</a><br />\nSeems to be because of the use of /tmp&#8230;</p>\n",
+  "children": []
+ }
+]

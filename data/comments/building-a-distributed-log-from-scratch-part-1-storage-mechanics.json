@@ -1,0 +1,51 @@
+[
+ {
+  "id": 20924,
+  "parent": 0,
+  "author": "Philip Enrico",
+  "date": "2017-12-22T12:21:27",
+  "content": "<p>Any free online course so i can learn more deeply</p>\n",
+  "children": []
+ },
+ {
+  "id": 20938,
+  "parent": 0,
+  "author": "Ahmed",
+  "date": "2017-12-25T04:53:22",
+  "content": "<p>Great</p>\n",
+  "children": []
+ },
+ {
+  "id": 22543,
+  "parent": 0,
+  "author": "Rohan",
+  "date": "2018-08-05T15:00:14",
+  "content": "<p>Hi Tyler,<br />\nThanks for the wonderful series.</p>\n<p>I have a question regarding the idea of splitting the log into segments:<br />\nEven if we had one single long log file and an index file accompanying it, couldn&#8217;t we refer the index file for an offset, that&#8217;d give us the byte position and seek to that position?</p>\n",
+  "children": [
+   {
+    "id": 22668,
+    "parent": 22543,
+    "author": "Rohan",
+    "date": "2018-08-20T16:22:20",
+    "content": "<p>Understood it myself on thinking more&#8230;:)<br />\nDoing a binary search that refers an index for it&#8217;s jumps would still involve logN seeks in the file which&#8217;d be expensive.<br />\nHence we can&#8217;t use that to just &#8220;find the last message older than&#8221;</p>\n<p>Thanks Tyler!</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 47692,
+  "parent": 0,
+  "author": "Dio",
+  "date": "2022-04-06T17:36:28",
+  "content": "<p>Thanks for this wonderful series of posts! I have some question on the performance of WAL. Apparently Kafka&#8217;s strength lies in the fact that the log is append only, therefore there is no disk seek hence being super fast.</p>\n<p>However, my question is:<br />\n1. AFAIK, two files are written for a single , one is for the actual messages, the other is an index.<br />\n2. Besides, each broker server (one machine) can hosts many topic + partition, and IIRC Kafka keeps the logs for different  separated.<br />\n#1 combined with #2, I don&#8217;t see how it optimizes for disk access, because on a single machine we are still writing to multiple files which now needs disk seek.</p>\n<p>Any insight? Thanks!</p>\n",
+  "children": []
+ },
+ {
+  "id": 57369,
+  "parent": 0,
+  "author": "iwa2no",
+  "date": "2024-08-29T06:38:19",
+  "content": "<p>Hi, I want to ask why access ordered log in large file is not succifient. AFAIK, if we want to find a log in 10^6 logs, we just need log2(10^6) which approximates 20 times, which I believe is a small number. Have I oversimplified anything ?</p>\n",
+  "children": []
+ }
+]

@@ -1,0 +1,10 @@
+[
+ {
+  "id": 55190,
+  "parent": 0,
+  "author": "Drew",
+  "date": "2024-04-19T00:20:52",
+  "content": "<p>Cloud Run isn&#8217;t based on Knative anymore, if it ever was.<br />\nGoogle has two versions of Cloud Run, one based on internal infra, while the other based on Knative, which is called Cloud Run for Anthos now. Cloud Run refers to the former. The semantics to deploy workload are the same though. </p>\n<p>Just found out Cloud Run for Anthos has been renamed to Knative Serving(<a href=\"https://cloud.google.com/anthos/run/docs/architecture-overview\" rel=\"nofollow ugc\">https://cloud.google.com/anthos/run/docs/architecture-overview</a>)</p>\n",
+  "children": []
+ }
+]

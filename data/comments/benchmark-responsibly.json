@@ -1,0 +1,19 @@
+[
+ {
+  "id": 71,
+  "parent": 0,
+  "author": "Sleeper",
+  "date": "2015-01-05T03:45:52",
+  "content": "<p>OK. That&#8217;s just retarded. If ppl can&#8217;t understand the fundamental design goals of different messaging system, it&#8217;s their problem. Not yours. A.k.a. RTFM.</p>\n<p>Just because they are different doesn&#8217;t mean they shouldn&#8217;t be consisted. It shows how much they are trading off for their respective feature.</p>\n<p>Just like how the internet can be full of crap, so can the comments and criticisms. You doing a great job.</p>\n",
+  "children": [
+   {
+    "id": 72,
+    "parent": 71,
+    "author": "Sleeper",
+    "date": "2015-01-05T03:58:01",
+    "content": "<p>Compared* not consisted.</p>\n",
+    "children": []
+   }
+  ]
+ }
+]

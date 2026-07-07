@@ -1,0 +1,58 @@
+[
+ {
+  "id": 14068,
+  "parent": 0,
+  "author": "Randall",
+  "date": "2016-02-24T21:12:50",
+  "content": "<p>On the channels section, &#8220;most multithreaded apps should use nonblocking ring buffers&#8221; is substantially the wrong message for most folks, who are dealing with something like the 3µs per channel send/receive pair you measure in one benchmark (or less). If 3µs/communication is too much, as a rule you&#8217;ve already lost.</p>\n<p>Looking at code out on the Web, other Go users&#8217; discussions, etc, it seems like two of the key things people need to know are 1) you don&#8217;t use channels (vs. locks, atomics, etc.) for everything, and 2) you have to design around minimizing the total amount of coordination. </p>\n<p>Introductory materials are actively confusing on point 1, I think in the name of demonstrating language features to newbies. I certainly fell victim to it, and I&#8217;m pretty sure my first app in effect rebuilt locks and maybe semaphores, inefficiently, using channels. You should start out using whatever primitive maps best to your intent, and revise based on perf as needed; channels aren&#8217;t always the right thing.</p>\n<p>On point 2, I routinely people see people confused because it&#8217;s not helping their app to send tiny tiny tasks over a channel when using larger work chunks (or, sometimes, just adding a channel buffer) would solve their problem. It&#8217;s not really hard, usually, but it does seem to be rarely discussed.</p>\n<p>If there is read-write contention at the level seen in your benchmark, and you can&#8217;t prevent coordination overhead from taking up a bunch of your app&#8217;s CPU time, then there&#8217;s certainly a case for using a ring buffer or such. (Go doesn&#8217;t use one by default because the spec says first-in-first-out and I think lock-free solutions tend to weaken those guarantees. Could be wrong.) Again, though, the modal application of channels seems to be a vanilla work queue or signalling setup, hence &#8220;wrong message for most folks.&#8221; Pick the most natural primitive (including using what the language gave you), do a few basic things to cut overhead, then worry more if you turn out to need to.</p>\n<p>In support of the notion that you can use channels for fast code, I&#8217;d note that <a href=\"https://github.com/twotwotwo/sorts\" rel=\"nofollow ugc\">https://github.com/twotwotwo/sorts</a> uses channels and puts up some decent #s for parallel sort (these are on an old v of Go, but see <a href=\"https://docs.google.com/spreadsheets/d/1GkXMLXQ7oW5Bp0qwyYw0IiQElIq8B-IvNEYE_RPCTvA/edit#\" rel=\"nofollow ugc\">https://docs.google.com/spreadsheets/d/1GkXMLXQ7oW5Bp0qwyYw0IiQElIq8B-IvNEYE_RPCTvA/edit#</a>). I know you guys have tackled parallel sorting at <a href=\"https://github.com/Workiva/go-datastructures/tree/master/sort\" rel=\"nofollow ugc\">https://github.com/Workiva/go-datastructures/tree/master/sort</a> &#8212; would actively welcome being one-upped here. :)</p>\n",
+  "children": []
+ },
+ {
+  "id": 14076,
+  "parent": 0,
+  "author": "ProZach",
+  "date": "2016-02-25T12:59:55",
+  "content": "<p>So I am working on converting a program I wrote in C long ago to Go and am looking for any opportunity to increase the performance. I have 1 producer and GOMAXPROCS consumers typically. I saw this and was quite excited that I might have an opportunity to speed the program up. I was using Channels before:</p>\n<p>type InputBuffer chan *InputRecord</p>\n<p>func NewInputBuffer() (InputBuffer) {<br />\n\treturn make(InputBuffer, 10000)<br />\n}</p>\n<p>func (ch InputBuffer) Push(in *InputRecord) {<br />\n\tch &lt;- in<br />\n}</p>\n<p>func (ch InputBuffer) Pop() (out *InputRecord) {<br />\n\treturn &lt;-ch<br />\n}</p>\n<p>func (ch InputBuffer) Len() (int) {<br />\n    return len(ch)<br />\n}</p>\n<p>I tried using the RingBuffer in it&#039;s place&#8230; as so:</p>\n<p>type RelayBuffer struct {<br />\n    buffer *queue.RingBuffer<br />\n}</p>\n<p>func NewRelayBuffer() (RelayBuffer) {<br />\n    var buffer RelayBuffer<br />\n    buffer.buffer = queue.NewRingBuffer(1000)<br />\n    return buffer<br />\n}</p>\n<p>func (buffer *RelayBuffer) Push(in *RelayRecord) {<br />\n    buffer.buffer.Put(in)<br />\n}</p>\n<p>func (buffer *RelayBuffer) Pop() (out *RelayRecord) {<br />\n    ret, _ := buffer.buffer.Get()<br />\n    return ret.(*RelayRecord)<br />\n}</p>\n<p>func (buffer *RelayBuffer) Len() uint64 {<br />\n    return buffer.buffer.Len()<br />\n}</p>\n<p>The performance is pretty bad compared with using a channel. It&#039;s processing 40k things per second and using 3 times the CPU to do it. The RingBuffer is staying mostly empty as well if that helps. Just curious if it&#039;s the use case or I&#039;ve implemented it wrong?</p>\n",
+  "children": []
+ },
+ {
+  "id": 14077,
+  "parent": 0,
+  "author": "Prakhar Goel",
+  "date": "2016-02-25T20:37:28",
+  "content": "<p>So&#8230; looking at your ring buffer benchmarks:</p>\n<p>benchmark ring buffer read contention takes 390 us without contention but only ~0.5 ns with 8 threads competing for it.</p>\n<p>Also Benchmark ring buffer contention takes almost a full second* with no contention but only 182 us with 8 threads competing for it.</p>\n<p>Is it just me or do those numbers make no sense? The times are different by several orders of magnitude and in the wrong direction. It seems like something is wrong with your benchmark code.</p>\n<p>* this in of itself sounds completely insane to me.</p>\n",
+  "children": []
+ },
+ {
+  "id": 14078,
+  "parent": 0,
+  "author": "Prakhar Goel",
+  "date": "2016-02-25T20:38:27",
+  "content": "<p>Sorry: that should be &#8220;~0.5 us with 8 threads competing for it.&#8221;</p>\n",
+  "children": []
+ },
+ {
+  "id": 14079,
+  "parent": 0,
+  "author": "Joe Cheng",
+  "date": "2016-02-25T20:46:45",
+  "content": "<p>From the code, it looks like the RingBuffer is using a spinlock even on the consumer side (I&#8217;m not sure if that&#8217;s the correct term in this case as it&#8217;s not protecting a critical section per se, but, you just loop as fast as you can until the queue is not empty). If you have GOMAXPROCS equal to your number of cores and at least that many consumers waiting on an empty RingBuffer, won&#8217;t that use all your CPU?</p>\n<p>Personally, I&#8217;d be absolutely terrified of using lockfree code written by me, or by even the smartest people I&#8217;ve ever worked with. It&#8217;s just so, so hard to reason about. I would look for performance improvement opportunities almost everywhere else before resorting to that.</p>\n",
+  "children": []
+ },
+ {
+  "id": 14086,
+  "parent": 0,
+  "author": "rog",
+  "date": "2016-02-26T11:18:27",
+  "content": "<p>Yeah, it seems like if you&#8217;re not running full speed then that ring buffer implementation will use huge numbers of unnecessary CPU cycles. It might look good on (some) benchmarks, but I don&#8217;t believe that&#8217;s a technique that should be used in anyone&#8217;s production code. Spinning for a few cycles is probably fine, but forever is bad, no matter how many times you call runtime.Gosched.</p>\n",
+  "children": []
+ },
+ {
+  "id": 25777,
+  "parent": 0,
+  "author": "NSD",
+  "date": "2019-04-02T00:59:29",
+  "content": "<p>sort([]interface{}) and sort([]struct) are not as far a comparison as you could make. The use of the interfaces forces an indirection. Perhaps sort([]*struct) is a fairer comparison.</p>\n",
+  "children": []
+ }
+]

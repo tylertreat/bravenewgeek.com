@@ -1,0 +1,10 @@
+[
+ {
+  "id": 59111,
+  "parent": 0,
+  "author": "nerved-dev",
+  "date": "2024-11-14T21:06:03",
+  "content": "<p>&gt;  which provide a rigid, one-size-fits-all platform that abstracts away the underlying infrastructure, PEaaS is designed to be flexible and tailored to your unique requirements.</p>\n<p>Isn&#8217;t Platform Engineering related to how team are organized contrary to DevOps? We normally talk  of &#8220;streamlined teams&#8221; contrary to any other topology. </p>\n<p>And even if, isn&#8217;t having &#8220;rigid, one-size-fits-all&#8221; a synonym of &#8220;DevOps Monolith&#8221; that should be avoided at all cost, to quote Ken Mugrage. </p>\n<p>To end, DevOps isn&#8217;t about tooling; in the way of  &#8220;tools as [a unique] solution&#8221;; it has a human side too.</p>\n",
+  "children": []
+ }
+]

@@ -1,0 +1,27 @@
+[
+ {
+  "id": 22963,
+  "parent": 0,
+  "author": "David Gildeh",
+  "date": "2018-09-19T13:14:37",
+  "content": "<p>Great blog, we&#8217;ve also seen this talked about in some of our meetups and customer conversations: <a href=\"https://www.outlyer.com/blog/doxlon-august-2017/#what-does-next-gen-monitoring-look-like--owain-perry-principal-engineer-at-just-eat\" rel=\"nofollow ugc\">https://www.outlyer.com/blog/doxlon-august-2017/#what-does-next-gen-monitoring-look-like&#8211;owain-perry-principal-engineer-at-just-eat</a></p>\n<p>This is becoming a common idea and we even discussed open-sourcing our agent/configuration technology to provide something like this to users at one point. A &#8220;segment.io&#8221; for monitoring.</p>\n<p>The challenge with this approach for some solutions is it treats the solutions just as a time-series/log sink for storing metrics or logs, you lose most of the value you can get from those solutions once you take the solution&#8217;s agent out of the picture and start pushing metrics to a common endpoint and feeding those metrics to different providers.</p>\n<p>For example our solution has a unique configuration technology that allows users to push checks out to all their instances in seconds. This is what enables our core &#8220;self-service&#8221; value proposition. With the approach in this blog, that would break and our solution would essentially just become a hosted TSDB.</p>\n<p>Also every solution sends different metric names and labels, which all the template dashboards and alerts expect to be there to work. Prometheus metrics are different from CollectD metrics, which are different from Telegraph metrics, which are different from Outlyer metrics&#8230;and all those out of the box template dashboards and alerts would break.</p>\n<p>In fact I would argue, having seen customers migrate solutions in the past, most of the time is spent migrating the dashboards, alerts and other monitoring configuration, much more time than rolling out and configuring a new agent. Until every integration and agent sends the same metrics, and provide the same query language, this will not go away, and you won&#8217;t be able to use all the integration templates provided by most solutions out of the box.</p>\n<p>I can see this working for some use cases &#8211; a log is a log, a custom StatsD metric is the same, and even OpenTracing data is pretty standard, but for Infrastructure metrics, you&#8217;re still generally better off installing the agent for that solution, so you get all the additional value such as out of the box templates and other agent capabilities those solutions provide.</p>\n",
+  "children": [
+   {
+    "id": 22967,
+    "parent": 22963,
+    "author": "David Gildeh",
+    "date": "2018-09-19T15:48:20",
+    "content": "<p>Thanks to your inspiration, I did a more in depth response to this idea on our blog here: <a href=\"https://www.outlyer.com/blog/why-the-observability-pipeline-wont-solve-everything/\" rel=\"nofollow ugc\">https://www.outlyer.com/blog/why-the-observability-pipeline-wont-solve-everything/</a></p>\n<p>Look forward seeing how this conversation evolves! :)</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 23789,
+  "parent": 0,
+  "author": "komu",
+  "date": "2018-11-29T01:16:12",
+  "content": "<p>Incidentally, this is almost the proto-type[1] logging pipeline I came up with when I was evaluating using TimescaleDB/postgres for storing application logs.   </p>\n<p>1. <a href=\"https://www.komu.engineer/blogs/timescaledb/timescaledb-for-logs\" rel=\"nofollow ugc\">https://www.komu.engineer/blogs/timescaledb/timescaledb-for-logs</a></p>\n",
+  "children": []
+ }
+]

@@ -1,0 +1,18 @@
+[
+ {
+  "id": 2,
+  "parent": 0,
+  "author": "Nico de Wet",
+  "date": "2014-05-13T18:40:33",
+  "content": "<p>I can imagine a number of versions of the ClientStubPostProcessor that should ideally be contained in a company util library (if one is so lucky as to be in a dev shop that goes this far). In my case my technical debt ladden first stab entailed simply replacing the BeanDefinition BeanClassName with the stub &#8211; but this won&#8217;t cut it, the stub belongs in src/test/java. Thanks for the tutorial, a useful reference.</p>\n",
+  "children": []
+ },
+ {
+  "id": 3,
+  "parent": 0,
+  "author": "Ramu",
+  "date": "2014-11-16T22:39:28",
+  "content": "<p>Hi,<br />\nYour done a great work.It was nice explanation and use case that your explaining is bestfit for the concept. Looking for more realistic example. </p>\n<p>Thanks for sharing the knowledge.</p>\n",
+  "children": []
+ }
+]

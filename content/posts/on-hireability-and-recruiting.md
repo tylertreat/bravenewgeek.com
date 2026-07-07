@@ -1,0 +1,23 @@
+---
+title: "On Hireability and Recruiting"
+date: 2015-02-01T15:00:12-06:00
+slug: "on-hireability-and-recruiting"
+categories: ["Culture"]
+tags: ["blogging", "community", "culture", "hiring", "open source", "recruiting"]
+---
+
+Developers deal with recruiter emails on a daily basis. It’s frustrating because it’s almost always a shotgun approach, but occasionally you get something that strays from the path and, delightfully, _it stands out_. It’s refreshing to have someone who has actually taken the time to determine your skill set, technology background, and how you spend your free time with respect to software. You feel like they at least have an _inkling_ of who you are. On the other hand, it’s irritating to be bombarded by contract-to-hire offers which aren’t even _remotely_ tailored to you. What’s worse is when it’s ten different emails from ten different people working for the same recruiting agency.
+
+There are basically two types of software jobs: the ones which just need warm bodies—_commodity developers_ who mostly need to code the spec handed down from the Powers That Be—and the ones which need _individual contributors_—people which are hired to solve hard problems. ((These would be what Google refers to as [_smart creatives_](http://bits.blogs.nytimes.com/2014/09/28/the-google-formula-for-success/?_r=0).)) I seem to paint the first in a negative light, which isn’t actually my intention. I know plenty of developers who are perfectly content with these types of jobs. There’s nothing wrong with that, but sometimes the wires seemingly get crossed.
+
+The problem, as I see it, is that the communications meant for one type of person are getting received by people who don’t identify. It’s a numbers game, so it boils down to lazy recruiting. Throw enough paper airplanes and eventually one will land in the lap of someone who cares—the rest will poke everyone else’s eyes out. This isn’t a humblebrag about how I’m such an Awesome Developer™ or a suggestion that we should paint everyone with a broad brush, it’s merely what I’ve observed. People are welcome to disagree and do so openly.
+
+Many companies I would _love_ to work at have pinged me after coming across my GitHub profile or reading my blog. Recruiters for jobs I would _never_ work at have emailed me after seeing my LinkedIn. The split isn’t completely black and white—there are places I’d work who’ve contacted me through LinkedIn, and vice versa—but there’s definitely a strong correlation. ((Granted, the sample size of recruiters emailing me through LinkedIn is probably an order-of-magnitude larger.)) The difference is that the former almost always receive an enthusiastic, well-thought-out response, while the latter goes straight to the trash. Doing otherwise would simply be too demoralizing. I’ve talked to other developers about this, and I know I’m not the only one. Bad recruiting is just causing people to be more jaded and cynical. I don’t know about other industries, but in software it seems to be particularly magnified.
+
+The upshot is how to minimize the “bad communications” while maximizing the “good.” You can’t avoid bad recruiters. I suspect there are lists of names with email addresses and phone numbers which get circulated around staffing agencies. ((I wouldn’t be terribly surprised if some universities sold contact information for new graduates either.)) You can remove all contact information from your online persona, but then you make it a lot harder for the “good communications” to get through.
+
+The best way to make yourself hireable isn’t to have a good resume and interviewing skills, it’s to do cool stuff _in the open_ and talk about it. It can be scary because sometimes you crash and burn, but that’s just as valuable. Some find it terrifying to expose their work to the world. Half the reason I blog and share it publicly is to open my work and myself up to criticism. It stings sometimes, but _you get over it_. I wouldn’t be where I am today without people kicking me in the ass to do better. Other times, the community can actually learn and gain insight from your viewpoint and mindset. People are too modest.
+
+Good developers aren’t doing this to get hired either, they’re doing it because they think it’s interesting in its own right. That’s the other half of why I blog (as well as to keep a journal for myself). The self-marketing is a byproduct. My side projects and blog posts have led to _far_ more interesting conversations and opportunities than my resume or LinkedIn profile.
+
+People should be more open to the idea of sharing their knowledge and work with the community. The benefits go both ways.

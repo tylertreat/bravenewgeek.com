@@ -1,0 +1,60 @@
+[
+ {
+  "id": 20956,
+  "parent": 0,
+  "author": "Shiju Varghese",
+  "date": "2017-12-28T00:50:19",
+  "content": "<p>Brilliant article.</p>\n",
+  "children": []
+ },
+ {
+  "id": 20957,
+  "parent": 0,
+  "author": "Byron Ruth",
+  "date": "2017-12-28T06:33:56",
+  "content": "<p>Great article Tyler. Two clarifications I have.</p>\n<p>First, you first stated that NATS Streaming currently uses one Raft Group per topic, but then mentioned the problem with this (explosion of network traffic). Is the plan to adopt the MultiRaft approach the Cockroach Labs folks developed?</p>\n<p>Second, in the diagram of the message log being an index of the logical offset which points to the Raft log physical offset, I am assuming this implies the physical message (bytes) are stored only in the Raft log? What is the cost of dereferencing the message while reading the message log? I am making the assumption messages are currently read sequentially from the log files and this approach introduces a new indirection.</p>\n",
+  "children": [
+   {
+    "id": 20961,
+    "parent": 20957,
+    "author": "Tyler Treat",
+    "date": "2017-12-28T09:37:44",
+    "content": "<p>Yes, the MVP currently does not address the Raft scalability problem. These are some potential solutions but not yet implemented. This goes for the dual writes in the Raft log. However, with this approach, reads would still be sequential from the log (as they are now). These will be two big areas for improvement following an initial release.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 20999,
+  "parent": 0,
+  "author": "Ming",
+  "date": "2018-01-03T21:10:23",
+  "content": "<p>Hi, are you trying to actually build a distributed log in this serials of blog post?</p>\n",
+  "children": []
+ },
+ {
+  "id": 21157,
+  "parent": 0,
+  "author": "Chris Young",
+  "date": "2018-01-23T15:39:49",
+  "content": "<p>&#8220;By default, Kafka favors availability by choosing the second strategy.&#8221; &#8212; you meant the *first* strategy here &#8212; picking a replica not necessarily in the ISR set?  But actually, since 0.11, unclean.leader.election.enable defaults to false, so please update that paragraph :)</p>\n",
+  "children": [
+   {
+    "id": 21158,
+    "parent": 21157,
+    "author": "Tyler Treat",
+    "date": "2018-01-23T16:03:21",
+    "content": "<p>Nice catch, thanks.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 45241,
+  "parent": 0,
+  "author": "Aravind",
+  "date": "2021-12-23T19:53:13",
+  "content": "<p>Regarding these 2 sections of text</p>\n<p>&gt; The thought here is if we are replicating to enough nodes, the replication itself is sufficient for HA of data since the likelihood of more than a quorum of nodes failing is low, especially if we are using rack-aware clustering. &#8230;</p>\n<p>AND</p>\n<p>&gt; Another caveat with Kafka is unclean leader elections. That is, if all replicas become unavailable, there are two options: &#8230;</p>\n<p>Why is it that we&#8217;re worried about all replicas becoming unavailable in Kafka for leader elections, but not as much from the replication/durability perspective?</p>\n",
+  "children": []
+ }
+]

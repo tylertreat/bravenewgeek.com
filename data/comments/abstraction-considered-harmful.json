@@ -1,0 +1,35 @@
+[
+ {
+  "id": 14097,
+  "parent": 0,
+  "author": "chris",
+  "date": "2016-02-27T20:12:58",
+  "content": "<p>That&#8217;s a good point of view. I tend to delay abstraction a bit. I&#8217;m a fan of continuous refactoring so even though I try to write the best code I can on the first shot, I assume it can and will be improved later. This is especially true with abstraction. I&#8217;ll accept duplicating code 2 or 3 times before I feel like I understand the problem well enough to abstract it in some cases. Even then, reality will require it to change and that should be easy. On the other hand, premature or bad abstraction seems to be a recipe for needless, self-propagating complexity.</p>\n",
+  "children": [
+   {
+    "id": 14198,
+    "parent": 14097,
+    "author": "Daniel",
+    "date": "2016-03-01T02:30:38",
+    "content": "<p>I tend to delay abstraction as well. I think the key is to keep track of duplicated code, even in your own projects. Luckily, there are tools to deal with that (I&#8217;m using Teamscale)</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 14315,
+  "parent": 0,
+  "author": "Paddy",
+  "date": "2016-03-04T02:04:43",
+  "content": "<p>&#8221; The builders of abstractions need not think about how their abstractions will be used—this would be far too much effort&#8221;</p>\n<p>That is too over-the-top to allow me to continue reading!</p>\n",
+  "children": []
+ },
+ {
+  "id": 17848,
+  "parent": 0,
+  "author": "Vajk",
+  "date": "2017-02-16T06:40:33",
+  "content": "<p>Reading this like 4th time in the past year. Still a good read.</p>\n",
+  "children": []
+ }
+]

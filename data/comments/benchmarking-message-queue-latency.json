@@ -1,0 +1,102 @@
+[
+ {
+  "id": 13957,
+  "parent": 0,
+  "author": "David Collier-Brown",
+  "date": "2016-02-14T10:53:39",
+  "content": "<p>The problem you&#8217;re observing is very real, but very hard to notice in the field: micro-benchmarks like these are arguably the best way to detect and diagnose them.</p>\n<p>The major difference here is that your test doesn&#8217;t mix in random distributions of requests. If there&#8217;s room for 100 requests in a second, I read you as handing them to the system under test one at a time, every 10 milliseconds. That&#8217;s a uniform distribution, and any odd behaviour sticks out like a sore thumb as an irregularity.</p>\n<p>Now consider a system where a collections of 1000 courts spread across the country issue requests to a server with an average of 100 court servers active, each issuing a request every second.  There&#8217;s 100 intervals they can land in, and randomly many will land in an interval that&#8217;s empty, a few will land in an interval where there&#8217;s already a request being processed, and a very few may land in a interval where more that one request is being processed.  This, of course, leaves some intervals entirely empty. </p>\n<p>Plugging that into a queue modeller, like PDQ, you&#8217;ll see the response time start off close to horizontal at light loads, but by 80% of your target load is already curving upwards like the handle of a hockey-stick, &#8220;_/&#8221;.</p>\n<p>This extra latency from load and the evils of probability (;-)) drowns out the shout of pain from the 100-millisecond response and its downstream victims, and keeps us from realizing just how serious a 100-millisecond latency really is.</p>\n<p>&#8211;dave<br />\n[I wish I could paste in a graph, but here&#8217;s the data I plotted, and at 80% load, the average response time was already bloated to 0.040s, 40 milliseconds and at 100% it was getting close to 0.100s</p>\n<p>&#8220;# Closed solution from PDQ, where service time = 10,&#8221;,<br />\n&#8220;# think time = 90, dmax = 0, queues = 1&#8221;,<br />\nLoad,Response<br />\n1,0.01<br />\n6,0.01052<br />\n11,0.011097<br />\n16,0.011738<br />\n21,0.012455<br />\n26,0.013263<br />\n31,0.014179<br />\n36,0.015225<br />\n41,0.01643<br />\n46,0.017831<br />\n51,0.019476<br />\n56,0.02143<br />\n61,0.023782<br />\n66,0.026652<br />\n71,0.030211<br />\n76,0.034698<br />\n81,0.040457<br />\n86,0.04798<br />\n91,0.05796<br />\n96,0.071346<br />\n101,0.089328]</p>\n",
+  "children": []
+ },
+ {
+  "id": 14967,
+  "parent": 0,
+  "author": "yehosef",
+  "date": "2016-06-08T05:42:17",
+  "content": "<p>Very interesting benchmarks and comparisons &#8211; thanks!</p>\n<p>I was not able to tell &#8211; were any of the RabbitMQ tests run using persistence?   Its good to know the maximum throughput but it&#8217;s also good to compare kafka and rabbit where persistence is required.</p>\n",
+  "children": []
+ },
+ {
+  "id": 15048,
+  "parent": 0,
+  "author": "rick jones",
+  "date": "2016-06-17T17:34:20",
+  "content": "<p>It would be worthwhile to compare the CPU utilizations for all these different solutions, perhaps something along the lines of netperf&#8217;s service demand, as well as the network utilization.</p>\n",
+  "children": [
+   {
+    "id": 17777,
+    "parent": 15048,
+    "author": "Quinton Pike",
+    "date": "2017-02-08T04:58:14",
+    "content": "<p>Agreed. It would be great to see CPU and Memory consumption of the different choices. This is sometimes a factor when choosing a solution.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 16583,
+  "parent": 0,
+  "author": "wener",
+  "date": "2016-11-17T00:35:48",
+  "content": "<p>Why not add redis block list to this comparison ? We use redis block list as our mq for a long time, it works !</p>\n",
+  "children": [
+   {
+    "id": 16856,
+    "parent": 16583,
+    "author": "ygl",
+    "date": "2016-12-01T09:59:38",
+    "content": "<p>how about the performance?</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 22485,
+  "parent": 0,
+  "author": "Matyas",
+  "date": "2018-07-27T07:14:49",
+  "content": "<p>It would be really interesting to see how does Apache Pulsar compare in terms of latency and throughput with the solutions mentioned already in the article.</p>\n",
+  "children": []
+ },
+ {
+  "id": 23425,
+  "parent": 0,
+  "author": "John",
+  "date": "2018-10-31T08:37:15",
+  "content": "<p>Interested in knowing if  you are formalizing your &#8220;Bench&#8221; tool(s) and would make them available to others to try out. We are testing open source Kafka, now and have talking about testing Redis.  Looks like NATS would be interesting to us as well.</p>\n",
+  "children": [
+   {
+    "id": 23431,
+    "parent": 23425,
+    "author": "Tyler Treat",
+    "date": "2018-10-31T12:56:37",
+    "content": "<p>Bench is available here: <a href=\"https://github.com/tylertreat/bench\" rel=\"nofollow ugc\">https://github.com/tylertreat/bench</a></p>\n",
+    "children": [
+     {
+      "id": 23442,
+      "parent": 23431,
+      "author": "pinespundit",
+      "date": "2018-11-01T07:20:54",
+      "content": "<p>Tyler, I will have my test lead review this. Thank you for your quick turnaround.  Right now, we pushing .wav files through NiFi, Kafka, and running FFT&#8217;s in Spark &#8212; as our demonstration use-case.  Have been collecting log data (using Tiki and Kafka). Your code would give us a chance to run a test and compare the results to your benchmarks (considering the disparities in the implementations of course).<br />\nVery thankfully yours,<br />\nJR</p>\n",
+      "children": []
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": 37274,
+  "parent": 0,
+  "author": "Anil Kumar Choudhury",
+  "date": "2021-05-12T07:33:50",
+  "content": "<p>Would you like to share the artifacts used for this test.<br />\nAs I am interested to run the same test today with latest version of all these with a edge HW like Raspberry PI4.</p>\n",
+  "children": []
+ },
+ {
+  "id": 67394,
+  "parent": 0,
+  "author": "desain kreatif",
+  "date": "2026-06-10T05:41:49",
+  "content": "<p><a href=\"https://see.telkomuniversity.ac.id/perancangan-dodge-game-dengan-scratch-junior-untuk-siswa-siswi-sd-sekolah-hamidah-sampurna-kabupaten-bandung/\" rel=\"nofollow ugc\">see</a><br />\nThe cash register analogy is perfect for explaining service time vs response time. It’s alarming how many production benchmarks still fall into the coordinated omission trap by only tracking synchronous t1-t0 durations. Thanks for emphasizing HdrHistogram!</p>\n",
+  "children": []
+ }
+]

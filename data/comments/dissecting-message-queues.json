@@ -1,0 +1,368 @@
+[
+ {
+  "id": 25,
+  "parent": 0,
+  "author": "Michael DiBernardo",
+  "date": "2014-07-10T07:57:19",
+  "content": "<p>Thanks for this! Sorry if I missed this somewhere in your post, but just to be clear &#8212; were you testing RabbitMQ with persistent delivery on? (I&#8217;m specifically interested in the latency tests.)</p>\n",
+  "children": [
+   {
+    "id": 26,
+    "parent": 25,
+    "author": "Tyler",
+    "date": "2014-07-10T08:03:21",
+    "content": "<p>Good catch—no message persistence.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 27,
+  "parent": 0,
+  "author": "Roland Hochmuth",
+  "date": "2014-07-10T12:31:21",
+  "content": "<p>I think your Kafka throughput numbers are well below what we&#8217;ve measured as well as what the community has measured.  For example, see <a href=\"https://engineering.linkedin.com/kafka/benchmarking-apache-kafka-2-million-writes-second-three-cheap-machines\" rel=\"nofollow ugc\">https://engineering.linkedin.com/kafka/benchmarking-apache-kafka-2-million-writes-second-three-cheap-machines</a>. Kafka can easily hit hundreds of thousands of messages per second.</p>\n<p>You have stated for RabbitMQ, &#8220;As far as availability and fault tolerance goes, these brokers support clustering through shared storage or shared nothing. Queues can be replicated across clustered nodes so there is no single point of failure or message loss.&#8221;</p>\n<p>Unfortunately, RabbitMQ has problems with handling network partitions that can result in significant message loss. See, <a href=\"https://www.rabbitmq.com/partitions.html\" rel=\"nofollow ugc\">https://www.rabbitmq.com/partitions.html</a> and<br />\n<a href=\"http://aphyr.com/posts/315-call-me-maybe-rabbitmq\" rel=\"nofollow ugc\">http://aphyr.com/posts/315-call-me-maybe-rabbitmq</a> for some more details.</p>\n",
+  "children": [
+   {
+    "id": 28,
+    "parent": 27,
+    "author": "Carl Summers",
+    "date": "2014-07-10T13:29:43",
+    "content": "<p>I had the same thought.  It&#8217;s not really meaningful to compare a system like GNATS with no persistence at all to a system like Kafka which has nothing but persisted messages.  They&#8217;re both &#8220;message queues&#8221; but they&#8217;re effectively apples and oranges in that space.</p>\n<p>The author didn&#8217;t post the hard drive specs of the laptop, but I&#8217;m willing to be that&#8217;s a significant contributor to the low throughput.</p>\n",
+    "children": []
+   },
+   {
+    "id": 34,
+    "parent": 27,
+    "author": "Tyler",
+    "date": "2014-07-11T17:14:43",
+    "content": "<p>The numbers could almost certainly be improved, which is why I&#8217;m open to anybody looking at the code and submitting tweaks. As I said, these results shouldn&#8217;t be taken as gospel—this is just a first pass using the frameworks out of the box.</p>\n",
+    "children": [
+     {
+      "id": 35,
+      "parent": 34,
+      "author": "Evan Huus",
+      "date": "2014-07-12T12:29:36",
+      "content": "<p>Hi Tyler, one of the authors of Sarama here; yes, your Kafka numbers look very low, probably in part because you are sending one-message-at-a-time and waiting for a response each time. The typical use case of Kafka is to batch many messages together and receive responses asynchronously, only blocking if an error occurs. I have submitted a PR to this effect.</p>\n<p>Feel free to contact me if you have any questions.</p>\n",
+      "children": [
+       {
+        "id": 36,
+        "parent": 35,
+        "author": "Tyler",
+        "date": "2014-07-13T09:09:27",
+        "content": "<p>Thanks, Evan.  I will take a look at that this afternoon.</p>\n",
+        "children": [
+         {
+          "id": 40,
+          "parent": 36,
+          "author": "Evan Huus",
+          "date": "2014-07-15T15:34:34",
+          "content": "<p>Glad to see you&#8217;ve updated the kafka throughput numbers, but also the latency numbers. This is basically a trade-off choice in kafka; if you asynchronously batch messages together then latency goes up a bit as the producer constructs batches over short intervals before sending each one. However, fewer round-trips means much better throughput. If you do synchronous sends however (or very small batches) then you lose a bit of throughput but improve latency because messages get send to the broker much sooner, using more round-trips.</p>\n",
+          "children": []
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": 29,
+  "parent": 0,
+  "author": "Pentium10",
+  "date": "2014-07-11T11:09:02",
+  "content": "<p>What about Beanstalkd?</p>\n",
+  "children": [
+   {
+    "id": 33,
+    "parent": 29,
+    "author": "Tyler",
+    "date": "2014-07-11T17:12:14",
+    "content": "<p>The initial numbers:</p>\n<p><a href=\"https://twitter.com/tyler_treat/status/487081673251516416\" rel=\"nofollow ugc\">https://twitter.com/tyler_treat/status/487081673251516416</a><br />\n<a href=\"https://twitter.com/tyler_treat/status/487081779845533697\" rel=\"nofollow ugc\">https://twitter.com/tyler_treat/status/487081779845533697</a></p>\n<p>On a side note, I think beanstalk is more a work-distribution queue than a message queue. Some subtleties there.</p>\n",
+    "children": [
+     {
+      "id": 4708,
+      "parent": 33,
+      "author": "Zain",
+      "date": "2015-11-22T18:41:19",
+      "content": "<p>Hi,</p>\n<p> did you get these results by using persistence ? (-b option)</p>\n<p>Some pages are claiming that beanstakld is faster. Not sure what is cause of this difference. <a href=\"http://adam.herokuapp.com/past/2010/4/24/beanstalk_a_simple_and_fast_queueing_backend/\" rel=\"nofollow ugc\">http://adam.herokuapp.com/past/2010/4/24/beanstalk_a_simple_and_fast_queueing_backend/</a></p>\n",
+      "children": []
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": 30,
+  "parent": 0,
+  "author": "Matheus Morais",
+  "date": "2014-07-11T15:25:32",
+  "content": "<p>Hi, </p>\n<p>Great article. Do you have some specific reason to not include Apache QPID brokers (Java and C++) in the test?</p>\n<p>Thanks.</p>\n",
+  "children": [
+   {
+    "id": 32,
+    "parent": 30,
+    "author": "Tyler",
+    "date": "2014-07-11T17:10:22",
+    "content": "<p>No particular reason. It would be easy enough to implement benchmarks for them with the framework I&#8217;ve written.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 37,
+  "parent": 0,
+  "author": "zhenjl",
+  "date": "2014-07-13T20:50:54",
+  "content": "<p>Very interesting. Thanks for doing this.</p>\n<p>As you said, it would be interesting to benchmark a scaled up topology with multiple producers and multiple consumers. Interesting metrics in the scaled up topology would be latency and throughput but combined with number of producers and consumers.</p>\n",
+  "children": [
+   {
+    "id": 38,
+    "parent": 37,
+    "author": "Tyler",
+    "date": "2014-07-13T22:29:33",
+    "content": "<p>Yep, I&#8217;m hoping to do this at some point, possibly by spinning up Docker containers each running many clients. I&#8217;ll be sure to post results if I do.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 39,
+  "parent": 0,
+  "author": "Raul",
+  "date": "2014-07-14T00:58:39",
+  "content": "<p>There are two messaging platforms developed in Go very interesting:</p>\n<p>== NSQ<br />\n<a href=\"http://nsq.io/\" rel=\"nofollow ugc\">http://nsq.io/</a><br />\n<a href=\"https://github.com/bitly/nsq\" rel=\"nofollow ugc\">https://github.com/bitly/nsq</a></p>\n<p>== Iris<br />\n<a href=\"http://iris.karalabe.com/\" rel=\"nofollow ugc\">http://iris.karalabe.com/</a><br />\n<a href=\"https://github.com/project-iris/iris\" rel=\"nofollow ugc\">https://github.com/project-iris/iris</a></p>\n",
+  "children": [
+   {
+    "id": 1765,
+    "parent": 39,
+    "author": "Blackbeans",
+    "date": "2015-08-12T02:04:50",
+    "content": "<p>and  kiteq an new message queue wirtten in Go</p>\n<p>github.com/blackbeans/kiteq</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 41,
+  "parent": 0,
+  "author": "Jo",
+  "date": "2014-07-16T02:17:47",
+  "content": "<p>Also interesting to read is the CERN middleware evaluation from 2011 at <a href=\"http://cds.cern.ch/record/1391410?ln=en\" rel=\"nofollow ugc\">http://cds.cern.ch/record/1391410?ln=en</a> , slightly older but still a good read and points to a few other options.</p>\n",
+  "children": []
+ },
+ {
+  "id": 44,
+  "parent": 0,
+  "author": "Aaron",
+  "date": "2014-08-17T13:46:19",
+  "content": "<p>I appreciate that you&#8217;ve included qualitative aspects, and that you haven&#8217;t chosen a single winner.</p>\n<p>For one thing, with a given architecture, it&#8217;s often easy to profile and optimize, and improve the performance without changing the architecture much.</p>\n<p>My follow-up would be, then, to extend the qualitative section.  You mention deployment and maintainability, but don&#8217;t seem to really address these.  How many people are working on these?  Are they well structured?  Are they well documented?</p>\n<p>These things affect how a program changes over time.  Being 50% faster today doesn&#8217;t mean much to me if the code is an undocumented mess of spaghetti code with 10,000 lines of x86 assembly in the middle of it, and only one maintainer.</p>\n<p>cheers!</p>\n",
+  "children": []
+ },
+ {
+  "id": 45,
+  "parent": 0,
+  "author": "Alex Grover",
+  "date": "2014-08-18T20:20:02",
+  "content": "<p>Great post. Do you think that gnatsd is good for a similar use case as redis then? Redis is widely used (generally for its speed and simplicity) but gnats looks like an even faster alternative with a similar API. Would love to get input from anyone that has played around with them more.</p>\n",
+  "children": [
+   {
+    "id": 46,
+    "parent": 45,
+    "author": "Tyler",
+    "date": "2014-08-18T21:19:10",
+    "content": "<p>So I&#8217;ve used both, Redis more so (beyond this brief survey) and it really depends on what your use case is (big surprise). NATS/gnatsd doesn&#8217;t do persistence, period—no disk, no in-memory caching. It&#8217;s completely ephemeral. Redis is more versatile, but I would be more inclined to use it for what it was designed as—a simple key-value store. I would tend to use NATS for cases where I need super fast messaging with no guaranteed delivery. They both support partitioning, but I haven&#8217;t had a chance to setup and try out a NATS cluster.</p>\n<p>The advantage of using Redis is you get a lot more for &#8220;free&#8221;—caching, snapshot persistence, op logging/playback, transactions, etc. NATS is much more lightweight. It doesn&#8217;t do any of those things.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 48,
+  "parent": 0,
+  "author": "Andrew",
+  "date": "2014-08-20T22:25:11",
+  "content": "<p>Just wanted to let you know that the graphs were all cut off on the iPhone. There seems to be some half responsive design going on that works great for the text but not the charts. I could only read the left half.</p>\n",
+  "children": []
+ },
+ {
+  "id": 50,
+  "parent": 0,
+  "author": "Buckle",
+  "date": "2014-09-13T23:46:23",
+  "content": "<p>Thanks for sharing such great post. But I think the extreme high numbers of zeromq and nanomsg may not be correct.<br />\nI tried to benchmark these MQs on my MacBook Air, and got high numbers of c-based MQs as the post showed. Then I made a new bench case that using zeromq or nanomsg as a broker to transfer data from one client to another, but I happened to find received done before sent done. I guess it would be the &#8216;dont wait&#8217; flag and then received nothing. So I changed the original benchmark code in this post (the code omits errs when receiving) to get recv errors and printed out. It was really the reason (the error is &#8216;resource temporarily unavailable&#8217;).<br />\nI added this code below to avoid the problem :<br />\n<code><br />\nif err != nil {<br />\n\tcontinue<br />\n}<br />\n</code><br />\nThen I got numbers of zeromq and nanomsg, which are just a little faster than gnatsd (I used a small message count because if the count is set to large the benchmark won&#8217;t stop of messages loss).<br />\nI&#8217;m not sure it is appropriate to draw this conclusion, but zeromq and nanomsg are too fast to believe.</p>\n",
+  "children": []
+ },
+ {
+  "id": 51,
+  "parent": 0,
+  "author": "zhenjl",
+  "date": "2014-11-28T23:35:40",
+  "content": "<p>I realized after looking at the benchmark code for gnatsd, that the reason for the &#8220;surprisingly low latencies and unexpected relationships with the number of messages&#8221; is because the code heavily throttles the message rate. For example, the code currently sleeps whenever gnatsd is 10 messages behind. This is apparent when you send 1M messages using the latency benchmark. It will take minutes to send the 1M.</p>\n<p>In other MQ implementations with no artificial throttling, they buffer the messages as they come in, and thus the latency is much higher due to the buffering time. This means the average latency you have for gnatsd is really the average of 10 messages. </p>\n<p>I suspect if you run your latency benchmark with only 10 messages, you will see the latency numbers to be much smaller for the other MQs as well. I also suspect that the line for gnatsd looks much more like NSQ if you increase the message rate. </p>\n<p>Regardless, gnatsd definitely has very high throughput and it&#8217;s a great piece of software.</p>\n",
+  "children": [
+   {
+    "id": 52,
+    "parent": 51,
+    "author": "Tyler",
+    "date": "2014-11-29T00:20:26",
+    "content": "<p>Yes, this is completely true. Frankly, the benchmarks in general aren&#8217;t representative of what you would see in any sort of production configuration (i.e. the producer and consumer are running in the same process). Also, latencies don&#8217;t follow a normal distribution, so the mean isn&#8217;t a terribly useful metric. These benchmarks aren&#8217;t really scientific. That said, I will accept pull requests.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 54,
+  "parent": 0,
+  "author": "Jan",
+  "date": "2015-01-27T04:16:57",
+  "content": "<p>Do you think the jumps in the Mean Latency vs Total messages for Brokerless Systems might have to do with L1, L2, L3 caches of your CPU?</p>\n",
+  "children": []
+ },
+ {
+  "id": 55,
+  "parent": 0,
+  "author": "Arun",
+  "date": "2015-01-28T04:26:21",
+  "content": "<p>Interesting and useful comparison. I was wondering what was the batching size which was used in your test. This usually makes a good difference and the latencies change a lot with this setting. Kafka for example has a default batch size of 100. Can you please shed some light on this and check if all the brokers / systems where transmitting messages of the same batch size?</p>\n",
+  "children": []
+ },
+ {
+  "id": 1104,
+  "parent": 0,
+  "author": "cybergrind",
+  "date": "2015-07-09T06:12:12",
+  "content": "<p>I&#8217;d like to see comparison with Aeron (<a href=\"http://highscalability.com/blog/2014/11/17/aeron-do-we-really-need-another-messaging-system.html\" rel=\"nofollow ugc\">http://highscalability.com/blog/2014/11/17/aeron-do-we-really-need-another-messaging-system.html</a>)</p>\n",
+  "children": []
+ },
+ {
+  "id": 1957,
+  "parent": 0,
+  "author": "Dan",
+  "date": "2015-08-19T05:28:21",
+  "content": "<p>great post, would be interesting to compare with erlang based broker (apart from RabbitMQ) such as <a href=\"https://github.com/emqtt/emqttd\" rel=\"nofollow\">emqtt</a>, especially on the latency.</p>\n",
+  "children": []
+ },
+ {
+  "id": 4168,
+  "parent": 0,
+  "author": "Matthias Kauer",
+  "date": "2015-11-12T08:59:25",
+  "content": "<p>Hi,<br />\nthis is really an excellent benchmark that you put out there!<br />\nI just want to double-check whether I&#8217;m reading the charts correctly. The latency charts of, e.g., ZeroMQ indicate that at 500000 messages/second the mean latency reaches 40.000 ms. That&#8217;s a huge 40 seconds in a range that is well below the sending throughput and still somewhat below the receiving throughput from your first chart.<br />\nThe other latency numbers appear equally high.<br />\nCan you comment on this?</p>\n",
+  "children": [
+   {
+    "id": 13907,
+    "parent": 4168,
+    "author": "Michael",
+    "date": "2016-02-08T21:50:40",
+    "content": "<p>The 40.000 ms isn&#8217;t a translation as 40 thousand ms or 40 seconds, but instead an even flat rate of 40 ms (40 0/1000 ms).</p>\n",
+    "children": [
+     {
+      "id": 13909,
+      "parent": 13907,
+      "author": "Matthias Kauer",
+      "date": "2016-02-09T06:52:40",
+      "content": "<p>Oh, I see. The &#8220;.&#8221; is for decimals. It&#8217;s obvious now :/<br />\nThanks for pointing it out.</p>\n",
+      "children": []
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": 13894,
+  "parent": 0,
+  "author": "Soyee",
+  "date": "2016-02-06T01:33:04",
+  "content": "<p>Great conclusion for all the commonly used messaging Queue even I just have some Kafka experiences. Whereas it could really benefit them to have a whole picture and make the trade off during the design phase</p>\n",
+  "children": []
+ },
+ {
+  "id": 13895,
+  "parent": 0,
+  "author": "Soyee",
+  "date": "2016-02-06T01:34:24",
+  "content": "<p>Great conclusion for all the commonly used messaging Queue even I just have some Kafka experiences. Whereas it could really benefit us to have a whole picture and make the trade off during the design phase..</p>\n<p>Not sure whether the last post is successful or not.</p>\n",
+  "children": []
+ },
+ {
+  "id": 14798,
+  "parent": 0,
+  "author": "Brice",
+  "date": "2016-05-09T11:34:42",
+  "content": "<p>Versions are missing</p>\n",
+  "children": []
+ },
+ {
+  "id": 15699,
+  "parent": 0,
+  "author": "amieka",
+  "date": "2016-09-05T04:23:03",
+  "content": "<p>I am going to go nuts if I can&#8217;t find an answer on Kafka in the context of Microservices. Is there any way I can contact you to discuss?</p>\n",
+  "children": []
+ },
+ {
+  "id": 15875,
+  "parent": 0,
+  "author": "Alok Arora",
+  "date": "2016-09-27T21:46:46",
+  "content": "<p>Hello Everyone. </p>\n<p>We are looking at using an asynch msg queue. In short we have 1 mill+ mobile devices as txn sources on one side and 50+ txn processor-interfaces on the other. The routing is based on 4 data-values and some stored data. A crucial req is dialog life-cycle. For each msg from a mobile-device the response must be sent back (to the correct client device). Persistence / logging is must as well.</p>\n<p>As I understand it the 50 processor-interfaces can each be a &#8216;topic&#8217; so each gets its message (only) and process it. How do we ensure the response goes back to the right original-sender (finally to the mobile-device) &#8211; I guess each process-interface must &#8216;publish&#8217; the response back so the original-sender can get it. Here should each sender-mobile-id be a &#8216;topic&#8217;as well (1 million+ topics and 1 mill+ processes running)? Or is it better to have one Java (thats our language) class name as the &#8216;topic&#8217; and this class handles msgs &#8216;published-back&#8217; (responds to the mobile-device) one after another. I guess this class can be multi-thread implemented. Is this issue similar to Node vs Apache Tomcat scenario.</p>\n<p>Also (pls pardon my very very imited understanding of this), in this pubsub scenario do the receiver Java classes have to &#8216;poll&#8217; msg queues or does the ESB/broker &#8216;call/invoke&#8217; the receiver (and the receiver can do the needful)?</p>\n<p>I had another question (apologies if this is the wrong forum/thread for it).<br />\nOur system implements business-logic as a series of configurable components (example emvCryptoVerifier, availableBalanceChecker etc). We pass app-data from component-to-component using &#8220;Data-Type, Length, Byte-Stream&#8221; tuples in a Java Hashtable (not XML or JSON). Each middleware component accepts and spit-outs this Hashtable and knows what &#8216;Data-Type/s&#8217; it handles. Database-side edge-components do SQL and client-side edge-components do JSON also. Does it make sense to use JSON/XML for our inter-component messaging also (and add parsing overhead)?</p>\n<p>Appreciate the help.</p>\n<p>Alok Arora</p>\n",
+  "children": []
+ },
+ {
+  "id": 15876,
+  "parent": 0,
+  "author": "Soyee",
+  "date": "2016-09-27T22:32:29",
+  "content": "<p>Hi Alok:</p>\n<p>I don&#8217;t agree that each topic for one device should work for your scenario, there are some reasons  to support my idea, even I don&#8217;t know the type of Message queue you are using.</p>\n<p>1.  Retaining so many topics that definitely improve the brokers overhead cost, however a few messages are kept in each topic. Especially for the middleware like Kafka, its backend storage kept one single sequential file in separated file, reading so many small files could significantly reduce the throuphout of the whole cluster.</p>\n<p>2.  If each client keeps one keepalive connection dedicated to wait for feedback, it&#8217;s awkward to waste precious CPU via constant poll from broker to obtain some unpredicted messages. And meanwhile, keeping so many sockets could easily crash the servers.</p>\n<p>3.   Metadata exchange during the cluster is different, especially some node fails due to hardware issue, that needs a long time to rebalance the cluster and make them ready.</p>\n<p>Why not do any minor updates to your original MessageBody, like adding some new fields to signify the sender device id?  Once receiver finishes to handle this message, the same information must be attached back, that&#8217;s easy to keep them via your API if possible. </p>\n<p>while the response is ready, one more isolated module like FeedService can be introduced to meet this. </p>\n<p>Regarding another question, you know,  JSON and XML have better interoperability across different platforms, that&#8217;s the exactly why they have become one standard fashion of data exchange, whereas HashTable is Java language-specific which can not be understood by other platforms. As the overhead of encoding/decoding, that should not be a problem.</p>\n",
+  "children": []
+ },
+ {
+  "id": 16486,
+  "parent": 0,
+  "author": "Skin27",
+  "date": "2016-11-10T04:27:13",
+  "content": "<p>On github your usage. Usage: go run main.go subject [test_latency] [num_messages] [message_size]</p>\n<p>a) In the graphics/resultats I don&#8217;t see the parameter message_size. The size of each message in bytes is crucial in the throughput (bytes/per second). Are you sending a lot of small messages or big messages?</p>\n<p>b) As Soyee writes it also makes a difference which format you use (json, xml, csv).</p>\n<p>c) For ActiveMQ you used AMQP. ActiveMQ supports lots of other protocols/technologies like JMS and MQTT. Did you test as well? Are these results the same?</p>\n",
+  "children": []
+ },
+ {
+  "id": 18048,
+  "parent": 0,
+  "author": "sam777",
+  "date": "2017-03-08T01:47:31",
+  "content": "<p>How did you measure latency? Why these numbers don&#8217;t fit into the formula occupancy(number of requests in pipe) = latency * throughput ? For example In NSQ case the max default number of messages in the buffer = 10000 (Lookup mem-queue-size in <a href=\"http://nsq.io/components/nsqd.html\" rel=\"nofollow ugc\">http://nsq.io/components/nsqd.html</a>) and the throughput is 12512 so the latency = 10000/12512 = 0.799 seconds thats like 800ms but your graphs certainly doesn&#8217;t show that. Where am I doing wrong?</p>\n",
+  "children": []
+ },
+ {
+  "id": 18639,
+  "parent": 0,
+  "author": "Pater",
+  "date": "2017-04-25T14:40:39",
+  "content": "<p>Check <a href=\"http://blog.digiqt.com/index.php/2017/04/23/how-you-scale-infrastructure-with-distributed-messaging/\" rel=\"nofollow ugc\">http://blog.digiqt.com/index.php/2017/04/23/how-you-scale-infrastructure-with-distributed-messaging/</a></p>\n",
+  "children": []
+ },
+ {
+  "id": 27314,
+  "parent": 0,
+  "author": "Sreedhar",
+  "date": "2019-06-29T20:10:07",
+  "content": "<p>Are these numbers for different messaging products still relevant?</p>\n",
+  "children": []
+ },
+ {
+  "id": 61348,
+  "parent": 0,
+  "author": "Miakoto",
+  "date": "2025-03-19T13:23:14",
+  "content": "<p><a href=\"https://www.bjeindy.org/\" rel=\"nofollow ugc\">7slots giriş twitter</a>\t \tBüyük jackpot ödülleriyle şansınızı deneyin.</p>\n",
+  "children": []
+ },
+ {
+  "id": 61350,
+  "parent": 0,
+  "author": "Paddoxant",
+  "date": "2025-03-19T14:00:57",
+  "content": "<p>Abe Bet casino\t<a href=\"https://fourgreatinventions.com/\" rel=\"nofollow ugc\">https://fourgreatinventions.com/</a>\t \tÜcretsiz deneme oyunları, yeni başlayanlar için casino dünyasıyla tanışmanın harika bir yoludur.</p>\n",
+  "children": []
+ }
+]

@@ -1,0 +1,332 @@
+[
+ {
+  "id": 615,
+  "parent": 0,
+  "author": "Luca Bruno",
+  "date": "2015-05-20T12:57:46",
+  "content": "<p>Hi, I&#8217;m promoting Nix here. If you want reproducible builds and decent dependency management, you may look at our Go packaging in the Nix package manager.</p>\n<p>Here I&#8217;ve written a simple post about it: <a href=\"http://lethalman.blogspot.it/2015/02/developing-in-golang-with-nix-package.html\" rel=\"nofollow ugc\">http://lethalman.blogspot.it/2015/02/developing-in-golang-with-nix-package.html</a></p>\n<p>You know exactly which versions of libraries you are going to use, for every project, and also for multiple go versions. Reproducible and shared builds of libraries, together with native library dependencies.</p>\n",
+  "children": []
+ },
+ {
+  "id": 619,
+  "parent": 0,
+  "author": "Robert",
+  "date": "2015-05-20T16:22:17",
+  "content": "<p>Go is a minimal language, and brings all block for a great environment &#8211; go tools. <code>go ge</code> is not a part of a language &#8211; it&#8217;s just a reference tool to install a package. In the same time everyone says that you should vendor your project dependencies.<br />\nThere are multiple ways for that, but I found that go environment variables works best here. And there are tools which help you with that. Personally I&#8217;m using <a href=\"https://github.com/mattn/gom\" rel=\"nofollow\">gom</a>and it works really good. Highly recommending.</p>\n",
+  "children": []
+ },
+ {
+  "id": 620,
+  "parent": 0,
+  "author": "Ryan Gonzalez",
+  "date": "2015-05-20T18:47:21",
+  "content": "<p>Ever tried Nim? It&#8217;s statically typed, has a Python-like syntax, supports smart concurrency, and is super fast. It&#8217;s also planning on reaching 1.0 later this year. The only issues I&#8217;ve encountered are that closures don&#8217;t always compile (you can usually use templates) and that distinct tuples are broken (which, to quote the creator, is an oxymoron).</p>\n",
+  "children": [
+   {
+    "id": 621,
+    "parent": 620,
+    "author": "Tyler Treat",
+    "date": "2015-05-20T18:50:49",
+    "content": "<p>I&#8217;ve heard good things about it—might have to check it out at some point.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 622,
+  "parent": 0,
+  "author": "Gabriel",
+  "date": "2015-05-20T19:23:39",
+  "content": "<p>Um, reading files in Java is ghastly?<br />\nTry:</p>\n<p>byte[] encoded = Files.readAllBytes(myFile);</p>\n<p>or</p>\n<p>List lines = Files.readAllLines(myFile)</p>\n<p>Granted, this is Java 8. It used to be a lot worse in earlier versions. Programming in Java 8 is a lot more fun, given that you can do stuff like:</p>\n<p>List lines = Files.readAllLines(myFile)<br />\nint count = lines.stream().map( l -&gt; l.toLowerCase() ).filter( l -&gt; l.contains(&#8220;secret&#8221;)).count();</p>\n",
+  "children": [
+   {
+    "id": 624,
+    "parent": 622,
+    "author": "Xion",
+    "date": "2015-05-20T22:10:03",
+    "content": "<p>Yes, and Java is also gradually improving as a language (much faster than it used to, nowadays), whilst is conciously stagnating semantically. It will be a hilarious irony if in a couple years Java grows all the missing features that will make it a semi-trendy language again, and Go ossifies and becomes a subject of complaints about its verbosity and meager semantics.</p>\n",
+    "children": []
+   },
+   {
+    "id": 626,
+    "parent": 622,
+    "author": "Mark",
+    "date": "2015-05-20T23:17:38",
+    "content": "<p>&gt;Um, reading files in Java is ghastly?<br />\nThen later,<br />\n&gt;Granted, this is Java 8.</p>\n<p>You mean the version of Java that was released a full 2 years after Go 1 was released? I don&#8217;t see what you were trying to prove with your comment. What are you trying to say by showing on the 8th version of the language, nearly 8 years into its life, the stdlib finally has an easy method for reading files?</p>\n",
+    "children": [
+     {
+      "id": 642,
+      "parent": 626,
+      "author": "J W",
+      "date": "2015-05-22T01:12:03",
+      "content": "<p>Java 8 also closed the 14 year old bug about how Java had no native way to deal with POSIX file permissions&#8230; god, what a waste of time that language was.</p>\n",
+      "children": []
+     },
+     {
+      "id": 703,
+      "parent": 626,
+      "author": "Zog",
+      "date": "2015-05-27T01:03:46",
+      "content": "<p>Yes, but even with Java &lt; 8 you could use Apache Commons where you could do:</p>\n<p>List lines = FileUtils.readLines(myFile, &quot;UTF-8&quot;);</p>\n<p>The fact that this functionality was not included in the standard library for full 7 versions reflects horribly on Java&#039;s design, but Go didn&#039;t came out of the blue and revolutionized everything with its simplicity. Most modern languages, both statically-typed (e.g. C#, D) and dynamic (e.g. Python, Ruby) had simple ways to do simple things such as iterating lines in a text file and some of them could also do this lazily (great if you&#039;re piping long files) and still don&#039;t sacrifice range-traversal, because all of this language have ranged traversal even for non built-in types.</p>\n",
+      "children": []
+     },
+     {
+      "id": 1008,
+      "parent": 626,
+      "author": "Marcel Kincaid",
+      "date": "2015-06-28T12:08:03",
+      "content": "<p>&#8221; What are you trying to say &#8221;</p>\n<p>He was responding to the claim that &#8220;reading files in Java is ghastly&#8221; &#8230; duh.</p>\n<p>&#8220;You mean the version of Java that was released a full 2 years after Go 1 was released?&#8221;</p>\n<p>Go isn&#8217;t relevant to his comment, except to Fanbois.</p>\n",
+      "children": []
+     }
+    ]
+   },
+   {
+    "id": 15915,
+    "parent": 622,
+    "author": "Sam",
+    "date": "2016-09-30T16:32:15",
+    "content": "<p>Writing</p>\n<p>int count = lines.stream().map( l -&gt; l.toLowerCase() ).filter( l -&gt; l.contains(“secret”)).count();</p>\n<p>As an example of readable, simple, fun code is hilarious. Get over it, Java is garbage.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 625,
+  "parent": 0,
+  "author": "pron",
+  "date": "2015-05-20T22:46:14",
+  "content": "<p>Two unrelated comments:</p>\n<p>&gt; In Go, the language and libraries are designed to be composable, à la Unix. In Java, everyone brings their own walled garden of classes.</p>\n<p>Can you explain? I find Go and Java are almost identical, and the choice between them falls to the choice of the runtime capabilities &#8212; not the language. I use Go for small command-line apps &#8212; because it requires no warmup and is statically linked &#8212; while I choose Java for important server applications &#8212; because of monitoring, performance, dynamic linking and hot code swapping and polyglotism.</p>\n<p>&gt; on the surface this kind of does sound like Go is a disservice to intelligent programmers.</p>\n<p>This sentiment (which I hear often recently from devotees of languages for &#8220;smart programmers&#8221;) really bugs me. I think it is actually a feature of, granted, intelligent yet very novice programmers  to believe that the program is its code, and that they should focus on the expression of an algorithm and clever abstractions. Even more intelligent (well, actually just more experienced) programmers understand that the program is much more than the code, and it is the organization &#8212; and, more importantly, the algorithm itself &#8212; that are much more important (and require intelligence) than their expression and use of clever abstractions. </p>\n<p>I actually find this focus on algorithm expression rather than algorithm and data-structure design a sign of a general dumbing down of the profession.</p>\n",
+  "children": [
+   {
+    "id": 22449,
+    "parent": 625,
+    "author": "oni",
+    "date": "2018-07-18T06:03:56",
+    "content": "<p>&gt; the program is much more than the code, and it is the organization that are much more important (and require intelligence) than their expression and use of clever abstractions.</p>\n<p>you are contradicting yourself here, writing abstractions is a fundamental way to organize your code. in fact, it&#8217;s essential to manage increasing complexity.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 627,
+  "parent": 0,
+  "author": "Tony",
+  "date": "2015-05-21T01:06:16",
+  "content": "<p>&gt; So, the language that we give them has to be easy for them to<br />\n&gt; understand and easy to adopt.</p>\n<p>I think this is at the core of why I like the philosophy of Go  &#8211; most other languages have gone for making it easier to write code, with increased language complexity (and obfuscation) to accommodate that,  but Go has a concern on making code that&#8217;s being easy to *read*, and most programmers in the real world will do that much more often.</p>\n",
+  "children": []
+ },
+ {
+  "id": 629,
+  "parent": 0,
+  "author": "BP",
+  "date": "2015-05-21T02:15:31",
+  "content": "<p>I know its the author&#8217;s opinion but it seems a little late or maybe misguided to be cautiously optimistic. People are just dipping their toe in the Go waters anymore. Shops are completely betting the farm on it and it seems like that&#8217;s mostly because of the language being what it is right now. That&#8217;s not to say there can&#8217;t be improvements. But it seems that some refuse to recognize that being C with the most dangerous pitfalls eliminated is one of the biggest selling points.</p>\n",
+  "children": []
+ },
+ {
+  "id": 637,
+  "parent": 0,
+  "author": "Blimfark Smith",
+  "date": "2015-05-21T11:16:05",
+  "content": "<p>It&#8217;s always refreshing when someone acknowledges their hypocrisy up front&#8230; but, for most programmers I know, I&#8217;d say the battle was lost with Rob Pike&#8217;s comment:</p>\n<p>&#8220;The key point here is our programmers are Googlers, they’re not researchers. They’re typically, fairly young, fresh out of school, probably learned Java, maybe learned C or C++, probably learned Python. They’re not capable of understanding a brilliant language but we want to use them to build good software. So, the language that we give them has to be easy for them to understand and easy to adopt.&#8221;</p>\n<p>&#8220;Capable&#8221; was IMO the wrong adjective, esp. without reference to one&#8217;s definition of a &#8220;brilliant&#8221; language &#8211; or the much bigger role that the surrounding infrastructure plays. With actual respect for their many fine employees, it&#8217;s not at all clear to me how much &#8220;brilliant&#8221; software is actually conceived and executed at Google (i.e., vs. at acquisitions that don&#8217;t regard their engineers as incapable). Does Go work for that environment? Marvelous.</p>\n<p>As for the rest of us, I am reminded of the immortal words of Malcolm Reynolds:</p>\n<p>&#8220;Now I did a job; and got nothing but trouble since I did it, not to mention more than a few unkind words as regard to my character. So let me make this abundantly clear. I do the job, and then I get paid. Go run your little world.&#8221;</p>\n<p>I&#8217;ll stand judged on the <b>actual</b> quality &amp; maintainability of my work and choice of environment, thanks&#8230;</p>\n",
+  "children": []
+ },
+ {
+  "id": 639,
+  "parent": 0,
+  "author": "Nicolas Grilly",
+  "date": "2015-05-21T12:03:38",
+  "content": "<p>Thank you for sharing your thoughts so openly!</p>\n<p>I agree that generics are very useful when writing reusable libraries, but I disagree they are absolutely necessary when writing and maintaining software at large scale. At large scale, at some point, processes communicate with other processes on the same machine or over the network, and you have to marshal/unmarshal and type check at runtime.</p>\n<p>Your example with the function isInt64InSlice is a good illustration of why the lack of generics is annoying at small scale, but it hardly shows why this is a problem at large scale.</p>\n<p>PostgreSQL is an example of a complex piece of software, written in C, which doesn&#8217;t use generics and is still very readable and maintainable.</p>\n<p>A few other technical points:</p>\n<p>&#8211; &#8220;Cannot add methods to types from a different package&#8221;: Would you want something like extension methods in C#?<br />\n&#8211; &#8220;Channels are slow&#8221;: I&#8217;ve read there is some work going on to improve them. That said, you admit yourself that Go is still one the best option among the &#8220;concurrent&#8221; languages. Are you aware of another language with a similar mechanism builtin in the language or the library and that performs better on this matter?<br />\n&#8211; &#8220;Accidental implementation of an interface&#8221;: I agree this a problem in theory, but in practice it&#8217;s very rarely an issue. Have you been beaten by that often? Do you think the benefits of implicit implementation are not worth it?<br />\n&#8211; &#8220;Cannot implement your own exceptions&#8221;: Yes you can. You can pass some value to panic and retrieve it upper in the call stack with recover and decide what to do depending on the value. It&#8217;s not something Go developers do often, but there is some use of this technique in the standard library for example. It&#8217;s explained in &#8220;Effective Go&#8221;.<br />\n&#8211; &#8220;Map returns a bool instead of an error&#8221;: I don&#8217;t see the issue here. A lot of other languages do the same and return a default value and/or a boolean at false when you probe a map with a missing value.<br />\n&#8211; &#8220;Adding an item to a closed channel panics&#8221;: This is a programming error, like a division by zero or an out of bounds array access.<br />\n&#8211; &#8220;Channels as iterators&#8221;: Goroutines and channels are not designed to build iterators. They offer a general low-level mechanism for concurrency. How would you expect the goroutine to know that nobody is listening anymore and shutdown?</p>\n<p>About the community, I would not call it &#8220;stubborn&#8221;. In my experience, it is generally helpful and very professional. But I agree that the topic of generics has become a taboo, which I regret. It looks like the core team wants to focus on improving the compiler, the runtime, the library, the tooling and the garbage collector, and because of that wants to keep the language stable in the meantime. I understand the frustration, but don&#8217;t you think their decision makes sense and is the best way to use the limited resources of the core team?</p>\n<p>You wrote that &#8220;a language can have considerable depth while still retaining its simplicity&#8221;. What languages would you recommend that solve the flaws of Go while preserving its simplicity (in terms of user experience)? It&#8217;s a sincere question. I&#8217;d like to use such a language.</p>\n<p>More generally, you ask how can we make developers more productive and how can we enable them to solve problems? That&#8217;s interesting because this is precisely the question Go tries to answer. Are you sure the answer lies in a more powerful programming language? What about the runtime, the tooling, the libraries?</p>\n<p>The Go team thinks the answer lies in simplicity (light syntax, garbage collection, interfaces, composition over inheritance, builtin arrays/slices/maps), builtin concurrency (goroutines, channels), great tooling (speed of compilation, go test, gofmt, godoc), easy deployment (no virtual machine, static binary).</p>\n<p>Do you think the answer lies in having type parametricity, algebraic data types, pattern matching, immutability, Hindley-Milner type inference, higher kinder types, etc.? I&#8217;m not saying they are not useful or desirable. I&#8217;m just saying that the low hanging fruits in terms of developer productivity may be elsewhere.</p>\n<p>Cheers!</p>\n",
+  "children": [
+   {
+    "id": 14378,
+    "parent": 639,
+    "author": "Rohanthewiz",
+    "date": "2016-03-09T14:16:06",
+    "content": "<p>Thanks Nicolas! &#8220;One man sounds right till the other speaks&#8221; &#8211; Prov 18:17. I currently work in Ruby. The obsession with &#8220;dryness&#8221; and beautiful code makes me want to puke &#8212; and I love Ruby! However, we can hardly get a product out  without the incessant debacle over style and conciseness.  Grokking a new piece of code can take days unraveling the complex hierarchy of &#8220;helpful&#8221; classes and modules and succinct expressions. Thank God for a tool like RubyMine to help me find these hidden magical things!<br />\nNow I don&#8217;t do much concurrency so I can&#8217;t speak to that, but as a language Go keeps me engaged &#8211; even when I am mentally stressed &#8211; I can still write Go code. Sometimes when grokking source,  I delve off into the standard library without realizing it! I&#8217;m not frustrated by fancy constructs, I can just code &#8212; get things done!  Yes, I don&#8217;t like some choices (I want my ternary operator back!), but I take a pill and live without it. In the end I make good products with Go. I have 3 very useful apps in production in 1.5 years: A custom CMS &#8211; calvaryeastmetro.com (based on Fragmenta), a technical notes app: github.com/rohanthewiz/go_notes (my personal Stack Overflow!), and a temperature monitor for a kitty house &#8211;https://github.com/rohanthewiz/kitty_mon &#8212; that&#8217;s the end-goal isn&#8217;t it?</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 640,
+  "parent": 0,
+  "author": "Guillaume",
+  "date": "2015-05-21T18:02:30",
+  "content": "<p>Generics are an anti-pattern, go uses interfaces for Generics, why does the underlying method need to know if it&#8217;s having a list of oranges or apples ? It&#8217;ll use the same strategy all the way.</p>\n<p>And the calling code can still see that it&#8217;s actually using a fruits list</p>\n",
+  "children": [
+   {
+    "id": 704,
+    "parent": 640,
+    "author": "Zog",
+    "date": "2015-05-27T01:22:38",
+    "content": "<p>Generics is anti-pattern? Please explain and demonstrate. The burden of proof falls on you for claiming that. &#8220;Go doesn&#8217;t have feature X&#8221; does not imply &#8220;Feature X is an anti-pattern&#8221;. The same applies for &#8220;Rob Pike thinks that X is complex and dangerous&#8221;.</p>\n<p>Why would you need to know that L is a list of apples or oranges? You don&#8217;t necessarily have to. A dynamically-typed language goes on perfectly fine without knowing the type of any object (not just list members) until run-time. It&#8217;s definitely simpler than having to reason about templates (and then covariance and contravariance), but you lose all the niceties of static typing (performance, better compile-time error detection and tooling) in this tradeoff. If Go claims to be a statically-typed language geared at writing performance-critical code it should act like one. Interfaces are slow and error-prone. Try to implement your own custom container and see if you can make a performant generic container that relying just on interfaces.</p>\n<p>Besides, even if you&#8217;re ok with dynamically-typed interfaces, Go makes it hard to write simple things like a generic sum function.</p>\n<p>If you feel like you don&#8217;t need to know that L is a list of oranges or apples, that&#8217;s fine: but why would you need type-casts and reflection then? If Generics is anti-pattern, then reflection and type-casting are the mother of all anti-patterns.</p>\n",
+    "children": []
+   },
+   {
+    "id": 1009,
+    "parent": 640,
+    "author": "Marcel Kincaid",
+    "date": "2015-06-28T12:16:17",
+    "content": "<p>&#8220;Generics are an anti-pattern&#8221;</p>\n<p>No intelligent, knowledgeable, or intellectually honest person would make such an absurd claim.</p>\n",
+    "children": []
+   },
+   {
+    "id": 17566,
+    "parent": 640,
+    "author": "Lloyd Moore",
+    "date": "2017-01-24T03:26:09",
+    "content": "<p>Generics are an anti-pattern? Wow, I&#8217;d love to hear you explain that one.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 645,
+  "parent": 0,
+  "author": "Randall Farmer",
+  "date": "2015-05-22T03:24:11",
+  "content": "<p>While back I looked at the parallel sort in Workiva&#8217;s go-datastructures. Peep (and/or point Dustin at!) <a href=\"https://github.com/twotwotwo/sorts\" rel=\"nofollow\"><code>sorts</code></a> (here&#8217;s <a href=\"https://gist.github.com/twotwotwo/2eb69d8b30ac8e08d37a/\" rel=\"nofollow\">words</a> and <a href=\"https://docs.google.com/spreadsheets/d/1GkXMLXQ7oW5Bp0qwyYw0IiQElIq8B-IvNEYE_RPCTvA/edit\" rel=\"nofollow\">pretty numbers</a> about it). Like I said in the words I think there are some ways to go further, would be into looking at anything new y&#8217;all code up.</p>\n<p>On the substance, uh, agree about some, disagree about some, it wouldn&#8217;t be that interesting to hash out.</p>\n",
+  "children": [
+   {
+    "id": 653,
+    "parent": 645,
+    "author": "Randall Farmer",
+    "date": "2015-05-22T14:41:48",
+    "content": "<p>One other thought with benefit of coffee: if you want to move the ball on some of this, at least for your company but maybe for folks at large, creating tools (like saner ways to generate code where you want to) seems like an under-recognized leverage point, more accessible to the working Gopher than most probably think. <a href=\"https://www.youtube.com/watch?v=aI_XdjQwTCU\" rel=\"nofollow\">Beyang Liu of Sourcegraph gave an interesting related talk.</a></p>\n<p>That raises a mess of questions, like &#8220;uh, what should these tools <em>do</em>?&#8221; But I&#8217;m only here to gesture at that can of worms.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 647,
+  "parent": 0,
+  "author": "Nerdmaster",
+  "date": "2015-05-22T11:12:49",
+  "content": "<p>Don&#8217;t listen to the haters!  You&#8217;re so correct I almost wonder if I wrote this myself.  Every time I&#8217;ve asked for help or suggested something, I&#8217;ve gotten similar treatment, i.e., &#8220;you&#8217;re doing it wrong&#8221;.  Go has amazing potential, but it&#8217;s just lost with all the &#8220;we&#8217;re ALWAYS right&#8221; rhetoric.  Oh, I especially love the &#8220;X is an anti-pattern&#8221; folks &#8211; really, everything Go doesn&#8217;t do just happens to be wrong?  So convenient&#8230;.</p>\n<p>If the community and core devs don&#8217;t admit to flaws and mistakes, Go will go the same way as everything they want to replace &#8211; look at what DHH has done to Rails with his &#8220;we&#8217;re always right and we&#8217;re always smarter than you&#8221; attitude.</p>\n<p>It&#8217;s so refreshing to use something simple enough to fit in my head, especially coming from large Rails apps, but everybody makes mistakes.  Yes, Rob Pike, you, too.</p>\n",
+  "children": []
+ },
+ {
+  "id": 664,
+  "parent": 0,
+  "author": "Christoph",
+  "date": "2015-05-23T17:04:59",
+  "content": "<p>On negative aspect more:</p>\n<p>Go has no string type. Sounds strange, but let me explain: A string is a collection of characters. Go uses UTF-8, but go&#8217;s string type is just a collection of bytes. If you use slice or index on a string you access the bytes, not the characters. Also the length is on the bytes. And you see so much code out there, that is flawed by that: People using the slicing syntax, which then works by accident most of the time (ANSI characters), but not in general on UTF-8. An example i came by is the Go-support by Ragel.</p>\n",
+  "children": []
+ },
+ {
+  "id": 672,
+  "parent": 0,
+  "author": "Bonzo",
+  "date": "2015-05-24T15:11:39",
+  "content": "<p>From my experience the Go language is just like any other Google product: half-baked and half-implemented at best. No brilliant inventions there, just mistakes repeated from other programming languages and their own failed experiments. Inconsistent &#8211; you already said that. A pointless invention, a pollution of programming language space, meaningless step to nowhere. I ought to be surprised that this company spat out such a crap, but somehow I&#8217;m not.</p>\n",
+  "children": [
+   {
+    "id": 1236,
+    "parent": 672,
+    "author": "Ben",
+    "date": "2015-07-16T16:02:16",
+    "content": "<p>Really putting it all out there, eh?! haha.  I tried go, and lack of generics made it too annoying for me.  C++11 code actually looks pretty nice now.  And I have to say that I&#8217;m intrigued by Swift coming to Linux.  I have been toying with it, and it seems a much better design than Go, but solving a lot of the same problems. </p>\n<p>Also, I mean, go doesn&#8217;t generate optimized enough binaries.  They should have used LLVM.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 721,
+  "parent": 0,
+  "author": "Daniel",
+  "date": "2015-05-29T10:30:44",
+  "content": "<p>Have you ever tried D? It&#8217;s a very well designed language and a pleasure to work with. It does not treat programmers as kids, although it fixes a lot of C++ headaches. I think it just needs more press time (and a prettier site) =)</p>\n",
+  "children": []
+ },
+ {
+  "id": 787,
+  "parent": 0,
+  "author": "Ramesh",
+  "date": "2015-06-07T09:33:47",
+  "content": "<p>Nice article about Go. Thanks for that. I like it very much. Finally a systems language without manual memory management. </p>\n<p>But few comments about paragraph referring about java.</p>\n<p>&gt;<i>Building a web application in Java generally requires an application server, which often puts you in J2EE-land.</i><br />\n  There is this package in com.sun.net.httpserver.HttpServer (be warned this is only works on Oracle&#8217;s JDK) and others that can be used to write equally simple web server in java. Agree with J2EE part though, but its people&#8217;s choice.</p>\n<p><i><br />\n&gt;The advantages of a single, self-contained binary are real, and compilation is fast.</i><br />\n Lazy linking (a.k.a lazy loading) in java was the choice made early on. But Android folks tried this concept of single assembly in the form of Dex (Dalvik executable) Assembly quite successfully reducing overall size in the process. Java should also provide this kind of option by giving a compiler flag and corresponding handling in run time.</p>\n<p><i><br />\n“Share memory by communicating; don’t communicate by sharing memory.” </i><br />\n  Agree. By now It is quite firmly established that shared memory concurrency is quite troublesome not only in performance point of view but also creating and maintaining application programs with that. Wish we have this model in java at language level it self.<br />\n     Actually we should try writing java compiler and jvm in Golang with those features.<br />\n  At the end these two languages are pretty good, Go being extremely good for System Programming and Java equally good for Application programming, can be complementary.</p>\n",
+  "children": [
+   {
+    "id": 14470,
+    "parent": 787,
+    "author": "Brian Holdren",
+    "date": "2016-03-18T08:30:28",
+    "content": "<p>Don&#8217;t forget that, with Spring Boot, you can start writing controllers and it will download the requisite libraries and such around your code and start up an http server without the need for tomcat.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 803,
+  "parent": 0,
+  "author": "Mike Spooner",
+  "date": "2015-06-08T10:23:04",
+  "content": "<p>A certain amount of caution about &#8220;feature requests&#8221; can be a good thing in moderation, to avoid the &#8220;PL/1 effect&#8221; &#8211; a language that is everything to everyone but too big to grok and use effectively. In case you hadn&#8217;t already guessed, I&#8217;m still sore with the C99 committee for trying to turn C into Fortran-77&#8230;</p>\n",
+  "children": []
+ },
+ {
+  "id": 17534,
+  "parent": 0,
+  "author": "Ag",
+  "date": "2017-01-21T20:21:16",
+  "content": "<p>God, I&#8217;m so glad I chose Clojure instead of Go as my primary language</p>\n",
+  "children": []
+ },
+ {
+  "id": 17546,
+  "parent": 0,
+  "author": "Tim",
+  "date": "2017-01-22T21:22:48",
+  "content": "<p>It appears that Go, as C did, will impede progress in programming languages for another 50 years. Pity.</p>\n",
+  "children": [
+   {
+    "id": 17832,
+    "parent": 17546,
+    "author": "penguinsmash",
+    "date": "2017-02-14T08:13:35",
+    "content": "<p>Interesting article. I will have to read it a few times to understand it completely.</p>\n<p>As far as I can see, one of GO&#8217;s main features is a set of tools for concurrency (multi tasking).</p>\n<p>I think your iterator routine is an example of how not to use the range keyword<br />\nIf using &#8216; range &#8216;  forces you to launch a  goroutine  , Then perhaps you should use a for-loop instead, I don&#8217;t know GO,<br />\nBut the launching of new threads shouldn&#8217;t be done willy nilly inside of sub routines.</p>\n",
+    "children": []
+   }
+  ]
+ },
+ {
+  "id": 17885,
+  "parent": 0,
+  "author": "niquis7",
+  "date": "2017-02-21T09:56:11",
+  "content": "<p>Great article.  </p>\n<p>As for the productivity chart, I would argue that for a static(ally typed) language, it&#8217;s more like a flat line. You probably won&#8217;t feel really productive in the beginning, but you would stay at roughly the same level, or at least lose a lot less momentum as your codebase grows. Somehow I don&#8217;t think you get magically more productive when there&#8217;s a huge codebase under you to maintain.</p>\n<p>Go channels performance: If you happen to have some time to experiment, I guess you&#8217;ll still see that for the same task (100000 tasklets) Go is always beaten by Stackless Python, at the core of its own game. Not indicating the performance of real programs, but still funny enough.:)</p>\n<p>I wouldn&#8217;t try Go unless I really had to, and so far I really disliked the look and feel of Go code I stumbled across. On top of that, I have the impression that the situation would be similar to Java&#8217;s, which I think is a very unfair language. Java forces you to be an OO extremist, using classes for everything like a golden hammer, meanwhile the system taking its own shortcuts, not eating its own dog food. (Maybe less so in &gt;=8, but I&#8217;d bet it&#8217;s not really hard to find cases like that.)</p>\n",
+  "children": []
+ },
+ {
+  "id": 20194,
+  "parent": 0,
+  "author": "Thomas",
+  "date": "2017-09-15T16:02:09",
+  "content": "<p>Great post! Have nice day ! :) lttwe</p>\n",
+  "children": []
+ },
+ {
+  "id": 22090,
+  "parent": 0,
+  "author": "priya",
+  "date": "2018-06-11T00:43:35",
+  "content": "<p>Java is the most popular programming language at the moment. If there is any language which is going to replace it, that language should have the same set of libraries, documentation resources, and community around it.</p>\n",
+  "children": []
+ },
+ {
+  "id": 36328,
+  "parent": 0,
+  "author": "Vlad",
+  "date": "2021-03-24T13:14:23",
+  "content": "<p>Golang was created to put guard rails around stupid programmers.  The creators took a caustic view of their fellow programmers and codified it into one of the worst languages ever built.</p>\n<p>&#8220;The key point here is that our programmers are not researchers. They are, as a rule, very young, they come to us after their studies, perhaps they studied Java, C / C ++ or Python. They can’t understand an outstanding language, but at the same time we want them to create good software. That is why their language should be easy for them to understand and learn.&#8221;</p>\n<p>The one thing far worse than a junior programmer is an arrogant one. And golang was created by 3 pricks.</p>\n",
+  "children": []
+ },
+ {
+  "id": 61925,
+  "parent": 0,
+  "author": "GarrettabokS",
+  "date": "2025-05-24T06:26:56",
+  "content": "<p>I realize this is sudden but this grabbed my attention today, there is a bunch of folks who assume that artificial intelligence is the future and will transform the method we exist but truthfully I am yet to see any alterations in my day to day life that aren&#8217;t on my mobile. </p>\n<p>Why would people welcome some robot into their home as well let alone off some strange user online. </p>\n<p>What do you all think? Would you rely on a bot android from someone you don&#8217;t know? </p>\n<p>I’ve heard tech giants like Zuck, Bezos, and Standard Unions are building a marketplace for this, although I don&#8217;t know if I would trust these businesses in my personal space.</p>\n",
+  "children": []
+ }
+]
