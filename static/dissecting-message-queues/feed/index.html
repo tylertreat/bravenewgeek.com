@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>Comments on: Dissecting Message Queues</title>
+<link>https://bravenewgeek.com/dissecting-message-queues/</link>
+<description>Frozen comment archive; commenting is closed.</description>
+<item>
+<title>By: Paddoxant</title>
+<link>https://bravenewgeek.com/dissecting-message-queues/#comment-61350</link>
+<dc:creator><![CDATA[Paddoxant]]></dc:creator>
+<pubDate>Wed, 19 Mar 2025 20:00:57 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/dissecting-message-queues/#comment-61350</guid>
+<content:encoded><![CDATA[<p>Abe Bet casino	<a href="https://fourgreatinventions.com/" rel="nofollow ugc">https://fourgreatinventions.com/</a>	 	Ücretsiz deneme oyunları, yeni başlayanlar için casino dünyasıyla tanışmanın harika bir yoludur.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Miakoto</title>
+<link>https://bravenewgeek.com/dissecting-message-queues/#comment-61348</link>
+<dc:creator><![CDATA[Miakoto]]></dc:creator>
+<pubDate>Wed, 19 Mar 2025 19:23:14 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/dissecting-message-queues/#comment-61348</guid>
+<content:encoded><![CDATA[<p><a href="https://www.bjeindy.org/" rel="nofollow ugc">7slots giriş twitter</a>	 	Büyük jackpot ödülleriyle şansınızı deneyin.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Sreedhar</title>
+<link>https://bravenewgeek.com/dissecting-message-queues/#comment-27314</link>
+<dc:creator><![CDATA[Sreedhar]]></dc:creator>
+<pubDate>Sun, 30 Jun 2019 01:10:07 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/dissecting-message-queues/#comment-27314</guid>
+<content:encoded><![CDATA[<p>Are these numbers for different messaging products still relevant?</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Pater</title>
+<link>https://bravenewgeek.com/dissecting-message-queues/#comment-18639</link>
+<dc:creator><![CDATA[Pater]]></dc:creator>
+<pubDate>Tue, 25 Apr 2017 19:40:39 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/dissecting-message-queues/#comment-18639</guid>
+<content:encoded><![CDATA[<p>Check <a href="http://blog.digiqt.com/index.php/2017/04/23/how-you-scale-infrastructure-with-distributed-messaging/" rel="nofollow ugc">http://blog.digiqt.com/index.php/2017/04/23/how-you-scale-infrastructure-with-distributed-messaging/</a></p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: sam777</title>
+<link>https://bravenewgeek.com/dissecting-message-queues/#comment-18048</link>
+<dc:creator><![CDATA[sam777]]></dc:creator>
+<pubDate>Wed, 08 Mar 2017 07:47:31 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/dissecting-message-queues/#comment-18048</guid>
+<content:encoded><![CDATA[<p>How did you measure latency? Why these numbers don&#8217;t fit into the formula occupancy(number of requests in pipe) = latency * throughput ? For example In NSQ case the max default number of messages in the buffer = 10000 (Lookup mem-queue-size in <a href="http://nsq.io/components/nsqd.html" rel="nofollow ugc">http://nsq.io/components/nsqd.html</a>) and the throughput is 12512 so the latency = 10000/12512 = 0.799 seconds thats like 800ms but your graphs certainly doesn&#8217;t show that. Where am I doing wrong?</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Skin27</title>
+<link>https://bravenewgeek.com/dissecting-message-queues/#comment-16486</link>
+<dc:creator><![CDATA[Skin27]]></dc:creator>
+<pubDate>Thu, 10 Nov 2016 10:27:13 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/dissecting-message-queues/#comment-16486</guid>
+<content:encoded><![CDATA[<p>On github your usage. Usage: go run main.go subject [test_latency] [num_messages] [message_size]</p>
+<p>a) In the graphics/resultats I don&#8217;t see the parameter message_size. The size of each message in bytes is crucial in the throughput (bytes/per second). Are you sending a lot of small messages or big messages?</p>
+<p>b) As Soyee writes it also makes a difference which format you use (json, xml, csv).</p>
+<p>c) For ActiveMQ you used AMQP. ActiveMQ supports lots of other protocols/technologies like JMS and MQTT. Did you test as well? Are these results the same?</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Soyee</title>
+<link>https://bravenewgeek.com/dissecting-message-queues/#comment-15876</link>
+<dc:creator><![CDATA[Soyee]]></dc:creator>
+<pubDate>Wed, 28 Sep 2016 03:32:29 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/dissecting-message-queues/#comment-15876</guid>
+<content:encoded><![CDATA[<p>Hi Alok:</p>
+<p>I don&#8217;t agree that each topic for one device should work for your scenario, there are some reasons  to support my idea, even I don&#8217;t know the type of Message queue you are using.</p>
+<p>1.  Retaining so many topics that definitely improve the brokers overhead cost, however a few messages are kept in each topic. Especially for the middleware like Kafka, its backend storage kept one single sequential file in separated file, reading so many small files could significantly reduce the throuphout of the whole cluster.</p>
+<p>2.  If each client keeps one keepalive connection dedicated to wait for feedback, it&#8217;s awkward to waste precious CPU via constant poll from broker to obtain some unpredicted messages. And meanwhile, keeping so many sockets could easily crash the servers.</p>
+<p>3.   Metadata exchange during the cluster is different, especially some node fails due to hardware issue, that needs a long time to rebalance the cluster and make them ready.</p>
+<p>Why not do any minor updates to your original MessageBody, like adding some new fields to signify the sender device id?  Once receiver finishes to handle this message, the same information must be attached back, that&#8217;s easy to keep them via your API if possible. </p>
+<p>while the response is ready, one more isolated module like FeedService can be introduced to meet this. </p>
+<p>Regarding another question, you know,  JSON and XML have better interoperability across different platforms, that&#8217;s the exactly why they have become one standard fashion of data exchange, whereas HashTable is Java language-specific which can not be understood by other platforms. As the overhead of encoding/decoding, that should not be a problem.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Alok Arora</title>
+<link>https://bravenewgeek.com/dissecting-message-queues/#comment-15875</link>
+<dc:creator><![CDATA[Alok Arora]]></dc:creator>
+<pubDate>Wed, 28 Sep 2016 02:46:46 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/dissecting-message-queues/#comment-15875</guid>
+<content:encoded><![CDATA[<p>Hello Everyone. </p>
+<p>We are looking at using an asynch msg queue. In short we have 1 mill+ mobile devices as txn sources on one side and 50+ txn processor-interfaces on the other. The routing is based on 4 data-values and some stored data. A crucial req is dialog life-cycle. For each msg from a mobile-device the response must be sent back (to the correct client device). Persistence / logging is must as well.</p>
+<p>As I understand it the 50 processor-interfaces can each be a &#8216;topic&#8217; so each gets its message (only) and process it. How do we ensure the response goes back to the right original-sender (finally to the mobile-device) &#8211; I guess each process-interface must &#8216;publish&#8217; the response back so the original-sender can get it. Here should each sender-mobile-id be a &#8216;topic&#8217;as well (1 million+ topics and 1 mill+ processes running)? Or is it better to have one Java (thats our language) class name as the &#8216;topic&#8217; and this class handles msgs &#8216;published-back&#8217; (responds to the mobile-device) one after another. I guess this class can be multi-thread implemented. Is this issue similar to Node vs Apache Tomcat scenario.</p>
+<p>Also (pls pardon my very very imited understanding of this), in this pubsub scenario do the receiver Java classes have to &#8216;poll&#8217; msg queues or does the ESB/broker &#8216;call/invoke&#8217; the receiver (and the receiver can do the needful)?</p>
+<p>I had another question (apologies if this is the wrong forum/thread for it).<br />
+Our system implements business-logic as a series of configurable components (example emvCryptoVerifier, availableBalanceChecker etc). We pass app-data from component-to-component using &#8220;Data-Type, Length, Byte-Stream&#8221; tuples in a Java Hashtable (not XML or JSON). Each middleware component accepts and spit-outs this Hashtable and knows what &#8216;Data-Type/s&#8217; it handles. Database-side edge-components do SQL and client-side edge-components do JSON also. Does it make sense to use JSON/XML for our inter-component messaging also (and add parsing overhead)?</p>
+<p>Appreciate the help.</p>
+<p>Alok Arora</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: amieka</title>
+<link>https://bravenewgeek.com/dissecting-message-queues/#comment-15699</link>
+<dc:creator><![CDATA[amieka]]></dc:creator>
+<pubDate>Mon, 05 Sep 2016 09:23:03 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/dissecting-message-queues/#comment-15699</guid>
+<content:encoded><![CDATA[<p>I am going to go nuts if I can&#8217;t find an answer on Kafka in the context of Microservices. Is there any way I can contact you to discuss?</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Brice</title>
+<link>https://bravenewgeek.com/dissecting-message-queues/#comment-14798</link>
+<dc:creator><![CDATA[Brice]]></dc:creator>
+<pubDate>Mon, 09 May 2016 16:34:42 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/dissecting-message-queues/#comment-14798</guid>
+<content:encoded><![CDATA[<p>Versions are missing</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

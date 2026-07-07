@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>Comments on: Building a Distributed Log from Scratch, Part 2: Data Replication</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-2-data-replication/</link>
+<description>Frozen comment archive; commenting is closed.</description>
+<item>
+<title>By: Aravind</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-2-data-replication/#comment-45241</link>
+<dc:creator><![CDATA[Aravind]]></dc:creator>
+<pubDate>Fri, 24 Dec 2021 02:53:13 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-2-data-replication/#comment-45241</guid>
+<content:encoded><![CDATA[<p>Regarding these 2 sections of text</p>
+<p>&gt; The thought here is if we are replicating to enough nodes, the replication itself is sufficient for HA of data since the likelihood of more than a quorum of nodes failing is low, especially if we are using rack-aware clustering. &#8230;</p>
+<p>AND</p>
+<p>&gt; Another caveat with Kafka is unclean leader elections. That is, if all replicas become unavailable, there are two options: &#8230;</p>
+<p>Why is it that we&#8217;re worried about all replicas becoming unavailable in Kafka for leader elections, but not as much from the replication/durability perspective?</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Tyler Treat</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-2-data-replication/#comment-21158</link>
+<dc:creator><![CDATA[Tyler Treat]]></dc:creator>
+<pubDate>Tue, 23 Jan 2018 22:03:21 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-2-data-replication/#comment-21158</guid>
+<content:encoded><![CDATA[<p>Nice catch, thanks.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Chris Young</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-2-data-replication/#comment-21157</link>
+<dc:creator><![CDATA[Chris Young]]></dc:creator>
+<pubDate>Tue, 23 Jan 2018 21:39:49 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-2-data-replication/#comment-21157</guid>
+<content:encoded><![CDATA[<p>&#8220;By default, Kafka favors availability by choosing the second strategy.&#8221; &#8212; you meant the *first* strategy here &#8212; picking a replica not necessarily in the ISR set?  But actually, since 0.11, unclean.leader.election.enable defaults to false, so please update that paragraph :)</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Ming</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-2-data-replication/#comment-20999</link>
+<dc:creator><![CDATA[Ming]]></dc:creator>
+<pubDate>Thu, 04 Jan 2018 03:10:23 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-2-data-replication/#comment-20999</guid>
+<content:encoded><![CDATA[<p>Hi, are you trying to actually build a distributed log in this serials of blog post?</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Tyler Treat</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-2-data-replication/#comment-20961</link>
+<dc:creator><![CDATA[Tyler Treat]]></dc:creator>
+<pubDate>Thu, 28 Dec 2017 15:37:44 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-2-data-replication/#comment-20961</guid>
+<content:encoded><![CDATA[<p>Yes, the MVP currently does not address the Raft scalability problem. These are some potential solutions but not yet implemented. This goes for the dual writes in the Raft log. However, with this approach, reads would still be sequential from the log (as they are now). These will be two big areas for improvement following an initial release.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Byron Ruth</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-2-data-replication/#comment-20957</link>
+<dc:creator><![CDATA[Byron Ruth]]></dc:creator>
+<pubDate>Thu, 28 Dec 2017 12:33:56 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-2-data-replication/#comment-20957</guid>
+<content:encoded><![CDATA[<p>Great article Tyler. Two clarifications I have.</p>
+<p>First, you first stated that NATS Streaming currently uses one Raft Group per topic, but then mentioned the problem with this (explosion of network traffic). Is the plan to adopt the MultiRaft approach the Cockroach Labs folks developed?</p>
+<p>Second, in the diagram of the message log being an index of the logical offset which points to the Raft log physical offset, I am assuming this implies the physical message (bytes) are stored only in the Raft log? What is the cost of dereferencing the message while reading the message log? I am making the assumption messages are currently read sequentially from the log files and this approach introduces a new indirection.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Shiju Varghese</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-2-data-replication/#comment-20956</link>
+<dc:creator><![CDATA[Shiju Varghese]]></dc:creator>
+<pubDate>Thu, 28 Dec 2017 06:50:19 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-2-data-replication/#comment-20956</guid>
+<content:encoded><![CDATA[<p>Brilliant article.</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

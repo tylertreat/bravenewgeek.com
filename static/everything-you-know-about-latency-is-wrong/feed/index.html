@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>Comments on: Everything You Know About Latency Is Wrong</title>
+<link>https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/</link>
+<description>Frozen comment archive; commenting is closed.</description>
+<item>
+<title>By: Eyal</title>
+<link>https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-50451</link>
+<dc:creator><![CDATA[Eyal]]></dc:creator>
+<pubDate>Wed, 12 Oct 2022 09:25:20 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-50451</guid>
+<content:encoded><![CDATA[<p>It&#8217;s an interesting article. However there&#8217;s a catch:<br />
+It&#8217;s important to note that most resources on a page are static, served from a CDN much faster than the page they are contained in. They will not suffer anything near the same latency as the main resource which is most times dynamic and slower; also most of these resources are much less impactful on user experience, many of them for instance are below the fold or only have a slight visual effect if at all.<br />
+Hence an interesting 95th or 99th percentile is usually measured for the main page HTML or the page HTML plus any blocking resources, or the onLoad client event &#8211; which denotes a point in the user experience. Not for all resources on the page.<br />
+So, although mathematically the article is correct and intriguing, having 40 resources on page doesn&#8217;t mean they&#8217;ll all have the same latency distribution nor the same impact on user experience &#8211; and hence shouldn&#8217;t be measured together.<br />
+Meaning, looking at the 99th percentile of the main page load time for example, or the start of rendering &#8211; WILL look at a per-page metric, and hence does measure what 99% of users will experience on a single page load.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: AnuThomas</title>
+<link>https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-48671</link>
+<dc:creator><![CDATA[AnuThomas]]></dc:creator>
+<pubDate>Fri, 13 May 2022 23:05:41 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-48671</guid>
+<content:encoded><![CDATA[<p>IOW, Suppose we have the latency distribution of individual resource types hence know 95%&#8217;lie latency of each &#8211; then a user session (loading ~200 resource instances of these resource types) has a 99.997% (100-0.003)% chance to experience 95%&#8217;lie latency for least one of the resource types. </p>
+<p>As shown in the example, given it&#8217;s common to experience 95%&#8217;lie of individual resource type latency distribution, when doing latency measurement of such resource types, we have to focus on extremes (95%&#8217;lie, 99%&#8217;lie, 99.9%&#8217;lie).</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: AnuThomas</title>
+<link>https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-48669</link>
+<dc:creator><![CDATA[AnuThomas]]></dc:creator>
+<pubDate>Fri, 13 May 2022 21:45:38 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-48669</guid>
+<content:encoded><![CDATA[<p>Given a user-session has 5 page loads, averaging 40 individual resources per page-load, there are ~200 individual resources being loaded.</p>
+<p>The chances of ALL those 200 resource requests in a session &#8220;avoiding&#8221; the 95%&#8217;lie is (0.95 ^ 200) * 100%, which is 0.003%. I.e only 0.003% of user sessions will not experience worse than 95&#8217;lie.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Daniel S</title>
+<link>https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-47579</link>
+<dc:creator><![CDATA[Daniel S]]></dc:creator>
+<pubDate>Wed, 30 Mar 2022 16:43:18 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-47579</guid>
+<content:encoded><![CDATA[<p>Furthermore, statement that &#8220;averaging percentiles is mathematically absurd&#8221; is technically absurd. Percentile is a number. Take a set of numbers, summarise it, divide by the number of elements in the set, and you have an average of percentiles.</p>
+<p>Let&#8217;s say, you have a set of 95% percentiles, each spanning a period of 1s: [212, 234, 201, 255, 198, 920, 207, 181, 199, 201]. What would be 95% percentile of this set? It is 255. Sum of all values is 2808, average value is 280. Did we just&#8230; we did not! Did we?? Whoa, we have just averaged the percentiles! Was is absurd? Well, no, it was a _technically_ and _mathematically_ correct calculation. Is it meaningful, though? Well, to answer that question, you have to also answer if a 95-percentile is meaningful. Or if median is meaningful. Or if min/max are meaningful.</p>
+<p>Meaningfulness in this case is defined by what information do you want to observe VS what information are you actually observing. Knowing that there is 547 birds in that big flock over there might be meaningless for you, but meaningful for ornithologist. Yet none of that means that calculating number of birds in the flock is &#8220;absurd&#8221;, or even, what a bold statement! &#8220;mathematically absurd&#8221;.</p>
+<p>Now, the important part here is, again, &#8220;absurd&#8221; and &#8220;meaningless&#8221; are NOT synonyms nor they are interchangeable terms. Terminology matters. No, not like that, sorry. TERMINOLOGY MATTERS. Now, that&#8217;s better.</p>
+<p>Author, before ranting on the subject, should first figure out WHAT he wants to see, HOW it should be represented, and what mathematical permutations and calculations should be done to achieve it. And NAME it PROPERLY.</p>
+<p>Saying that 10100 divided by 10001 should be 25 is the most absurd thing I have seen on the internet today.<br />
+Do not ever mention this to a mathematician, else you may find yourself in a mental ward quite, quite promptly.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Daniel S</title>
+<link>https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-47578</link>
+<dc:creator><![CDATA[Daniel S]]></dc:creator>
+<pubDate>Wed, 30 Mar 2022 16:08:08 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-47578</guid>
+<content:encoded><![CDATA[<p>I think Tyler have a problem not with benchmarking, but with terminology.</p>
+<p>Quote:<br />
+Before freezing, we run 100 seconds at 100 requests/second for a total of 10,000 requests at 1 ms each. After the stall, we get one result of 100 seconds. This is the entirety of our data, and when we do the math, we get these results:<br />
+The average over the 200 seconds is 10.9 ms (should be 25 seconds).<br />
+The 50th percentile is 1 ms.<br />
+The 75th percentile is 1 ms (should be 50 seconds).<br />
+The 99.99th percentile is 1 ms (should be 100 seconds).</p>
+<p>Now, what is the definition of “average”? “In ordinary language, an average is a single number taken as representative of a list of numbers, usually the sum of the numbers divided by how many numbers are in the list (the arithmetic mean).”</p>
+<p>What about percentile? &#8220;In statistics, a k-th percentile (percentile score or centile) is a score below which a given percentage k of scores in its frequency distribution falls (exclusive definition) or a score at or below which a given percentage falls (inclusive definition). For example, the 50th percentile (the median) is the score below which (exclusive) or at or below which (inclusive) 50% of the scores in the distribution may be found.&#8221;</p>
+<p>Therefore, 10100 / 10001 is 1,0098.<br />
+75th percentile &#8211; is a mark between 7500 and 7501 value, which is, again, 1ms<br />
+99,99th percentile is a mark between 9999 and 10000 value, which is, again, 1ms</p>
+<p>I fail to understand why exactly do these numbers should be different? Why does average &#8220;should be 25 seconds&#8221;? If it will be 25 seconds, it will no longer be average, it will be some other form of statistical calculation. Same goes for &#8220;75% percentile should be 50 seconds&#8221; &#8211; no, it should not. It&#8217;s a percentile. If you think it &#8220;should&#8221; be 50 seconds, then you&#8217;re not talking about percentiles, you talking about something completely different.</p>
+<p>&#8220;Cache invalidation and naming things&#8221; all the way, all the way&#8230;</p>
+<p>This article is a clear example of why it is important to use PROPER terminology at all times.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Slava</title>
+<link>https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-45903</link>
+<dc:creator><![CDATA[Slava]]></dc:creator>
+<pubDate>Thu, 20 Jan 2022 08:34:00 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-45903</guid>
+<content:encoded><![CDATA[<p>I&#8217;m having troubles in understanding that math.<br />
+If there is just one HTTP request per page access, then, according to that formula, only 1% of page loads hit 99%ile. This sounds odd.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Nils H</title>
+<link>https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-42308</link>
+<dc:creator><![CDATA[Nils H]]></dc:creator>
+<pubDate>Mon, 25 Oct 2021 04:55:32 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-42308</guid>
+<content:encoded><![CDATA[<p>I think that even more interesting and important is to know where in your chain you have latencies and how much they impact the perveived performance.<br />
+A small latency in a network connection could have a major impact on UI responsiveness if there are a lot of small data transactions in place to draw your information in the UI.<br />
+The same is also true if you have a multi-layered application where the business logic communicates with the database server over a network. If you let the database engine perform the data sifting in a single database call or if you have the business logic do it and utilize multiple small database calls. A change from 4 to 20ms in network latency can cause quite some issues.<br />
+Even cloud services like OneDrive is sensitive to latency and it can result in some headaches.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Misikir Eyob</title>
+<link>https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-35018</link>
+<dc:creator><![CDATA[Misikir Eyob]]></dc:creator>
+<pubDate>Wed, 20 Jan 2021 18:38:42 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-35018</guid>
+<content:encoded><![CDATA[<p>Thank you for sharing these excellent insights. </p>
+<p>A minor comment on the sentence &#8220;The response time is the time a customer waits before they reach the register.&#8221; This equates response time to waiting time. Using the same analogy, response time should be the time delta between a customer&#8217;s arrival time &amp; service completion time. So response time is service time + waiting time + any other additional delay due to preemption/context switching. At least that is what my Queuing Theory class thought me :)</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: dt-rush</title>
+<link>https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-23532</link>
+<dc:creator><![CDATA[dt-rush]]></dc:creator>
+<pubDate>Fri, 09 Nov 2018 20:22:39 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-23532</guid>
+<content:encoded><![CDATA[<p>&#8220;The median is the number that 99.9999999999% of response times will be worse than&#8221;</p>
+<p>^^^ this is not correct. By definition the median is the 50th percentile, ie. 50% of response times are worse. </p>
+<p>What you mean to say is:</p>
+<p>&#8220;In our scenario (five page loads, averaging 40 resources per page), a user will have a 99.9999999999% chance of experiencing a response time worse than the median for one of the resources they request&#8221;.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Rohan</title>
+<link>https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-23116</link>
+<dc:creator><![CDATA[Rohan]]></dc:creator>
+<pubDate>Thu, 04 Oct 2018 21:19:59 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/#comment-23116</guid>
+<content:encoded><![CDATA[<p>I see, it&#8217;s the same formula 100 &#8211; (1-(.95^200))*100</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

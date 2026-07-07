@@ -32,8 +32,15 @@ hugo server -D   # http://localhost:1313
   by `layouts/partials/comments.html`.
 - `static/wp-content/uploads/` — the migrated WordPress media library, kept
   at the same paths so old image URLs still resolve.
-- `layouts/home.rss.xml` — full-content RSS at `/index.xml`; the deploy
-  workflow also copies it to `/feed/` and `/feed.xml` for legacy WordPress
-  subscribers.
+- `layouts/home.rss.xml` — full-content RSS at `/index.xml`.
+- `scripts/postbuild.sh` — run by the deploy workflow after `hugo`; copies
+  feeds to the legacy WordPress paths (`/feed/`, per-category/tag `/feed/`,
+  author feed) and mirrors `sitemap.xml` to the WP core sitemap names.
+- `content/<year>/`, `content/author/tyler/` — stubs rendered by
+  `layouts/wp-archive.html` to keep WordPress date/author archive URLs
+  (e.g. `/2015/03/`, `/author/tyler/page/2/`) resolving, paginated at 5
+  posts/page to match WordPress exactly.
+- `static/<slug>/feed/` — frozen per-post comment feeds (WordPress served
+  RSS at these paths and linked them from every page head).
 - `themes/PaperMod/` — vendored (not a submodule); update by re-cloning from
   https://github.com/adityatelange/hugo-PaperMod when desired.

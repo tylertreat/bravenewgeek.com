@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>Comments on: Security by Happenstance</title>
+<link>https://bravenewgeek.com/security-by-happenstance/</link>
+<description>Frozen comment archive; commenting is closed.</description>
+<item>
+<title>By: Andrew Howden</title>
+<link>https://bravenewgeek.com/security-by-happenstance/#comment-25847</link>
+<dc:creator><![CDATA[Andrew Howden]]></dc:creator>
+<pubDate>Tue, 09 Apr 2019 14:53:47 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/security-by-happenstance/#comment-25847</guid>
+<content:encoded><![CDATA[<p>I appreciate your response &lt;3 </p>
+<p>Thanks man! I enjoyed the article.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Tyler Treat</title>
+<link>https://bravenewgeek.com/security-by-happenstance/#comment-25846</link>
+<dc:creator><![CDATA[Tyler Treat]]></dc:creator>
+<pubDate>Tue, 09 Apr 2019 14:26:43 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/security-by-happenstance/#comment-25846</guid>
+<content:encoded><![CDATA[<p>Thanks for the thoughtful comment. A few thoughts:</p>
+<p>> The argument is that consuming the credential in Spinnaker is inherently more reliable than consuming the credential in an external service, such as CircleCI. There is an argument for separation of accounts for the build and deploy step, but it relies on the assumption that spinnaker is inherently more secure.</p>
+<p>I don&#8217;t think Spinnaker is inherently more &#8220;secure&#8221;, but by nature of it being run inside the cloud environment means it can rely on cloud-managed credentials (e.g. GCP service accounts or AWS IAM roles) as opposed to user-managed keys. Google, for example, rotates the keys for these approximately every 2 weeks. The key isn&#8217;t exposed to the user at all. As soon as we have to manage a key ourselves, I think there&#8217;s more risk exposure.</p>
+<p>> However, from a practical standpoint I do not see it as reasonable that developers are inherently more untrustworthy than whoever is managing spinnaker. Rather, they’re both untrustworthy and there should be no way to recover build credentials from the logs.</p>
+<p>Agreed, but I think there&#8217;s something to be said about separation of duties. No one person should be able to push a change end-to-end by themselves. And you hit the nail on the head about not being able to recover creds from logs.</p>
+<p>> If we have git access we already have access to the production infrastructure by way of modifying the application</p>
+<p>Git access in CI should be a non-event since, ideally, secrets are managed separately and injected at deploy time by the CD component. This is where the separation of CI and CD matters IMO.</p>
+<p>> Even in the case users can dump the credentials a better solution is short term credentials.</p>
+<p>100% agree. Short-term creds is the ideal solution.</p>
+<p>> Additionally I can understand why running with production credentials in third party infrastructure might not be reasonable (that is, mounting service accounts in CircleCI) but if this was the case an equally valid solution would be to move the entire CI/CD pipeline into the trusted compute zone, mitigating that model.</p>
+<p>Yep, running it fully inside the cloud environment is arguably &#8220;more secure&#8221; due to the point above about managing keys. This is the delicate balance between relying on SaaS (and reducing operational overhead) and security. If relying on &#8220;untrusted&#8221; SaaS causes us to overcompensate with our security model and supporting machinery (like automated key rotations), it might actually be a net negative in terms of operations overhead.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Andrew Howden</title>
+<link>https://bravenewgeek.com/security-by-happenstance/#comment-25843</link>
+<dc:creator><![CDATA[Andrew Howden]]></dc:creator>
+<pubDate>Tue, 09 Apr 2019 10:22:52 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/security-by-happenstance/#comment-25843</guid>
+<content:encoded><![CDATA[<p>Yo! I really enjoyed this. I understand the nature of the changing advice from NIST and the value of ensuring that we can allocate all actions to a specific identity (build job, for example), but I&#8217;m unsure that I can quite make the jump to isolating CI/CD from production infrastructure in its entirety.</p>
+<p>Specifically:</p>
+<p>&gt; This is why splitting out Continuous Integration (CI) from Continuous Delivery (CD) is important. If, instead, Circle was only responsible for CI and we introduced a separate component for CD, such as Spinnaker, we can solve this problem. Using this approach, now Circle only needs the ability to push an artifact to a Google Cloud Storage bucket or Container Registry. Outside of the service account credentials needed to do this, it doesn’t need to deal with secrets at all. This means there’s no way to dump out secrets in the build because they will be injected later by Spinnaker.</p>
+<p>The argument is that consuming the credential in Spinnaker is inherently more reliable than consuming the credential in an external service, such as CircleCI. There is an argument for separation of accounts for the build and deploy step, but it relies on the assumption that spinnaker is inherently more secure.</p>
+<p>I can understand why we could consider spinnaker more secure if, for example, developers do not have access to it. In this case anyone with git access cannot dump protected environment variables to the build logs; either there are no logs, or the untrusted group (developers) can not access the logs to implement the change. However, from a practical standpoint I do not see it as reasonable that developers are inherently more untrustworthy than whoever is managing spinnaker. Rather, they&#8217;re both untrustworthy and there should be no way to recover build credentials from the logs. </p>
+<p>I understand that it&#8217;s not super difficult to dump credentials given git access to CI. However, I would wish to point out:</p>
+<p>1. If we have git access we already have access to the production infrastructure by way of modifying the application and<br />
+2. Even in the case users can dump the credentials a better solution is short term credentials.</p>
+<p>Additionally I can understand why running with production credentials in third party infrastructure might not be reasonable (that is, mounting service accounts in CircleCI) but if this was the case an equally valid solution would be to move the entire CI/CD pipeline into the trusted compute zone, mitigating that model.</p>
+<p>I appreciate the work you put into the post. It is thought provoking, and I enjoyed it. But I would like to push back a little at the notion that CI and CD must inherently be decoupled.</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

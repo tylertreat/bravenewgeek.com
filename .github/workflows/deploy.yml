@@ -29,11 +29,7 @@ jobs:
       - name: Build
         run: |
           hugo --minify --logLevel warn
-          # Legacy WordPress feed paths. /feed/index.html is served as
-          # text/html but contains the RSS XML; most readers sniff content.
-          mkdir -p public/feed
-          cp public/index.xml public/feed/index.html
-          cp public/index.xml public/feed.xml
+          ./scripts/postbuild.sh
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./public

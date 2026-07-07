@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>Comments on: Building a Distributed Log from Scratch, Part 1: Storage Mechanics</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-1-storage-mechanics/</link>
+<description>Frozen comment archive; commenting is closed.</description>
+<item>
+<title>By: iwa2no</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-1-storage-mechanics/#comment-57369</link>
+<dc:creator><![CDATA[iwa2no]]></dc:creator>
+<pubDate>Thu, 29 Aug 2024 12:38:19 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-1-storage-mechanics/#comment-57369</guid>
+<content:encoded><![CDATA[<p>Hi, I want to ask why access ordered log in large file is not succifient. AFAIK, if we want to find a log in 10^6 logs, we just need log2(10^6) which approximates 20 times, which I believe is a small number. Have I oversimplified anything ?</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Dio</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-1-storage-mechanics/#comment-47692</link>
+<dc:creator><![CDATA[Dio]]></dc:creator>
+<pubDate>Wed, 06 Apr 2022 23:36:28 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-1-storage-mechanics/#comment-47692</guid>
+<content:encoded><![CDATA[<p>Thanks for this wonderful series of posts! I have some question on the performance of WAL. Apparently Kafka&#8217;s strength lies in the fact that the log is append only, therefore there is no disk seek hence being super fast.</p>
+<p>However, my question is:<br />
+1. AFAIK, two files are written for a single , one is for the actual messages, the other is an index.<br />
+2. Besides, each broker server (one machine) can hosts many topic + partition, and IIRC Kafka keeps the logs for different  separated.<br />
+#1 combined with #2, I don&#8217;t see how it optimizes for disk access, because on a single machine we are still writing to multiple files which now needs disk seek.</p>
+<p>Any insight? Thanks!</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Rohan</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-1-storage-mechanics/#comment-22668</link>
+<dc:creator><![CDATA[Rohan]]></dc:creator>
+<pubDate>Mon, 20 Aug 2018 21:22:20 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-1-storage-mechanics/#comment-22668</guid>
+<content:encoded><![CDATA[<p>Understood it myself on thinking more&#8230;:)<br />
+Doing a binary search that refers an index for it&#8217;s jumps would still involve logN seeks in the file which&#8217;d be expensive.<br />
+Hence we can&#8217;t use that to just &#8220;find the last message older than&#8221;</p>
+<p>Thanks Tyler!</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Rohan</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-1-storage-mechanics/#comment-22543</link>
+<dc:creator><![CDATA[Rohan]]></dc:creator>
+<pubDate>Sun, 05 Aug 2018 20:00:14 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-1-storage-mechanics/#comment-22543</guid>
+<content:encoded><![CDATA[<p>Hi Tyler,<br />
+Thanks for the wonderful series.</p>
+<p>I have a question regarding the idea of splitting the log into segments:<br />
+Even if we had one single long log file and an index file accompanying it, couldn&#8217;t we refer the index file for an offset, that&#8217;d give us the byte position and seek to that position?</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Ahmed</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-1-storage-mechanics/#comment-20938</link>
+<dc:creator><![CDATA[Ahmed]]></dc:creator>
+<pubDate>Mon, 25 Dec 2017 10:53:22 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-1-storage-mechanics/#comment-20938</guid>
+<content:encoded><![CDATA[<p>Great</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Philip Enrico</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-1-storage-mechanics/#comment-20924</link>
+<dc:creator><![CDATA[Philip Enrico]]></dc:creator>
+<pubDate>Fri, 22 Dec 2017 18:21:27 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-1-storage-mechanics/#comment-20924</guid>
+<content:encoded><![CDATA[<p>Any free online course so i can learn more deeply</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>Comments on: The Observability Pipeline</title>
+<link>https://bravenewgeek.com/the-observability-pipeline/</link>
+<description>Frozen comment archive; commenting is closed.</description>
+<item>
+<title>By: komu</title>
+<link>https://bravenewgeek.com/the-observability-pipeline/#comment-23789</link>
+<dc:creator><![CDATA[komu]]></dc:creator>
+<pubDate>Thu, 29 Nov 2018 07:16:12 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/the-observability-pipeline/#comment-23789</guid>
+<content:encoded><![CDATA[<p>Incidentally, this is almost the proto-type[1] logging pipeline I came up with when I was evaluating using TimescaleDB/postgres for storing application logs.   </p>
+<p>1. <a href="https://www.komu.engineer/blogs/timescaledb/timescaledb-for-logs" rel="nofollow ugc">https://www.komu.engineer/blogs/timescaledb/timescaledb-for-logs</a></p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: David Gildeh</title>
+<link>https://bravenewgeek.com/the-observability-pipeline/#comment-22967</link>
+<dc:creator><![CDATA[David Gildeh]]></dc:creator>
+<pubDate>Wed, 19 Sep 2018 20:48:20 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/the-observability-pipeline/#comment-22967</guid>
+<content:encoded><![CDATA[<p>Thanks to your inspiration, I did a more in depth response to this idea on our blog here: <a href="https://www.outlyer.com/blog/why-the-observability-pipeline-wont-solve-everything/" rel="nofollow ugc">https://www.outlyer.com/blog/why-the-observability-pipeline-wont-solve-everything/</a></p>
+<p>Look forward seeing how this conversation evolves! :)</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: David Gildeh</title>
+<link>https://bravenewgeek.com/the-observability-pipeline/#comment-22963</link>
+<dc:creator><![CDATA[David Gildeh]]></dc:creator>
+<pubDate>Wed, 19 Sep 2018 18:14:37 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/the-observability-pipeline/#comment-22963</guid>
+<content:encoded><![CDATA[<p>Great blog, we&#8217;ve also seen this talked about in some of our meetups and customer conversations: <a href="https://www.outlyer.com/blog/doxlon-august-2017/#what-does-next-gen-monitoring-look-like--owain-perry-principal-engineer-at-just-eat" rel="nofollow ugc">https://www.outlyer.com/blog/doxlon-august-2017/#what-does-next-gen-monitoring-look-like&#8211;owain-perry-principal-engineer-at-just-eat</a></p>
+<p>This is becoming a common idea and we even discussed open-sourcing our agent/configuration technology to provide something like this to users at one point. A &#8220;segment.io&#8221; for monitoring.</p>
+<p>The challenge with this approach for some solutions is it treats the solutions just as a time-series/log sink for storing metrics or logs, you lose most of the value you can get from those solutions once you take the solution&#8217;s agent out of the picture and start pushing metrics to a common endpoint and feeding those metrics to different providers.</p>
+<p>For example our solution has a unique configuration technology that allows users to push checks out to all their instances in seconds. This is what enables our core &#8220;self-service&#8221; value proposition. With the approach in this blog, that would break and our solution would essentially just become a hosted TSDB.</p>
+<p>Also every solution sends different metric names and labels, which all the template dashboards and alerts expect to be there to work. Prometheus metrics are different from CollectD metrics, which are different from Telegraph metrics, which are different from Outlyer metrics&#8230;and all those out of the box template dashboards and alerts would break.</p>
+<p>In fact I would argue, having seen customers migrate solutions in the past, most of the time is spent migrating the dashboards, alerts and other monitoring configuration, much more time than rolling out and configuring a new agent. Until every integration and agent sends the same metrics, and provide the same query language, this will not go away, and you won&#8217;t be able to use all the integration templates provided by most solutions out of the box.</p>
+<p>I can see this working for some use cases &#8211; a log is a log, a custom StatsD metric is the same, and even OpenTracing data is pretty standard, but for Infrastructure metrics, you&#8217;re still generally better off installing the agent for that solution, so you get all the additional value such as out of the box templates and other agent capabilities those solutions provide.</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

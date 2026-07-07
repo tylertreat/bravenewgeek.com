@@ -6,8 +6,9 @@ locale: en-us
 
 enableRobotsTXT: true
 
+# WordPress paginated at 5 posts/page; keep parity so /page/N/ links hold.
 pagination:
-  pagerSize: 10
+  pagerSize: 5
 
 # Match the WordPress URL structure exactly so no inbound link breaks.
 permalinks:

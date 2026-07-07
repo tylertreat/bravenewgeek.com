@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>Comments on: Building a Distributed Log from Scratch, Part 4: Trade-Offs and Lessons Learned</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-4-trade-offs-and-lessons-learned/</link>
+<description>Frozen comment archive; commenting is closed.</description>
+<item>
+<title>By: Kyle</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-4-trade-offs-and-lessons-learned/#comment-21544</link>
+<dc:creator><![CDATA[Kyle]]></dc:creator>
+<pubDate>Tue, 27 Mar 2018 21:52:14 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-4-trade-offs-and-lessons-learned/#comment-21544</guid>
+<content:encoded><![CDATA[<p>To make clear, as in CAP theorem, there are two Quorum protocol, one is partial quorum protocol that is popular used (partition tolerant), which is strong consistency, should not have any divergent; another is full strict quorum protocol, such as 2PC (used in MySQL cluster, not partition tolerant), which is week consistency, can have different copies.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Tyler Treat</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-4-trade-offs-and-lessons-learned/#comment-21519</link>
+<dc:creator><![CDATA[Tyler Treat]]></dc:creator>
+<pubDate>Wed, 21 Mar 2018 22:39:17 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-4-trade-offs-and-lessons-learned/#comment-21519</guid>
+<content:encoded><![CDATA[<p>Quorum is sufficient as long as reads are served by the leader.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Kyle</title>
+<link>https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-4-trade-offs-and-lessons-learned/#comment-21518</link>
+<dc:creator><![CDATA[Kyle]]></dc:creator>
+<pubDate>Wed, 21 Mar 2018 22:28:56 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/building-a-distributed-log-from-scratch-part-4-trade-offs-and-lessons-learned/#comment-21518</guid>
+<content:encoded><![CDATA[<p>for &#8220;Guaranteeing strong consistency requires a quorum when replicating data, which hinders availability and performance.&#8221; here. As I understand, strong consistency means all copy are consistent, not only quorum. Quorum consistency is a trade of between C and A. Strong consistency  lives in traditional DB system, not catch up current tendency.</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

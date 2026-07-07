@@ -1,0 +1,8 @@
+---
+title: "July 2015"
+layout: wp-archive
+year: 2015
+month: 7
+build: { list: never }
+sitemap: { disable: true }
+---

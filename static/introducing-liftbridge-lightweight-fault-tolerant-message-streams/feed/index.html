@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>Comments on: Introducing Liftbridge: Lightweight, Fault-Tolerant Message Streams</title>
+<link>https://bravenewgeek.com/introducing-liftbridge-lightweight-fault-tolerant-message-streams/</link>
+<description>Frozen comment archive; commenting is closed.</description>
+<item>
+<title>By: Tyler Treat</title>
+<link>https://bravenewgeek.com/introducing-liftbridge-lightweight-fault-tolerant-message-streams/#comment-26082</link>
+<dc:creator><![CDATA[Tyler Treat]]></dc:creator>
+<pubDate>Fri, 26 Apr 2019 14:23:03 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/introducing-liftbridge-lightweight-fault-tolerant-message-streams/#comment-26082</guid>
+<content:encoded><![CDATA[<p>NATS Streaming doesn&#8217;t actually use the Raft log as the message log, it uses it as a secondary replication/recovery log meaning it stores messages redundantly. The Kafka-based protocol means we can use the message log itself for replication so no redundancy and it&#8217;s faster. It also means we can &#8220;tune&#8221; the replication based on durability needs (replicate to all or subset of replicas, etc.). Lastly, the ISR approach allows balancing availability with durability. If brokers fail, the ISR can shrink and the cluster can maintain availability. With Raft, you cannot make this trade-off and must retain a quorum.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Can Gencer</title>
+<link>https://bravenewgeek.com/introducing-liftbridge-lightweight-fault-tolerant-message-streams/#comment-26080</link>
+<dc:creator><![CDATA[Can Gencer]]></dc:creator>
+<pubDate>Fri, 26 Apr 2019 14:03:06 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/introducing-liftbridge-lightweight-fault-tolerant-message-streams/#comment-26080</guid>
+<content:encoded><![CDATA[<p>After reading through Liftbridge docs and the replication protocol, I&#8217;m curious what was the reason you used Kafka&#8217;s in-sync replica protocol rather than the &#8220;raft log as message log&#8221; approach from NATS Streams?</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

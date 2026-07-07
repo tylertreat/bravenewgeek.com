@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>Comments on: What You Want Is What You Don’t: Understanding Trade-Offs in Distributed Messaging</title>
+<link>https://bravenewgeek.com/what-you-want-is-what-you-dont-understanding-trade-offs-in-distributed-messaging/</link>
+<description>Frozen comment archive; commenting is closed.</description>
+<item>
+<title>By: Shashank</title>
+<link>https://bravenewgeek.com/what-you-want-is-what-you-dont-understanding-trade-offs-in-distributed-messaging/#comment-3245</link>
+<dc:creator><![CDATA[Shashank]]></dc:creator>
+<pubDate>Fri, 09 Oct 2015 07:59:12 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/what-you-want-is-what-you-dont-understanding-trade-offs-in-distributed-messaging/#comment-3245</guid>
+<content:encoded><![CDATA[<p>Great article Tyler. Fun to read all your literature. Also happened to go through your golang project on Probablistic Data Structures</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Paul Banks</title>
+<link>https://bravenewgeek.com/what-you-want-is-what-you-dont-understanding-trade-offs-in-distributed-messaging/#comment-2079</link>
+<dc:creator><![CDATA[Paul Banks]]></dc:creator>
+<pubDate>Mon, 24 Aug 2015 13:15:33 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/what-you-want-is-what-you-dont-understanding-trade-offs-in-distributed-messaging/#comment-2079</guid>
+<content:encoded><![CDATA[<p>@night Storm&#8217;s ordering guarantees are a feature. Other alternatives like Apache Flink have even stronger ones.</p>
+<p>The point being made here is that those guarantees are not unconditional, and even when they hold do not come for free. </p>
+<p>There are trade-offs at every level and if you can recognise patterns that allow you to operate correctly with fewer guarantees you will in general perform better.</p>
+<p>Derek Collison&#8217;s quote is a good one &#8211; the less you rely on other system&#8217;s guarantees the better since they will break down somewhere.</p>
+<p>The engineering tradeoff is in balancing this truth with the fact that re-inventing the desirable properties of exactly-once delivery or strong data consistency (or an approximation of them) yourself on top of limited-guarantee components is often likely to be unnecessarily expensive in development cost too. Assuming of course that you _really_ do need them.</p>
+<p>Some more thoughts on this: <a href="https://banksco.de/p/distributed-system-guarantees.html" rel="nofollow ugc">https://banksco.de/p/distributed-system-guarantees.html</a>.</p>
+<p>Thanks Tyler, great read.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: night</title>
+<link>https://bravenewgeek.com/what-you-want-is-what-you-dont-understanding-trade-offs-in-distributed-messaging/#comment-2074</link>
+<dc:creator><![CDATA[night]]></dc:creator>
+<pubDate>Mon, 24 Aug 2015 08:27:39 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/what-you-want-is-what-you-dont-understanding-trade-offs-in-distributed-messaging/#comment-2074</guid>
+<content:encoded><![CDATA[<p>so, what about storm&#8217;s ordering and generates,  it&#8217;s useless?</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: night</title>
+<link>https://bravenewgeek.com/what-you-want-is-what-you-dont-understanding-trade-offs-in-distributed-messaging/#comment-2073</link>
+<dc:creator><![CDATA[night]]></dc:creator>
+<pubDate>Mon, 24 Aug 2015 08:26:05 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/what-you-want-is-what-you-dont-understanding-trade-offs-in-distributed-messaging/#comment-2073</guid>
+<content:encoded><![CDATA[<p>what about storm&#8217;s Ordering and Guarantees, it&#8217;s useless?</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

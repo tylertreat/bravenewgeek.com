@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>Comments on: Take It to the Limit: Considerations for Building Reliable Systems</title>
+<link>https://bravenewgeek.com/take-it-to-the-limit-considerations-for-building-reliable-systems/</link>
+<description>Frozen comment archive; commenting is closed.</description>
+<item>
+<title>By: Mr. Opa Opa</title>
+<link>https://bravenewgeek.com/take-it-to-the-limit-considerations-for-building-reliable-systems/#comment-25435</link>
+<dc:creator><![CDATA[Mr. Opa Opa]]></dc:creator>
+<pubDate>Fri, 08 Mar 2019 23:12:36 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/take-it-to-the-limit-considerations-for-building-reliable-systems/#comment-25435</guid>
+<content:encoded><![CDATA[<p>Please, could you explain the following numbers? How is 99.995% and 84% related to all reliability of three services mentioned?</p>
+<p>&#8220;This is a core tenet behind resilience engineering. If a function depends on three services, each with a reliability of 90%, 95%, and 99%, respectively, partial availability could be the difference between 99.995% reliability and 84% reliability (assuming failures are independent).&#8221;</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Jeroen Pluimers</title>
+<link>https://bravenewgeek.com/take-it-to-the-limit-considerations-for-building-reliable-systems/#comment-17865</link>
+<dc:creator><![CDATA[Jeroen Pluimers]]></dc:creator>
+<pubDate>Sat, 18 Feb 2017 09:25:16 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/take-it-to-the-limit-considerations-for-building-reliable-systems/#comment-17865</guid>
+<content:encoded><![CDATA[<p>I think a lot of systems don&#8217;t have these limits defined as people have a hard time coming up with them. So it would be very helpful to have some guidance on finding and designing for these limits.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: David Leonhartsberger</title>
+<link>https://bravenewgeek.com/take-it-to-the-limit-considerations-for-building-reliable-systems/#comment-17254</link>
+<dc:creator><![CDATA[David Leonhartsberger]]></dc:creator>
+<pubDate>Tue, 27 Dec 2016 08:32:59 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/take-it-to-the-limit-considerations-for-building-reliable-systems/#comment-17254</guid>
+<content:encoded><![CDATA[<p>Agree very much</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: valentin</title>
+<link>https://bravenewgeek.com/take-it-to-the-limit-considerations-for-building-reliable-systems/#comment-17250</link>
+<dc:creator><![CDATA[valentin]]></dc:creator>
+<pubDate>Mon, 26 Dec 2016 21:16:17 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/take-it-to-the-limit-considerations-for-building-reliable-systems/#comment-17250</guid>
+<content:encoded><![CDATA[<p>Wait, doesn&#8217;t embrace aka LetItCrush principle mean that we do not enforce the graceful shutdown cases and limits? We just let it crush when it goes wrong naturally instead of complicating our code with graceful termination?</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Daniel J</title>
+<link>https://bravenewgeek.com/take-it-to-the-limit-considerations-for-building-reliable-systems/#comment-17193</link>
+<dc:creator><![CDATA[Daniel J]]></dc:creator>
+<pubDate>Thu, 22 Dec 2016 22:36:36 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/take-it-to-the-limit-considerations-for-building-reliable-systems/#comment-17193</guid>
+<content:encoded><![CDATA[<p>Hmm reading the post on a plane (in-flight!) apparently meant I didn&#8217;t see the comments. The point was already made :D</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Daniel J</title>
+<link>https://bravenewgeek.com/take-it-to-the-limit-considerations-for-building-reliable-systems/#comment-17192</link>
+<dc:creator><![CDATA[Daniel J]]></dc:creator>
+<pubDate>Thu, 22 Dec 2016 22:33:48 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/take-it-to-the-limit-considerations-for-building-reliable-systems/#comment-17192</guid>
+<content:encoded><![CDATA[<p>Thanks for a great post, I think it really drives the point home.</p>
+<p>A minor point, I don&#8217;t know if I misunderstand your meaning when talking about SQS, but the limits they speak of are in-flight messages, messages that have been read but not yet deleted. The queues are theoretically unbounded.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Tyler Treat</title>
+<link>https://bravenewgeek.com/take-it-to-the-limit-considerations-for-building-reliable-systems/#comment-17189</link>
+<dc:creator><![CDATA[Tyler Treat]]></dc:creator>
+<pubDate>Thu, 22 Dec 2016 15:45:18 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/take-it-to-the-limit-considerations-for-building-reliable-systems/#comment-17189</guid>
+<content:encoded><![CDATA[<p>You&#8217;re right, thanks for pointing that out, Timothy.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Timothy Pote</title>
+<link>https://bravenewgeek.com/take-it-to-the-limit-considerations-for-building-reliable-systems/#comment-17187</link>
+<dc:creator><![CDATA[Timothy Pote]]></dc:creator>
+<pubDate>Thu, 22 Dec 2016 15:14:49 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/take-it-to-the-limit-considerations-for-building-reliable-systems/#comment-17187</guid>
+<content:encoded><![CDATA[<p>Spot on!</p>
+<p>I have a tiny correction for you: SQS has no limits on queue depth. The numbers you mention are limits on the in-flight messages you&#8217;re permitted, but you can have queues of arbitrary length.</p>
+<p>While that might seem to violate the principles in this post, I would assume that this guarantee is a result of the host of other restrictions they put on the system (message size, in-flight limit, limited retention, etc).</p>
+<p>Source: <a href="https://aws.amazon.com/sqs/faqs/" rel="nofollow ugc">https://aws.amazon.com/sqs/faqs/</a> (search for &#8220;How large can Amazon SQS message queues be?&#8221;)</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

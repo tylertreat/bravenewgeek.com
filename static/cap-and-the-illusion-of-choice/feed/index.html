@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>Comments on: CAP and the Illusion of Choice</title>
+<link>https://bravenewgeek.com/cap-and-the-illusion-of-choice/</link>
+<description>Frozen comment archive; commenting is closed.</description>
+<item>
+<title>By: Anonymous Coward</title>
+<link>https://bravenewgeek.com/cap-and-the-illusion-of-choice/#comment-554</link>
+<dc:creator><![CDATA[Anonymous Coward]]></dc:creator>
+<pubDate>Fri, 08 May 2015 13:28:36 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/cap-and-the-illusion-of-choice/#comment-554</guid>
+<content:encoded><![CDATA[<p>I didn&#8217;t necessarily mean vector clocks themselves, just the generic mechanism of keeping distinct, divergent versions. Can you point me at a more detailed online post describing the mechanism you try to explain? I&#8217;m just curious about anything distributed.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Bjorn</title>
+<link>https://bravenewgeek.com/cap-and-the-illusion-of-choice/#comment-553</link>
+<dc:creator><![CDATA[Bjorn]]></dc:creator>
+<pubDate>Fri, 08 May 2015 11:41:39 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/cap-and-the-illusion-of-choice/#comment-553</guid>
+<content:encoded><![CDATA[<p>No. Knowledge of Vector clocks is not required to understand the difference between the global and local state in a distributed system.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Anonymous Coward</title>
+<link>https://bravenewgeek.com/cap-and-the-illusion-of-choice/#comment-552</link>
+<dc:creator><![CDATA[Anonymous Coward]]></dc:creator>
+<pubDate>Fri, 08 May 2015 11:33:51 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/cap-and-the-illusion-of-choice/#comment-552</guid>
+<content:encoded><![CDATA[<blockquote cite="bjorn"><p>Better explained now?</p></blockquote>
+<p>Not really. Do you mean something similar to what&#8217;s described under vector clocks <a href="http://littleriakbook.com/#toc_13" rel="nofollow">here</a>?</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Bjorn</title>
+<link>https://bravenewgeek.com/cap-and-the-illusion-of-choice/#comment-455</link>
+<dc:creator><![CDATA[Bjorn]]></dc:creator>
+<pubDate>Wed, 22 Apr 2015 21:58:12 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/cap-and-the-illusion-of-choice/#comment-455</guid>
+<content:encoded><![CDATA[<p>I think you misunderstand: Let me try more formally:</p>
+<p>A system X is in state S, when an event E arrives to the system.<br />
+The event is caught by a sessions handler H which isolates the event and the propagation path through X which the event will cause, using semaphores.<br />
+This isolated part &#8220;I&#8221; reduces X to X&#8217; which remains in state S.<br />
+X&#8217; is still consistent, available and may be in any number of partitions, all in state S.<br />
+I is also consistent, available and in any number of partitions as it is reserved to H through semaphores.<br />
+If another event arrives which should affect the same parts of the X as E did, then it _not_ sent to X but to H, as the semaphores indicate that the session handler H has operational precedence for I.<br />
+At this time both X&#8217; and I are available. The key is that separation of the topology of X into X&#8217; and I assures that each subsystem is consistent, available in two major partitions governing any number of sub partitions of the system X.</p>
+<p>Once E (and any E&#8217;, E&#8221;, &#8230;) has been processed in &#8220;I&#8221; the session handler H pulls the semaphores, whereby X&#8217; and I may merge into X in another persistent state S&#8217;.</p>
+<p>Hereby the system &#8211; as a whole &#8211; as Brewer describes it, only exists when nothing happens. Whenever some Event occurs, the system &#8211; as a whole &#8211; is always in transition.</p>
+<p>The point is thereby that as long as an event is knocking on the door of the system and you don&#8217;t have a session handler, then there is no &#8220;global state&#8221;. There are &#8220;local&#8221; partitions, and they will all be consistent and available. The many local partitions are <strong>never un</strong><strong>available as the session handler extends the topology of the system while it is in transition.</p>
+<p>Better explained now?</strong></p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Sebastien LORBER (@sebastienlorber)</title>
+<link>https://bravenewgeek.com/cap-and-the-illusion-of-choice/#comment-452</link>
+<dc:creator><![CDATA[Sebastien LORBER (@sebastienlorber)]]></dc:creator>
+<pubDate>Wed, 22 Apr 2015 15:20:41 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/cap-and-the-illusion-of-choice/#comment-452</guid>
+<content:encoded><![CDATA[<p>&#8221; broadcasted the transaction and suspended execution until a “session completion” message returned from each of the remote entities&#8221;</p>
+<p>So basically your system can become unavailable under high load. This is just CP and fits into the CAP theorem.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Bjorn</title>
+<link>https://bravenewgeek.com/cap-and-the-illusion-of-choice/#comment-444</link>
+<dc:creator><![CDATA[Bjorn]]></dc:creator>
+<pubDate>Tue, 21 Apr 2015 09:01:51 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/cap-and-the-illusion-of-choice/#comment-444</guid>
+<content:encoded><![CDATA[<p>Hi Tyler,<br />
+&#8211; Nice site!</p>
+<p>Long before Brewer presented his CAP theorem, unix people working with distributed systems dismissed the idea of consistency, availability and persistence. They talk about &#8220;global versus local&#8221; state and set up &#8220;session handlers&#8221; to assure global state where needed and broadcasted semaphores.<br />
+The local entity was modelled as a state-machine: When a transaction was performed locally, it logged the transaction (in case of local failure), opened a session, broadcasted the transaction and suspended execution until a &#8220;session completion&#8221; message returned from each of the remote entities. Once the count of remote flags was complete, it closed the session and wrote to the local log. If any jobs where pending, they had to wait until the semaphore was pulled off the object (or account) where a session was active. Conflicts caused by crossing transactions where handled with a chosen logic. A negative transaction could only be done after a positive had completed, etc.<br />
+This was banking anno 1970&#8217;ies with semaphores and remote sessions. Today the same problem persists even within NUMA-architectures where thread-access to in-memory objects is polled cross-socket via remote cores. I have the spent the last 2.5 years on rediscovering what people did all the way back to the 60&#8217;ies and people like Brewer are just causing us to re-invent the wheel.<br />
+My best hint:<br />
+#1 Ignore Brewer<br />
+#2 Stick to message parsing and set object affinity at runtime &#8211; even on NUMA &#8211; because it just works.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Tyler Treat</title>
+<link>https://bravenewgeek.com/cap-and-the-illusion-of-choice/#comment-397</link>
+<dc:creator><![CDATA[Tyler Treat]]></dc:creator>
+<pubDate>Sun, 19 Apr 2015 17:02:33 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/cap-and-the-illusion-of-choice/#comment-397</guid>
+<content:encoded><![CDATA[<p>That&#8217;s a good analogy. :)</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Nicolas Liochon</title>
+<link>https://bravenewgeek.com/cap-and-the-illusion-of-choice/#comment-393</link>
+<dc:creator><![CDATA[Nicolas Liochon]]></dc:creator>
+<pubDate>Sun, 19 Apr 2015 11:30:27 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/cap-and-the-illusion-of-choice/#comment-393</guid>
+<content:encoded><![CDATA[<p>Great post. I though again about a good way to communicating this &#8220;operating range&#8221; / &#8220;unspecified behavior&#8221; effectively:</p>
+<p>CA means consistency, availability and partition intolerance.<br />
+Partition intolerance should be understood as gluten intolerance: you *should not* eat gluten, but it *can* happen. If it does, that&#8217;s bad, and you must do something about it. And you should make clear that you&#8217;re gluten intolerant if you go to a restaurant.</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>

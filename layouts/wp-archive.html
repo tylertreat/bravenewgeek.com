@@ -1,0 +1,50 @@
+{{- /* WordPress-compatible date/author archive pages.
+     Stub sections (content/<year>/_index.md, content/<year>/<month>/_index.md,
+     content/author/tyler/_index.md) set layout: wp-archive plus optional
+     year/month params; this lists matching posts, paginated like the home
+     page so /page/N/ URLs mirror WordPress. */ -}}
+{{- define "main" }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+</header>
+
+{{- $year := int (default 0 .Params.year) }}
+{{- $month := int (default 0 .Params.month) }}
+{{- $pages := slice }}
+{{- range where site.RegularPages "Section" "posts" }}
+  {{- if or (eq $year 0) (eq .Date.Year $year) }}
+    {{- if or (eq $month 0) (eq (int .Date.Month) $month) }}
+      {{- $pages = $pages | append . }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- $paginator := .Paginate $pages }}
+{{- range $paginator.Pages }}
+<article class="post-entry">
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">{{ .Title }}</h2>
+  </header>
+  <div class="entry-content">
+    <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
+  </div>
+  <footer class="entry-footer">
+    {{- partial "post_meta.html" . -}}
+  </footer>
+  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+</article>
+{{- end }}
+
+{{- if gt $paginator.TotalPages 1 }}
+<footer class="page-footer">
+  <nav class="pagination">
+    {{- if $paginator.HasPrev }}
+    <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">«&nbsp;{{ i18n "prev_page" }}</a>
+    {{- end }}
+    {{- if $paginator.HasNext }}
+    <a class="next" href="{{ $paginator.Next.URL | absURL }}">{{ i18n "next_page" }}&nbsp;»</a>
+    {{- end }}
+  </nav>
+</footer>
+{{- end }}
+{{- end }}

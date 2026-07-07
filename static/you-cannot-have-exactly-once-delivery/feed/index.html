@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>Comments on: You Cannot Have Exactly-Once Delivery</title>
+<link>https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/</link>
+<description>Frozen comment archive; commenting is closed.</description>
+<item>
+<title>By: Heth Gala</title>
+<link>https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-66177</link>
+<dc:creator><![CDATA[Heth Gala]]></dc:creator>
+<pubDate>Thu, 15 Jan 2026 02:47:51 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-66177</guid>
+<content:encoded><![CDATA[<p>This article was just a rant. Nothing useful came out of it. I was expecting how to achieve at-least once in notification systems here but its total rant.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Gyula Csom</title>
+<link>https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-60691</link>
+<dc:creator><![CDATA[Gyula Csom]]></dc:creator>
+<pubDate>Sun, 09 Feb 2025 12:40:07 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-60691</guid>
+<content:encoded><![CDATA[<p>So to clarify&#8230; the above protocol is still not &#8220;Exactly once&#8221; at the network level. That is impossible due to FLP. However a smart protocol may hide this from the Application and present itself as &#8220;Exactly once&#8221;.</p>
+<p>Bottom line: If network partitions (resending lost messages) is an issue than &#8220;Exactly once&#8221; can be missleading, someone shall not forget about the physical level. However if partitions are not a big issue (network is robust enough, fast, etc.) then someone may forget about the physical level (network) and just think that at the Application level (i.e. logically) it is &#8220;Exactly once&#8221;. Question here:  what is the added value here in comparison with &#8220;Idempotency&#8221; which sometimes can still be an issue at the Application level as well, such as when an impatient user resends the message that cannot be (easily) handled by infrastructure. What are your experiences in this regard?</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Gyula Csom</title>
+<link>https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-60669</link>
+<dc:creator><![CDATA[Gyula Csom]]></dc:creator>
+<pubDate>Sat, 08 Feb 2025 01:38:41 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-60669</guid>
+<content:encoded><![CDATA[<p>I think the reasoning here is not totally precise. From FLP it follows that &#8220;Exactly once&#8221; is impossible in network (where partitions can occur). However it does not seem to be impossible at the application level (if we assume the machine reliable where partition cannot occur). How? Through idempotency:</p>
+<p>&#8212; Draft protocol</p>
+<p>Here is a simple protocol using shared message log. Lets say the message broker is Kafka, which BTW also states it can do &#8220;Exactly once&#8221;:</p>
+<p>Step 1. Kafka server-&gt;client: Server sends, client Receives new message<br />
+Step 2. Kafka client: Logs message as being processed<br />
+Step 3. Kafka client-&gt;Application: Client sends, Application receives new message<br />
+Step 4. Application: Process message<br />
+Step 5. Application: Logs message as processed</p>
+<p>&#8212; Case of network failure: </p>
+<p>Step 2. Check log before forwarding and only forward message to application iff it is not yet processed.</p>
+<p>&#8212; Case of process failure of Kafka client (after the message is already processed):</p>
+<p>Restart Kafka client: Consult log and only forward messages which are not marked as processed</p>
+<p>Case of process failure of Application:</p>
+<p>Restart Application: Consult log and process messages which are not marked as processed</p>
+<p>&#8212; Case of process failure of Kafka client (while message is being processed by the application): </p>
+<p>No need nothing (single threaded Application) or some intra-app coordination (multi threaded)</p>
+<p>&#8212; Case of process failure of both Kafka client and Application: </p>
+<p>No need nothing.</p>
+<p>A thing which seems to be interesting here, in case of business applications (DB): what happens with the transaction? Then idempotency should be solved at that side as well, such as recording a version (such as e.g. optimistic lock) both at the local log and the DB. </p>
+<p>Then the only problem remains when Application crashes during transaction, after transaction started but but before commited. To my understanding client-crash-survival DB sessions might be theoretically possible, but I am not aware of any RDBMS implementing it. Someone else? :-)</p>
+<p>As always I can be wrong &#8211; these are just rough thoughts. Any feedback is more then welcome. :-)</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: haha</title>
+<link>https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-58976</link>
+<dc:creator><![CDATA[haha]]></dc:creator>
+<pubDate>Thu, 07 Nov 2024 06:10:14 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-58976</guid>
+<content:encoded><![CDATA[<p>So true&#8230; I was shocked to see so many blogs claiming exactly-once is impossible, citing the two-general problem and the FLP paper. </p>
+<p>Those impossibility resutls only say that algorithms guaranteeing liveness (i.e., terminate within bounded number of steps) do not exist; there can still be algorithms that guarantee safety (i.e., produce correct consensus outcomes once terminated). Paxos and 2PC are such algorithms and they work just fine in practice.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: abc123</title>
+<link>https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-52785</link>
+<dc:creator><![CDATA[abc123]]></dc:creator>
+<pubDate>Mon, 18 Sep 2023 15:48:57 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-52785</guid>
+<content:encoded><![CDATA[]]></content:encoded>
+</item>
+<item>
+<title>By: Rody</title>
+<link>https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-51813</link>
+<dc:creator><![CDATA[Rody]]></dc:creator>
+<pubDate>Wed, 19 Apr 2023 03:10:42 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-51813</guid>
+<content:encoded><![CDATA[<p>What about modern day chat applications, they use sockets and messages are delivered once and they come under distributed systems right?<br />
+isnt exactly once not achieved, or is it with the sender and receiver being the same services giving an edge?</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Simon Boddy</title>
+<link>https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-51460</link>
+<dc:creator><![CDATA[Simon Boddy]]></dc:creator>
+<pubDate>Thu, 02 Mar 2023 09:07:04 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-51460</guid>
+<content:encoded><![CDATA[<p>Absolutely. Of course. And there&#8217;s a simple pattern for dealing with this&#8230; use a request/response protocol rather than messages, then make sure all unsafe requests have an application-level id. The receiving process, the server application, should store all responses. If it sees a request for the first time it does the work, then sends and stores the response. If it sees a request for which it has a stored response, it just replays the response. Reliability is an application level responsibility, and uniquely identified requests can be linked to uniqueness in the application context (1 shopping cart can have 1 payment request that the shopping cart app can repeat endlessly until it gets a response)</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: Alexey Stogny</title>
+<link>https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-51403</link>
+<dc:creator><![CDATA[Alexey Stogny]]></dc:creator>
+<pubDate>Thu, 23 Feb 2023 17:15:21 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-51403</guid>
+<content:encoded><![CDATA[<p>Nice post! Thanks! Wouldn&#8217;t post useless comment, but there&#8217;s no other way to subscribe to new posts ;)</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: MC</title>
+<link>https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-47957</link>
+<dc:creator><![CDATA[MC]]></dc:creator>
+<pubDate>Tue, 19 Apr 2022 04:37:29 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-47957</guid>
+<content:encoded><![CDATA[<p>You have absolutely no clue what you&#8217;re babbling about.</p>
+]]></content:encoded>
+</item>
+<item>
+<title>By: temporal user</title>
+<link>https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-45732</link>
+<dc:creator><![CDATA[temporal user]]></dc:creator>
+<pubDate>Fri, 14 Jan 2022 04:05:59 +0000</pubDate>
+<guid isPermaLink="false">https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/#comment-45732</guid>
+<content:encoded><![CDATA[<p>temporal does exactly once delivery</p>
+]]></content:encoded>
+</item>
+</channel>
+</rss>
