@@ -49,16 +49,14 @@ params:
   ShowCodeCopyButtons: true
   ShowRssButtonInSectionTermList: true
   ShowShareButtons: false
+  disableSpecial1stPost: true
   ShowToc: false
   hideFooter: false
-  homeInfoParams:
-    Title: Brave New Geek
-    Content: Introspections of a software engineer.
   socialIcons:
     - name: github
       url: https://github.com/tylertreat
     - name: rss
-      url: /index.xml
+      url: /feed/
   assets:
     disableHLJS: true
 

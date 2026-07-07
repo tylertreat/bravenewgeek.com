@@ -8,7 +8,7 @@ url: /about-me/
 
 ### Bio
 
-![headshot](/wp-content/uploads/2018/11/profile.jpeg)My name is Tyler Treat. I’m a Managing Partner at [Real Kinetic](https://realkinetic.com/) where I help companies build cloud software and implement platform engineering. At Apcera, I worked on [NATS](https://nats.io/), an open-source, high-performance messaging system for cloud-native applications. Before that, I architected Workiva’s microservice messaging platform and was an infrastructure engineering manager. As an engineer, I’m interested in distributed systems, cloud infrastructure, and platform engineering. As a technical leader, I’m interested in building effective teams.
+<img class="bio-headshot" src="/wp-content/uploads/2018/11/profile-300x300.jpeg" alt="headshot" width="180" height="180">My name is Tyler Treat. I’m a Managing Partner at [Real Kinetic](https://realkinetic.com/) where I help companies build cloud software and implement platform engineering. At Apcera, I worked on [NATS](https://nats.io/), an open-source, high-performance messaging system for cloud-native applications. Before that, I architected Workiva’s microservice messaging platform and was an infrastructure engineering manager. As an engineer, I’m interested in distributed systems, cloud infrastructure, and platform engineering. As a technical leader, I’m interested in building effective teams.
 
 This blog includes my own reflections, anecdotes, and experiences regarding software development and related topics drawn from my work, personal projects, and elsewhere. It also serves as a place where I can record lessons learned and other interesting tidbits.
 

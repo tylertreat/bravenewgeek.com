@@ -1,0 +1,17 @@
+/* About-page headshot: 180px floated right, as on the WordPress site. */
+.post-content img.bio-headshot {
+    display: inline;
+    float: right;
+    width: 180px;
+    height: 180px;
+    margin: 0 0 12px 16px;
+    border-radius: var(--radius);
+}
+
+@media screen and (max-width: 500px) {
+    .post-content img.bio-headshot {
+        float: none;
+        display: block;
+        margin: 0 auto 16px;
+    }
+}

@@ -1,0 +1,97 @@
+/* PaperMod gives light-mode list pages a gray background (--code-bg) while
+   single posts are white; dark mode instead keeps one page background and
+   offsets the entry cards. Make light mode use the dark-mode strategy so
+   list and post pages share the same background in both modes. */
+.list {
+    background: var(--theme);
+}
+
+:root {
+    --entry: rgb(248, 248, 250);
+}
+
+/* Header rework: PaperMod vertically centers the one-line header with
+   line-height: var(--header-height). With a two-line logo (title +
+   tagline) that breaks, so center with flex instead. */
+.header-nav {
+    line-height: 1.4;
+    align-items: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.logo {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    row-gap: 1px;
+}
+
+.logo-tagline {
+    font-size: 13px;
+    color: var(--secondary);
+}
+
+.menu {
+    align-items: center;
+}
+
+/* Small screens: stack the header — title with tagline beneath, then the
+   nav row below — instead of cramming both side by side. */
+@media screen and (max-width: 640px) {
+    .header-nav {
+        position: relative;
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 8px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .logo a {
+        font-size: 21px;
+    }
+
+    .logo-tagline {
+        font-size: 12px;
+    }
+
+    .menu {
+        width: 100%;
+    }
+
+    /* Keep the theme toggle in the top-right corner, aligned with the
+       title row, instead of flowing with the menu items. */
+    .menu .theme-toggle-item {
+        position: absolute;
+        top: 16px;
+        right: var(--gap);
+    }
+}
+
+/* Social icons (GitHub, RSS) in the footer above the copyright line. */
+.footer-social {
+    margin-bottom: 4px;
+}
+
+.footer-social .social-icons a {
+    padding: 4px;
+}
+
+/* No lift animation on card hover; keep the subtle border highlight. */
+.post-entry {
+    transition: none;
+}
+
+.post-entry:hover,
+.post-entry:focus-within {
+    transform: none;
+}
+
+/* Theme toggle relocated from the logo block into the nav menu
+   (layouts/_partials/header.html override). */
+.menu .theme-toggle-item,
+.menu .theme-toggle {
+    display: flex;
+    align-items: center;
+}
