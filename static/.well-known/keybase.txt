@@ -1,0 +1,69 @@
+==================================================================
+https://keybase.io/tylertreat
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://bravenewgeek.com
+  * I am tylertreat (https://keybase.io/tylertreat) on keybase.
+  * I have a public key with fingerprint FA5C 8B53 190C D672 5BDD  EFA6 1484 FBC8 4FF0 4832
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01013bdda6d2039a72f33e79015bdc576a58ed9ca17f8fa92b6b48c103eb544275c90a",
+      "fingerprint": "fa5c8b53190cd6725bddefa61484fbc84ff04832",
+      "host": "keybase.io",
+      "key_id": "1484fbc84ff04832",
+      "kid": "01013bdda6d2039a72f33e79015bdc576a58ed9ca17f8fa92b6b48c103eb544275c90a",
+      "uid": "8c4a232e5eb7d36c6757f21641010c19",
+      "username": "tylertreat"
+    },
+    "service": {
+      "hostname": "bravenewgeek.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1520017547,
+  "expire_in": 157680000,
+  "prev": "543c9e86907e1450043879e74e71dd7346a15358a1fded3aedcb0f96e0574733",
+  "seqno": 5,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.76
+Comment: https://keybase.io/crypto
+
+yMIuAnicrZJZaNRAGMe3tV6VblVUWsGC0Sddy+SYTLJQr3qBivggolbXSebLGluT
+bZLdtZRFUeqJV0E8sKJVrCBS+9Aqgni2VCtVURC8EBE8HhTFoqIWJ0XffHQeZphv
+/v/fdzC3igZFCvMapr7/crQn0ZXXc70pHVl55MTuesFwWZ0QrxeqYeCAGgZ+kKi2
+mRAXkIhE2WCMqkxCsk6JZMkyEB2J2GAmJirFGjDdpCKxNIvqkqEaimaKSAYDK4pE
+sKkjKsQEy3aS4KU82wk41qLY1AwsizoymUokDmNgUVVUNMUyTL5ZSNFkiRvXuX7o
+4MUZ1Idy2+UxfkkMlPcP/X+uOz2A00yFSrIEGAzCZNVUCSaWJKoKT4NMUQ+FPngO
+3QBcHdTVgBd4QAMhFxN4PGObEI427OWPxvBoBhzIJgGqy013AyekPDdwTbeGv64L
+gpQfD91BXSqUZ8FI/AElDNthfJrckQHPt11HiItcaQZ2SBaxhJBIsEJiAmxM2R4k
+7FDBe9YQX2EeyHAkVmRTB03VEQFRwQgpskZ0IAoQkTEiKyoVsYw1KloMmEyBmQay
+dBUQJgqRZSFsrdZxhTjmZdIkR/p20qFB2gMhd+NaVUEkrzAyZHB++MsihcNH/v17
+LfOH/hrVHi12WlMjcmd7D03Lb/g47kJt2ewHWvZuyZGZNLFf79Qql3SMv2OdKC18
+N6WkONp88OfzliKncn5XbbaqIv9A6mEuNTmIRhtXpc99nbHp2outGxcXH97ntGf7
+Lr+JBfTzxAjBvWs7h3aP6Z/3GS1o3VuQqbo/K7a06l7PlZam7y/PLV+6o63PL/ux
+euyg0yvO9Oypbzq1YpnjP9j/ccfVSTtPnq8sXz/36fhc25OF9473fzuw5W1605vu
+W40f1ie9ometIGze2b+y61VHI21++eLi9g/HH5X0r7nJzg97PH1026juw6+P2dtm
+dF78tIuNbu6dMPPQ7UWvxkYvVZR+arjRVjZnxG9OiUcM
+=G63+
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/tylertreat
+
+==================================================================
+
