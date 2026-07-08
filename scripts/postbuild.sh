@@ -29,4 +29,21 @@ for f in wp-sitemap.xml wp-sitemap-posts-post-1.xml wp-sitemap-posts-page-1.xml 
   cp public/sitemap.xml "public/$f"
 done
 
+# Home pagination used to be 5/page (WordPress: /page/2/../page/23/). The home
+# feed is now 20/page, so the high-numbered pages no longer exist. Redirect each
+# orphaned old page to the new page holding its first post, so no URL 404s.
+# old first-post index (0-based) = (N-1)*5; new page = floor(index/20)+1.
+for N in $(seq 2 23); do
+  [ -d "public/page/$N" ] && continue   # still a real page under the new size
+  target=$(( ((N-1)*5) / 20 + 1 ))
+  if [ "$target" -le 1 ]; then dest="/"; else dest="/page/$target/"; fi
+  mkdir -p "public/page/$N"
+  cat > "public/page/$N/index.html" <<HTML
+<!doctype html><html><head><meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url=$dest">
+<link rel="canonical" href="$dest"><title>Redirecting…</title>
+</head><body><a href="$dest">Continue to the log</a></body></html>
+HTML
+done
+
 echo "postbuild: WordPress-compat shims applied"

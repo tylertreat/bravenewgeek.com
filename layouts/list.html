@@ -2,10 +2,12 @@
 {{- $offsets := partialCached "offsets.html" . }}
 
 {{- $pages := .RegularPages }}
+{{- $pagerSize := 5 }}
 {{- if .IsHome }}
 {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- $pagerSize = 20 }}
 {{- end }}
-{{- $paginator := .Paginate $pages }}
+{{- $paginator := .Paginate $pages $pagerSize }}
 
 {{- if not .IsHome }}
 <header class="wrap list-header">
