@@ -1,0 +1,10 @@
+{{- /* Returns a map of post RelPermalink -> global log offset.
+       Newest post gets the highest offset (like an append-only log's tail),
+       so offsets are stable and meaningful on every page, not per-list. */ -}}
+{{- $ordered := sort (where site.RegularPages "Type" "posts") "Date" "desc" -}}
+{{- $total := len $ordered -}}
+{{- $m := dict -}}
+{{- range $i, $p := $ordered -}}
+  {{- $m = merge $m (dict $p.RelPermalink (sub $total $i)) -}}
+{{- end -}}
+{{- return $m -}}

@@ -1,0 +1,32 @@
+/* ============================================================
+   Footer
+   ============================================================ */
+
+.site-footer {
+  border-top: 1px solid var(--rule);
+  margin-top: 4rem;
+  padding: 2rem 0 2.6rem;
+}
+.site-footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+.footer-meta a { color: var(--ink-soft); transition: color 0.15s ease; }
+.footer-meta a:hover { color: var(--accent); }
+.footer-sep { color: var(--rule-strong); margin: 0 0.5rem; }
+.footer-colophon a { color: var(--ink-soft); transition: color 0.15s ease; }
+.footer-colophon a:hover { color: var(--accent); }
+
+/* scroll-to-top button */
+.top-link {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  color: var(--ink-soft);
+  padding: 10px;
+}
+.top-link:hover { color: var(--accent); border-color: var(--accent); }

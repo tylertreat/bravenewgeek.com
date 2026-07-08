@@ -1,0 +1,55 @@
+{{- define "main" }}
+{{- $offsets := partialCached "offsets.html" . }}
+
+{{- $pages := .RegularPages }}
+{{- if .IsHome }}
+{{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- end }}
+{{- $paginator := .Paginate $pages }}
+
+{{- if not .IsHome }}
+<header class="wrap list-header">
+  {{- if eq .Kind "term" }}
+  <p class="list-eyebrow">{{ .Data.Singular }}</p>
+  {{- end }}
+  <h1 class="list-title">{{ .Title }}</h1>
+  {{- with .Description }}<p class="list-desc">{{ . | markdownify }}</p>{{ end }}
+  {{- if .Content }}<div class="list-intro">{{ .Content }}</div>{{ end }}
+</header>
+{{- end }}
+
+<div class="wrap">
+  <ol class="log"{{ if not .IsHome }} start="{{ $paginator.PageNumber }}"{{ end }}>
+    {{- range $paginator.Pages }}
+    {{- $off := index $offsets .RelPermalink }}
+    <li class="log-entry">
+      <div class="log-head">
+        {{- with $off }}<span class="log-offset">#{{ . }}</span>{{ end }}
+        <time class="log-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+        {{- if and (.Param "ShowReadingTime") .ReadingTime }}<span class="log-read">{{ .ReadingTime }} min</span>{{ end }}
+      </div>
+      <h2 class="log-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+      {{- with .Summary }}
+      <p class="log-dek">{{ . | plainify | htmlUnescape }}</p>
+      {{- end }}
+    </li>
+    {{- end }}
+  </ol>
+
+  {{- if gt $paginator.TotalPages 1 }}
+  <nav class="log-pager" aria-label="Pagination">
+    {{- if $paginator.HasPrev }}
+    <a class="pager-link pager-newer" href="{{ $paginator.Prev.URL }}"><span class="pager-arrow">&larr;</span> newer</a>
+    {{- else }}
+    <span class="pager-link is-disabled"><span class="pager-arrow">&larr;</span> newer</span>
+    {{- end }}
+    <span class="pager-pos">{{ $paginator.PageNumber }}&thinsp;/&thinsp;{{ $paginator.TotalPages }}</span>
+    {{- if $paginator.HasNext }}
+    <a class="pager-link pager-older" href="{{ $paginator.Next.URL }}">older <span class="pager-arrow">&rarr;</span></a>
+    {{- else }}
+    <span class="pager-link is-disabled">older <span class="pager-arrow">&rarr;</span></span>
+    {{- end }}
+  </nav>
+  {{- end }}
+</div>
+{{- end }}

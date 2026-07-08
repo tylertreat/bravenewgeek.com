@@ -42,6 +42,8 @@ markup:
 params:
   env: production
   description: "Introspections of a software engineer"
+  mainSections:
+    - posts
   defaultTheme: auto
   comments: true # frozen WordPress comments, rendered read-only
   ShowReadingTime: true

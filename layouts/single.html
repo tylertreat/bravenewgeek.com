@@ -1,0 +1,50 @@
+{{- define "main" }}
+{{- $offsets := partialCached "offsets.html" . }}
+{{- $off := index $offsets .RelPermalink }}
+
+<article class="post wrap">
+  <div class="post-return">
+    <a href="{{ "" | absLangURL }}"><span class="pager-arrow">&larr;</span> the log</a>
+  </div>
+
+  <header class="post-header">
+    <div class="post-meta">
+      {{- with $off }}<span class="post-offset">#{{ . }}</span>{{ end }}
+      {{- if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>{{ end }}
+      {{- if and (.Param "ShowReadingTime") .ReadingTime }}<span>{{ .ReadingTime }} min read</span>{{ end }}
+      {{- with (.GetTerms "categories") }}
+      <span class="post-cats">
+        {{- range . }}<a href="{{ .Permalink }}">{{ .LinkTitle }}</a>{{ end }}
+      </span>
+      {{- end }}
+    </div>
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{- with .Description }}<p class="post-description">{{ . }}</p>{{ end }}
+  </header>
+
+  {{- if .Content }}
+  <div class="post-content md-content">
+    {{- if not (.Param "disableAnchoredHeadings") }}
+    {{- partial "anchored_headings.html" .Content -}}
+    {{- else }}{{ .Content }}{{ end }}
+  </div>
+  {{- end }}
+
+  {{- partial "extend_post_content.html" . }}
+
+  <footer class="post-footer">
+    {{- with (.GetTerms "tags") }}
+    <ul class="post-tags">
+      {{- range . }}<li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+    </ul>
+    {{- end }}
+    {{- if (.Param "ShowPostNavLinks") }}
+    {{- partial "post_nav_links.html" . }}
+    {{- end }}
+  </footer>
+
+  {{- if (.Param "comments") }}
+  {{- partial "comments.html" . }}
+  {{- end }}
+</article>
+{{- end }}

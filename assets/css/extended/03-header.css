@@ -1,0 +1,104 @@
+/* ============================================================
+   Site header — wordmark + tagline (left), mono nav + toggle (right)
+   ============================================================ */
+
+.site-header {
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--gap);
+  padding-top: 22px;
+  padding-bottom: 20px;
+}
+
+.wordmark { display: block; }
+
+.wordmark-name {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.32rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.wordmark-tag {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.01em;
+  color: var(--ink-faint);
+  text-transform: lowercase;
+}
+
+.wordmark:hover .wordmark-name { color: var(--accent); }
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  padding-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
+.site-nav a {
+  color: var(--ink-soft);
+  text-transform: lowercase;
+  transition: color 0.15s ease;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.site-nav a:hover { color: var(--ink); }
+
+.site-nav a.is-active {
+  color: var(--accent);
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin-left: 0.2rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+.theme-toggle:hover { color: var(--accent); }
+
+[data-theme="dark"] .moon { display: none; }
+[data-theme="light"] .sun { display: none; }
+
+@media (max-width: 640px) {
+  .site-header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    position: relative;
+  }
+  .site-nav {
+    width: 100%;
+    padding-top: 0;
+    gap: 1rem;
+  }
+  /* Keep the toggle pinned top-right, aligned with the wordmark. */
+  .theme-toggle {
+    position: absolute;
+    top: 22px;
+    right: 0;
+    margin: 0;
+  }
+}

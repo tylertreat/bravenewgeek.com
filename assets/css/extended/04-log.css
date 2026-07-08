@@ -1,0 +1,147 @@
+/* ============================================================
+   The Log — the homepage signature.
+   An append-only log of essays: a vertical rail (the spine), each
+   essay a record hanging off it, tagged with a monospace offset.
+   ============================================================ */
+
+.log {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* the spine */
+.log::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 0.6rem;
+  bottom: 0.6rem;
+  width: 1px;
+  background: var(--rule-strong);
+}
+
+.log-entry {
+  position: relative;
+  padding: 1.75rem 0 1.75rem 2rem;
+  border-top: 1px solid var(--rule);
+}
+.log-entry:first-child { border-top: 0; }
+
+/* the node on the spine */
+.log-entry::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 2.1rem;
+  width: 9px;
+  height: 9px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1.5px solid var(--rule-strong);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.log-entry:hover::before {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.log-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+  color: var(--ink-faint);
+  margin-bottom: 0.5rem;
+}
+.log-head > * + *::before {
+  content: "·";
+  margin: 0 0.5rem;
+  color: var(--rule-strong);
+}
+.log-offset {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.log-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 1.24;
+  letter-spacing: -0.012em;
+}
+.log-title a {
+  color: var(--ink);
+  transition: color 0.15s ease;
+}
+.log-entry:hover .log-title a,
+.log-title a:hover { color: var(--accent); }
+
+.log-dek {
+  margin: 0.55rem 0 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* pagination */
+.log-pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2.25rem 0 1rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+.pager-link { color: var(--ink-soft); transition: color 0.15s ease; }
+.pager-link:hover { color: var(--accent); }
+.pager-pos { color: var(--ink-faint); letter-spacing: 0.02em; }
+.log-pager .is-disabled { color: var(--rule-strong); pointer-events: none; }
+.pager-arrow { font-family: var(--font-mono); }
+
+/* section / term / archive headers */
+.list-header {
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid var(--rule);
+}
+.list-eyebrow {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+}
+.list-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.1;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+}
+.list-desc {
+  margin: 0.6rem 0 0;
+  font-family: var(--font-body);
+  color: var(--ink-soft);
+}
+
+@media (max-width: 640px) {
+  .log-title { font-size: 1.25rem; }
+  .list-title { font-size: 1.6rem; }
+}

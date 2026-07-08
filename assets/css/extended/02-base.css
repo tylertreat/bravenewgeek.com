@@ -1,0 +1,66 @@
+/* ============================================================
+   Base: reset overrides, layout spine, links, typography defaults
+   ============================================================ */
+
+html { font-size: 100%; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Never let a long unbreakable token push the layout wider than the screen. */
+.log-title, .post-title, .list-title, .log-dek, .post-content { overflow-wrap: break-word; }
+
+/* Neutralize PaperMod's centered .main so our own .wrap controls width. */
+.main {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+body.list .main,
+body#top .main { min-height: calc(100vh - 220px); }
+
+/* Unify list-page and post-page backgrounds (theme tints .list differently). */
+.list { background: var(--paper); }
+
+.wrap {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gap);
+}
+
+/* The vertical rhythm between the header rule, content, and footer. */
+.main > .wrap:first-child,
+.main > article:first-child,
+.main > .list-header:first-child { margin-top: 3.25rem; }
+
+a { color: inherit; text-decoration: none; }
+
+.log-title a,
+.term-index a,
+.site-nav a { -webkit-tap-highlight-color: transparent; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+img { max-width: 100%; height: auto; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 2.5rem 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}

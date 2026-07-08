@@ -1,0 +1,117 @@
+/* ============================================================
+   Archive, tag index, and the WordPress date/author archives
+   ============================================================ */
+
+/* ---- archive (grouped by year) ---- */
+.archive-year { margin: 2.4rem 0; }
+.archive-year-header {
+  margin: 0 0 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.archive-year-header a { color: inherit; }
+.archive-list { list-style: none; margin: 0; padding: 0; }
+.archive-entry a {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-top: 1px solid var(--rule);
+  color: var(--ink);
+  transition: color 0.15s ease;
+}
+.archive-list .archive-entry:first-child a { border-top: 0; }
+.archive-offset {
+  flex: 0 0 3.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+}
+.archive-date {
+  flex: 0 0 2.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+}
+.archive-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.02rem;
+}
+.archive-entry a:hover { color: var(--accent); }
+
+/* ---- tag / category index ---- */
+.term-index {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 0 1.75rem;
+}
+.term-index a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  transition: color 0.15s ease;
+}
+.term-index a:hover { color: var(--accent); }
+.term-name::before { content: "#"; color: var(--rule-strong); margin-right: 0.1rem; }
+.term-count { color: var(--ink-faint); font-size: 0.72rem; }
+
+/* ---- WordPress date/author archives (post-entry markup) ---- */
+.post-entry {
+  position: relative;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--rule);
+}
+.post-entry:first-child { border-top: 0; }
+.post-entry .entry-header h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.3rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  transition: color 0.15s ease;
+}
+.post-entry .entry-content { margin: 0.5rem 0 0; }
+.post-entry .entry-content p {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink-soft);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.post-entry .entry-footer {
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+.post-entry .entry-link { position: absolute; inset: 0; }
+.post-entry:hover .entry-header h2 { color: var(--accent); }
+
+/* pager reused by wp-archive */
+.page-footer .pagination {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+.page-footer .pagination a { color: var(--ink-soft); }
+.page-footer .pagination a:hover { color: var(--accent); }

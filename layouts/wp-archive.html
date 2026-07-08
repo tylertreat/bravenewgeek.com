@@ -4,8 +4,9 @@
      year/month params; this lists matching posts, paginated like the home
      page so /page/N/ URLs mirror WordPress. */ -}}
 {{- define "main" }}
-<header class="page-header">
-  <h1>{{ .Title }}</h1>
+<header class="wrap list-header">
+  <p class="list-eyebrow">archive</p>
+  <h1 class="list-title">{{ .Title }}</h1>
 </header>
 
 {{- $year := int (default 0 .Params.year) }}
@@ -19,6 +20,7 @@
   {{- end }}
 {{- end }}
 
+<div class="wrap">
 {{- $paginator := .Paginate $pages }}
 {{- range $paginator.Pages }}
 <article class="post-entry">
@@ -47,4 +49,5 @@
   </nav>
 </footer>
 {{- end }}
+</div>
 {{- end }}

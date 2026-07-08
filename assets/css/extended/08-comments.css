@@ -1,0 +1,67 @@
+/* ============================================================
+   Frozen WordPress comments (read-only)
+   ============================================================ */
+
+.wp-comments {
+  margin-top: 3rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--rule);
+}
+.wp-comments h2 {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.3rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.wp-comments-notice {
+  margin: 0 0 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--ink-faint);
+}
+.wp-comment {
+  margin: 0.9rem 0;
+  padding: 0.9rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+.wp-comment header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  margin-bottom: 0.4rem;
+}
+.wp-comment-author {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+.wp-comment-date {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+}
+.wp-comment-body {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--content);
+}
+.wp-comment-body p { margin: 0.5rem 0; }
+.wp-comment-body p:first-child { margin-top: 0; }
+.wp-comment-body a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 2px;
+}
+.wp-comment-body a:hover { color: var(--accent); }
+.wp-comment-replies {
+  margin-top: 0.85rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--rule);
+}

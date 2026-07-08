@@ -1,0 +1,18 @@
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- if and (gt (len $pages) 1) (in $pages .) }}
+{{- $cur := . }}
+<nav class="post-nav" aria-label="Adjacent posts">
+  {{- with $pages.Next . }}
+  <a class="post-nav-link" href="{{ .Permalink }}">
+    <span class="post-nav-dir">{{ if gt .Date $cur.Date }}<span class="pager-arrow">&larr;</span> newer{{ else }}<span class="pager-arrow">&larr;</span> older{{ end }}</span>
+    <span class="post-nav-title">{{ .Title }}</span>
+  </a>
+  {{- end }}
+  {{- with $pages.Prev . }}
+  <a class="post-nav-link post-nav-right" href="{{ .Permalink }}">
+    <span class="post-nav-dir">{{ if gt .Date $cur.Date }}newer <span class="pager-arrow">&rarr;</span>{{ else }}older <span class="pager-arrow">&rarr;</span>{{ end }}</span>
+    <span class="post-nav-title">{{ .Title }}</span>
+  </a>
+  {{- end }}
+</nav>
+{{- end }}
