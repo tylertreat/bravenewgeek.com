@@ -43,7 +43,8 @@
   border: 1.5px solid var(--rule-strong);
   transition: background 0.15s ease, border-color 0.15s ease;
 }
-.log-entry:hover::before {
+/* Node lights up only when the clickable title is hovered. */
+.log-entry:has(.log-title a:hover)::before {
   border-color: var(--accent);
   background: var(--accent);
 }
@@ -80,7 +81,6 @@
   color: var(--ink);
   transition: color 0.15s ease;
 }
-.log-entry:hover .log-title a,
 .log-title a:hover { color: var(--accent); }
 
 .log-dek {
