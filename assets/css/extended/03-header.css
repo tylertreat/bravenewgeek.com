@@ -71,7 +71,7 @@
   justify-content: center;
   background: none;
   border: 0;
-  padding: 0;
+  padding: 0 0 2px; /* match nav links' bottom padding so it centers with them */
   margin-left: 0.2rem;
   color: var(--ink-soft);
   cursor: pointer;
@@ -94,11 +94,12 @@
     padding-top: 0;
     gap: 1rem;
   }
-  /* Keep the toggle pinned top-right, aligned with the wordmark. */
+  /* Pin the toggle to the top-right, inset to the page gutter so it lines
+     up with the content edge instead of hugging the screen. */
   .theme-toggle {
     position: absolute;
-    top: 22px;
-    right: 0;
+    top: 20px;
+    right: var(--gap);
     margin: 0;
   }
 }
