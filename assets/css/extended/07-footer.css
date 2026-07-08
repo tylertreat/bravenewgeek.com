@@ -18,6 +18,20 @@
 .footer-meta a { color: var(--ink-soft); transition: color 0.15s ease; }
 .footer-meta a:hover { color: var(--accent); }
 .footer-sep { color: var(--rule-strong); margin: 0 0.5rem; }
+.footer-links { white-space: nowrap; }
+
+/* On narrow screens, stack the copyright above the links so the links
+   row stays intact instead of wrapping mid-list. */
+@media (max-width: 640px) {
+  .footer-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+  }
+  .footer-dot { display: none; }
+}
 .footer-colophon a { color: var(--ink-soft); transition: color 0.15s ease; }
 .footer-colophon a:hover { color: var(--accent); }
 
